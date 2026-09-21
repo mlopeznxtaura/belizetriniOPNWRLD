@@ -1,0 +1,16 @@
+# CARIB CRIME (app13)
+> Fiction GTA3-inspired browser open-world. Belize ↔ Trinidad.
+
+## Endpoints
+- GET /agent.json
+- GET /api/health
+- GET /api/status
+- POST /api/drive
+
+## Missions
+1 Scooter Snatch
+2 Queen Street Pickup
+3 Creek Drop
+4 Rival Intercept
+5 Warehouse Soft Hit
+6 Safehouse Run

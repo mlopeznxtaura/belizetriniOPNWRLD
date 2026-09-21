@@ -1,0 +1,8 @@
+CARIB CRIME — Reef Runners (app13)
+Host: app13.nextaura.us
+Purpose: Fiction open-world crime game Belize City ↔ Port of Spain
+Agent contract: /agent.json
+Health: GET /api/health
+Status: GET /api/status
+Drive: POST /api/drive
+Play: /

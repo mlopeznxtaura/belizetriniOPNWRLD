@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="CARIB CRIME — Reef Runners. Fiction open-world crime game. Belize ↔ Trinidad." />
+  <title>CARIB CRIME — Reef Runners</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>" />
+</head>
+<body>
+  <div id="start-screen">
+    <div class="title-block">
+      <h1>CARIB CRIME</h1>
+      <p class="subtitle">Reef Runners · Belize ↔ Trinidad</p>
+      <p class="tagline">Fiction open-world · GTA3-inspired night run</p>
+      <div class="age-note">
+        <strong>18+ / Adult fiction.</strong> Stylized crime entertainment.
+        No real cartels, addresses, or crime tutorials. Violence is arcade / non-graphic.
+      </div>
+      <button id="btn-start" type="button">START GAME</button>
+      <p class="controls-hint">
+        WASD move · Mouse look · F enter/exit car · Space brake · P pause
+      </p>
+    </div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div id="cash">$0</div>
+      <div id="wanted" aria-label="wanted stars"></div>
+      <div id="health-wrap"><div id="health-bar"></div></div>
+    </div>
+    <div id="mission-brief">
+      <div id="mission-title">—</div>
+      <div id="mission-text">—</div>
+    </div>
+    <canvas id="minimap" width="160" height="160"></canvas>
+    <div id="district-label">Belize City</div>
+    <div id="prompt" class="hidden"></div>
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <div id="mobile-controls" class="hidden">
+    <div id="stick-zone"><div id="stick"></div></div>
+    <button type="button" id="btn-action">F</button>
+    <button type="button" id="btn-brake">Brake</button>
+  </div>
+
+  <div id="pause-overlay" class="hidden">
+    <h2>PAUSED</h2>
+    <p>Press P or Esc to resume</p>
+  </div>
+
+  <canvas id="game-canvas"></canvas>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

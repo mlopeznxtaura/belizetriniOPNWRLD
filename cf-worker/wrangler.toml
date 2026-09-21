@@ -1,0 +1,7 @@
+name = "nextaura-app13-us"
+main = "worker.js"
+compatibility_date = "2026-08-16"
+
+routes = [
+  { pattern = "app13.nextaura.us/*", zone_name = "nextaura.us" }
+]
