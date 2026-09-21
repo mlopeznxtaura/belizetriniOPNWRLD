@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import { NPC } from './ai.js';
 
+/** Fiction arcade missions — short staging, no real-crime how-tos */
 export const MISSIONS = [
   {
     id: 1,
     name: 'Scooter Snatch',
-    brief: 'Steal the orange scooter at Belikin docks.',
+    brief: 'Grab the orange scooter at Belikin docks. Hop on (F) near the pier.',
     reward: 200,
     blip: 'belikinDocks',
     wantedOnComplete: 1,
@@ -13,7 +14,7 @@ export const MISSIONS = [
   {
     id: 2,
     name: 'Queen Street Pickup',
-    brief: 'Pick up the package at Queen Street market.',
+    brief: 'Drive or walk to Queen Street market. Press F for the fiction package.',
     reward: 350,
     blip: 'queenMarket',
     wantedOnComplete: 0,
@@ -21,7 +22,7 @@ export const MISSIONS = [
   {
     id: 3,
     name: 'Creek Drop',
-    brief: 'Deliver the package to the boat at Haulover Creek.',
+    brief: 'Drop the package at the Haulover Creek boat (F).',
     reward: 500,
     blip: 'hauloverBoat',
     wantedOnComplete: 1,
@@ -29,7 +30,7 @@ export const MISSIONS = [
   {
     id: 4,
     name: 'Rival Intercept',
-    brief: 'Intercept the rival courier in Port of Spain downtown.',
+    brief: 'Find the rival courier in Port of Spain downtown. Press F to intercept.',
     reward: 700,
     blip: 'posDowntown',
     wantedOnComplete: 2,
@@ -37,7 +38,7 @@ export const MISSIONS = [
   {
     id: 5,
     name: 'Warehouse Soft Hit',
-    brief: 'Take out the warehouse guard (non-graphic). Get close and press F.',
+    brief: 'Reach the waterfront warehouse. Soft-hit the guard with F (arcade).',
     reward: 900,
     blip: 'warehouse',
     wantedOnComplete: 2,
@@ -45,7 +46,7 @@ export const MISSIONS = [
   {
     id: 6,
     name: 'Safehouse Run',
-    brief: 'Escape to the hillside Safehouse with the heat on.',
+    brief: 'Heat is on — race to the hillside safehouse and press F.',
     reward: 1500,
     blip: 'safehouse',
     wantedOnComplete: 0,
@@ -56,13 +57,12 @@ export const MISSIONS = [
 export class MissionSystem {
   constructor(game) {
     this.game = game;
-    this.currentId = 0; // 0 = not started, 1-6 active/done progressing
+    this.currentId = 0;
     this.completed = new Set();
     this.hasPackage = false;
     this.scooterStolen = false;
     this.rivalNpc = null;
     this.guardNpc = null;
-    this.boatMarker = null;
   }
 
   get current() {
@@ -83,7 +83,6 @@ export class MissionSystem {
 
   _setupMission(id) {
     const g = this.game;
-    // cleanup prior NPCs
     if (this.rivalNpc?.mesh) {
       g.scene.remove(this.rivalNpc.mesh);
       this.rivalNpc = null;
@@ -93,19 +92,27 @@ export class MissionSystem {
       this.guardNpc = null;
     }
 
-    if (id === 1) {
-      this.scooterStolen = false;
-    }
+    if (id === 1) this.scooterStolen = false;
     if (id === 2) this.hasPackage = false;
     if (id === 3) this.hasPackage = true;
+
     if (id === 4) {
-      this.rivalNpc = new NPC(g.scene, g.world.markers.posDowntown.clone().add(new THREE.Vector3(3, 0, 2)), 0xe63946);
+      this.rivalNpc = new NPC(
+        g.scene,
+        g.world.markers.posDowntown.clone().add(new THREE.Vector3(3, 0, 2)),
+        0xe63946
+      );
     }
     if (id === 5) {
-      this.guardNpc = new NPC(g.scene, g.world.markers.warehouse.clone().add(new THREE.Vector3(2, 0, 1)), 0x457b9d);
+      this.guardNpc = new NPC(
+        g.scene,
+        g.world.markers.warehouse.clone().add(new THREE.Vector3(2, 0, 1)),
+        0x457b9d
+      );
     }
     if (id === 6) {
-      g.wanted = Math.max(g.wanted, 3);
+      const stars = MISSIONS[5].setWanted || 3;
+      g.wanted = Math.max(g.wanted, stars);
       g.hud?.setWanted(g.wanted);
     }
   }
@@ -123,9 +130,9 @@ export class MissionSystem {
     const pos = g.player.position;
     const m = this.current;
     const target = g.world.markers[m.blip];
+    if (!target) return;
     const dist = pos.distanceTo(target);
 
-    // Pulse active blip
     const blip = g.world.blips[m.blip];
     if (blip) {
       blip.scale.setScalar(1 + Math.sin(performance.now() * 0.005) * 0.15);
@@ -136,92 +143,80 @@ export class MissionSystem {
 
     switch (m.id) {
       case 1:
-        // Complete when player enters the orange scooter (type scooter near docks) OR is near and in vehicle that is scooter
         if (g.player.inVehicle && g.player.vehicle?.type === 'scooter') {
           if (!this.scooterStolen) {
             this.scooterStolen = true;
             this._complete();
           }
-        } else if (dist < 5 && !g.player.inVehicle) {
-          g.hud?.showPrompt('Press F to hop on the scooter');
+        } else if (dist < 6 && !g.player.inVehicle) {
+          g.hud?.showPrompt('Press F — orange scooter');
         }
         break;
       case 2:
-        if (dist < 4) {
-          g.hud?.showPrompt('Press F to pick up package');
-        }
+        if (dist < 5) g.hud?.showPrompt('Press F — pick up package');
         break;
       case 3:
-        if (dist < 5) {
-          g.hud?.showPrompt('Press F to deliver package');
-        }
+        if (dist < 6) g.hud?.showPrompt('Press F — deliver to boat');
         break;
       case 4:
-        if (this.rivalNpc?.alive && dist < 4) {
-          g.hud?.showPrompt('Press F to intercept courier');
-        } else if (this.rivalNpc && !this.rivalNpc.alive) {
-          // wait for ragdoll then complete
-          if (!this.rivalNpc.mesh.visible || this.rivalNpc.ragdollT <= 0) {
-            this._complete();
-          }
+        if (this.rivalNpc?.alive && dist < 5) {
+          g.hud?.showPrompt('Press F — intercept courier');
         }
         break;
       case 5:
-        if (this.guardNpc?.alive && dist < 4) {
-          g.hud?.showPrompt('Press F — soft hit on guard');
-        } else if (this.guardNpc && !this.guardNpc.alive) {
-          if (!this.guardNpc.mesh.visible || this.guardNpc.ragdollT <= 0) {
-            this._complete();
-          }
+        if (this.guardNpc?.alive && dist < 5) {
+          g.hud?.showPrompt('Press F — soft hit');
         }
         break;
       case 6:
-        if (dist < 6) {
-          g.hud?.showPrompt('Press F to enter Safehouse');
-        }
+        if (dist < 7) g.hud?.showPrompt('Press F — enter safehouse');
         break;
     }
   }
 
-  /** Called when player presses F for mission interactions */
   tryInteract() {
     if (!this.current) return false;
     const g = this.game;
     const pos = g.player.position;
     const m = this.current;
     const target = g.world.markers[m.blip];
+    if (!target) return false;
     const dist = pos.distanceTo(target);
 
-    if (m.id === 2 && dist < 5) {
+    if (m.id === 2 && dist < 6) {
       this.hasPackage = true;
       g.hud?.toast('Package acquired');
       this._complete();
       return true;
     }
-    if (m.id === 3 && dist < 6 && this.hasPackage) {
+    if (m.id === 3 && dist < 7 && this.hasPackage) {
       this.hasPackage = false;
-      g.hud?.toast('Package delivered to the boat');
+      g.hud?.toast('Package delivered');
       this._complete();
       return true;
     }
-    if (m.id === 4 && this.rivalNpc?.alive && dist < 5) {
+    if (m.id === 4 && this.rivalNpc?.alive && dist < 5.5) {
       this.rivalNpc.softHit();
       g.addWanted(2);
       g.hud?.toast('Courier intercepted!');
-      setTimeout(() => { if (this.currentId === 4) this._complete(); }, 700);
+      setTimeout(() => {
+        if (this.currentId === 4) this._complete();
+      }, 700);
       return true;
     }
-    if (m.id === 5 && this.guardNpc?.alive && dist < 5) {
+    if (m.id === 5 && this.guardNpc?.alive && dist < 5.5) {
       this.guardNpc.softHit();
       g.addWanted(2);
-      g.hud?.toast('Guard down — get out!');
-      setTimeout(() => { if (this.currentId === 5) this._complete(); }, 700);
+      g.hud?.toast('Guard down — move!');
+      setTimeout(() => {
+        if (this.currentId === 5) this._complete();
+      }, 700);
       return true;
     }
-    if (m.id === 6 && dist < 7) {
+    if (m.id === 6 && dist < 8) {
       g.wanted = 0;
       g.hud?.setWanted(0);
-      g.hud?.toast('Safehouse reached — story complete!');
+      g.hud?.toast('Safehouse — story complete');
       this._complete();
       return true;
     }
@@ -234,19 +229,18 @@ export class MissionSystem {
     this.completed.add(m.id);
     this.game.cash += m.reward;
     if (m.wantedOnComplete) this.game.addWanted(m.wantedOnComplete);
-    this.game.hud?.toast(`+$${m.reward} — ${m.name} complete`);
+    this.game.hud?.toast(`+$${m.reward} — ${m.name} done`);
     this.game.hud?.setCash(this.game.cash);
 
     if (m.id >= 6) {
       this.currentId = 6;
       this.game.hud?.setMission({
         name: 'Story Complete',
-        brief: 'You made it. belizetriniOPNWRLD — end of the fictional run. Replay from mission 1 anytime.',
+        brief: 'Fiction run finished. Free roam Belize ↔ Port of Spain.',
       });
       for (const b of Object.values(this.game.world.blips)) b.visible = false;
       return;
     }
-    // chain next
     this.start(m.id + 1);
   }
 }

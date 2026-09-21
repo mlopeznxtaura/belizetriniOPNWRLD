@@ -64,3 +64,9 @@ Chunk streaming, WebGPU, multiplayer, custom shaders beyond atlas/billboard, ful
 - Measure fps before/after on the same drive path
 - Prefer atlas + instance over new materials
 - Fiction only; no real crime tradecraft
+
+## Iteration A art bar (locked Sep 2026)
+- Player: Quaternius Casual_Male GLB (CC0) with Idle/Walk clips via GLTFLoader + AnimationMixer. Mixamo Soldier kept as fallback. No capsule/box humanoids.
+- Vehicles: sedan / scooter / van kits with windshield glass, wheel+rim stacks, bumpers, body panels.
+- City: explicit road graph, building kit with tropical paints + façade windows, rectangular streetlamp fixtures (no neon orbs).
+

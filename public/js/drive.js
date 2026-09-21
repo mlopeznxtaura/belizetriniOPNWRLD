@@ -100,10 +100,10 @@ export class DriveClient {
         let tz = Number.isFinite(z) ? z : null;
         if (a.district === 'trinidad') {
           tx = tx ?? 140;
-          tz = tz ?? 20;
+          tz = tz ?? 8;
         } else if (a.district === 'belize') {
-          tx = tx ?? -70;
-          tz = tz ?? 5;
+          tx = tx ?? -72;
+          tz = tz ?? 4;
         }
         if (tx == null) tx = 0;
         if (tz == null) tz = 0;
@@ -120,6 +120,8 @@ export class DriveClient {
             position: pos,
             color: 0x00f5d4,
             yaw: g.player.yaw,
+            type: 'sedan',
+            world: g.world,
           });
           g.vehicles.push(v);
           g.hud.toast('Agent: car spawned');

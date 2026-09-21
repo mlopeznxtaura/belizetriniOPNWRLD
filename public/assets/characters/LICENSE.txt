@@ -1,0 +1,6 @@
+player.glb — Quaternius "Casual_Male" from Ultimate Animated Character Pack (CC0).
+Source: https://quaternius.com / OpenGameArt (quaternius). Converted FBX→GLB via FBX2glTF.
+Clips: Idle, Walk (+ others). Free for any use including commercial (CC0).
+
+soldier_mixamo.glb — three.js examples Soldier.glb (Mixamo demo character) kept as
+optional fallback with Idle/Walk/Run. Prefer Quaternius player.glb for licensing.

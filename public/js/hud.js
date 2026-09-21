@@ -58,7 +58,7 @@ export class HUD {
     this.promptEl.textContent = text;
     this.promptEl.classList.remove('hidden');
     clearTimeout(this._promptClear);
-    this._promptClear = setTimeout(() => this.hidePrompt(), 200);
+    this._promptClear = setTimeout(() => this.hidePrompt(), 220);
   }
 
   hidePrompt() {
@@ -74,26 +74,20 @@ export class HUD {
     }, ms);
   }
 
-  drawMinimap(playerPos, yaw, cops, blipWorldPos, inVehicle) {
+  drawMinimap(playerPos, yaw, cops, blipWorldPos, inVehicle, roads) {
     const ctx = this.mctx;
     const W = this.minimap.width;
     const H = this.minimap.height;
-    const scale = 0.45; // world units → pixels
-    ctx.fillStyle = '#0a1020';
+    const scale = 0.42;
+    ctx.fillStyle = '#080e1c';
     ctx.fillRect(0, 0, W, H);
 
-    // water hint
-    ctx.fillStyle = '#0a3048';
-    ctx.fillRect(0, H * 0.7, W, H * 0.3);
+    ctx.fillStyle = '#0a2838';
+    ctx.fillRect(0, H * 0.72, W, H * 0.28);
 
-    // bridge / road strip
-    ctx.strokeStyle = '#333348';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
     const toMap = (wx, wz) => {
       const dx = (wx - playerPos.x) * scale;
       const dz = (wz - playerPos.z) * scale;
-      // rotate by -yaw so up is forward
       const c = Math.cos(-yaw);
       const s = Math.sin(-yaw);
       const rx = dx * c - dz * s;
@@ -101,18 +95,29 @@ export class HUD {
       return [W / 2 + rx, H / 2 + rz];
     };
 
-    // district dots (landmarks)
+    if (roads?.length) {
+      ctx.strokeStyle = '#2a2a40';
+      ctx.lineWidth = 2.5;
+      for (const r of roads) {
+        const [ax, ay] = toMap(r.x1, r.z1);
+        const [bx, by] = toMap(r.x2, r.z2);
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+      }
+    }
+
     const landmarks = [
-      [-95, -28], [-50, -10], [-80, 35], [140, 20], [190, -45], [-20, 70],
+      [-108, -36], [-60, -12], [-95, 20], [140, 8], [175, -48], [-25, 65],
     ];
-    ctx.fillStyle = '#334455';
+    ctx.fillStyle = '#3a4558';
     for (const [x, z] of landmarks) {
       const [mx, my] = toMap(x, z);
       if (mx < 0 || my < 0 || mx > W || my > H) continue;
       ctx.fillRect(mx - 2, my - 2, 4, 4);
     }
 
-    // cops
     if (cops) {
       ctx.fillStyle = '#4488ff';
       for (const c of cops) {
@@ -125,16 +130,20 @@ export class HUD {
       }
     }
 
-    // mission blip
     if (blipWorldPos) {
       const [mx, my] = toMap(blipWorldPos.x, blipWorldPos.z);
       ctx.fillStyle = '#00f5d4';
       ctx.beginPath();
-      ctx.arc(Math.max(4, Math.min(W - 4, mx)), Math.max(4, Math.min(H - 4, my)), 5, 0, Math.PI * 2);
+      ctx.arc(
+        Math.max(4, Math.min(W - 4, mx)),
+        Math.max(4, Math.min(H - 4, my)),
+        5,
+        0,
+        Math.PI * 2
+      );
       ctx.fill();
     }
 
-    // player
     ctx.save();
     ctx.translate(W / 2, H / 2);
     ctx.fillStyle = inVehicle ? '#ffd60a' : '#f72585';
@@ -145,7 +154,5 @@ export class HUD {
     ctx.closePath();
     ctx.fill();
     ctx.restore();
-
-    // border already via CSS
   }
 }
