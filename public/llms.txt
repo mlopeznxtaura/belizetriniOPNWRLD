@@ -1,4 +1,4 @@
-# CARIB CRIME (app13)
+# belizetriniOPNWRLD (app13)
 > Fiction GTA3-inspired browser open-world. Belize ↔ Trinidad.
 
 ## Endpoints

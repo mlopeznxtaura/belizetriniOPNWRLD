@@ -19,7 +19,7 @@ class Game {
     } catch (err) {
       const note = document.createElement('div');
       note.style.cssText = 'position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#050510;color:#f72585;padding:2rem;text-align:center;font-family:sans-serif';
-      note.innerHTML = '<div><h1>CARIB CRIME</h1><p>WebGL unavailable in this browser.</p><p style="color:#889">Try Chrome/Firefox with hardware acceleration.</p></div>';
+      note.innerHTML = '<div><h1>belizetriniOPNWRLD</h1><p>WebGL unavailable in this browser.</p><p style="color:#889">Try Chrome/Firefox with hardware acceleration.</p></div>';
       document.body.appendChild(note);
       throw err;
     }
@@ -153,7 +153,7 @@ class Game {
     this.missions.start(1);
     this.drive.start();
     this.canvas.requestPointerLock?.();
-    this.hud.toast('Welcome to CARIB CRIME — Reef Runners');
+    this.hud.toast('Welcome to belizetriniOPNWRLD');
   }
 
   setPaused(p) {
@@ -296,4 +296,4 @@ class Game {
 }
 
 const game = new Game();
-window.__CARIB_CRIME__ = game;
+window.__BELIZETRINI_OPNWRLD__ = game;

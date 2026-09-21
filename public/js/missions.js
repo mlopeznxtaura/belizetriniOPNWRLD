@@ -241,7 +241,7 @@ export class MissionSystem {
       this.currentId = 6;
       this.game.hud?.setMission({
         name: 'Story Complete',
-        brief: 'You made it. Reef Runners — end of the fictional run. Replay from mission 1 anytime.',
+        brief: 'You made it. belizetriniOPNWRLD — end of the fictional run. Replay from mission 1 anytime.',
       });
       for (const b of Object.values(this.game.world.blips)) b.visible = false;
       return;

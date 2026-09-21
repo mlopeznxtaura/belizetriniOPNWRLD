@@ -33,8 +33,8 @@ function buildAgentJson(live = true) {
   const base = {
     schema_version: 1,
     app_id: 'app13',
-    name: 'CARIB CRIME',
-    title: 'CARIB CRIME — Reef Runners',
+    name: 'belizetriniOPNWRLD',
+    title: 'belizetriniOPNWRLD',
     subtitle: 'Belize ↔ Trinidad',
     host: 'app13.nextaura.us',
     purpose:
@@ -135,7 +135,7 @@ app.get('/.well-known/agent.json', (_req, res) => {
 app.get('/agent.txt', (_req, res) => {
   res.type('text/plain').send(
     [
-      'CARIB CRIME — Reef Runners (app13)',
+      'belizetriniOPNWRLD (app13)',
       'Host: app13.nextaura.us',
       'Purpose: Fiction open-world crime game Belize City ↔ Port of Spain',
       'Agent contract: /agent.json',
@@ -149,7 +149,7 @@ app.get('/agent.txt', (_req, res) => {
 
 app.get('/llms.txt', (_req, res) => {
   res.type('text/plain').send(
-    `# CARIB CRIME (app13)
+    `# belizetriniOPNWRLD (app13)
 > Fiction GTA3-inspired browser open-world. Belize ↔ Trinidad. Agents drive via /api/drive.
 
 ## Endpoints
@@ -317,6 +317,6 @@ app.get('*', (req, res, next) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`CARIB CRIME (app13) listening on http://0.0.0.0:${PORT}`);
+  console.log(`belizetriniOPNWRLD (app13) listening on http://0.0.0.0:${PORT}`);
   console.log(`Agent: http://localhost:${PORT}/agent.json`);
 });

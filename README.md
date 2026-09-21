@@ -1,4 +1,4 @@
-# CARIB CRIME — Reef Runners (app13)
+# belizetriniOPNWRLD (app13)
 
 Fiction open-world browser crime game inspired by GTA3-era style.
 **Belize City ↔ Port of Spain (Trinidad)** on one map.
@@ -10,7 +10,7 @@ Dark neon tropical night · walk & drive · wanted stars · 6-mission story.
 ## Quick start
 
 ```bash
-cd /workspace/app13-caribcrime
+cd /workspace/belizetrini-opnwrld
 npm install
 npm start
 # → http://localhost:8080
@@ -21,8 +21,8 @@ npm start
 ### Docker
 
 ```bash
-docker build -t app13-caribcrime .
-docker run -p 8080:8080 -e PORT=8080 app13-caribcrime
+docker build -t belizetrini-opnwrld .
+docker run -p 8080:8080 -e PORT=8080 belizetrini-opnwrld
 ```
 
 ## Controls
@@ -89,7 +89,7 @@ Keep a browser tab on `/` so the client can poll and apply drive actions.
 ## Layout
 
 ```
-app13-caribcrime/
+belizetrini-opnwrld/
   package.json
   server.js
   Dockerfile

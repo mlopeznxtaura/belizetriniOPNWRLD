@@ -1,7 +1,7 @@
 {
-  "name": "app13-caribcrime",
+  "name": "belizetrini-opnwrld",
   "version": "1.0.0",
-  "description": "CARIB CRIME — Reef Runners. Fiction GTA3-inspired open-world browser crime game. Belize City ↔ Port of Spain.",
+  "description": "belizetriniOPNWRLD \u2014 fiction GTA3-inspired open-world browser crime game. Belize City \u2194 Port of Spain. NextAura app13.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -14,7 +14,13 @@
     "express": "^4.21.2",
     "three": "^0.170.0"
   },
-  "keywords": ["nextaura", "app13", "three.js", "open-world", "game"],
+  "keywords": [
+    "nextaura",
+    "app13",
+    "three.js",
+    "open-world",
+    "game"
+  ],
   "license": "UNLICENSED",
   "private": true
 }

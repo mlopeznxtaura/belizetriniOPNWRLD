@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "app_id": "app13",
-  "name": "CARIB CRIME",
-  "title": "CARIB CRIME — Reef Runners",
-  "subtitle": "Belize ↔ Trinidad",
+  "name": "belizetriniOPNWRLD",
+  "title": "belizetriniOPNWRLD",
+  "subtitle": "Belize \u2194 Trinidad open world",
   "host": "app13.nextaura.us",
   "purpose": "Fiction adult open-world browser crime game. Belize City and Port of Spain districts. Agents drive via /api/drive.",
   "how_built": "Vanilla JS + Three.js + Express static/API server.",
@@ -17,8 +17,17 @@
     "sitemap": "/sitemap.xml"
   },
   "api_endpoints": [
-    { "method": "GET", "path": "/api/health" },
-    { "method": "GET", "path": "/api/status" },
-    { "method": "POST", "path": "/api/drive" }
+    {
+      "method": "GET",
+      "path": "/api/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status"
+    },
+    {
+      "method": "POST",
+      "path": "/api/drive"
+    }
   ]
 }
