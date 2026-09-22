@@ -1,14 +1,15 @@
-male.glb / player.glb — Original from-scratch stylized low-poly character (Blender boxes →
-Rigify → Idle/Walk → GLB). Belizetrini / Marco Lopez project asset. Not Quaternius.
-Clips: Idle, Walk (looping). Warm Caribbean brown skin; painted face texture (no Face plates).
-Outfit: teal tank, khaki cargo shorts, brown boots, short dark hair / beard suggestion.
+male.glb / player.glb — Mixamo "Soldier" / Vanguard character with Idle, Walk, Run
+(from three.js examples models/gltf/Soldier.glb — Mixamo demo export).
+Adobe Mixamo characters/animations: free for personal and commercial use per Mixamo TOU.
+Clips: Idle, Walk, Run, TPose.
 
-female.glb — Original from-scratch stylized low-poly character (same pipeline).
-Clips: Idle, Walk (looping). Warm Caribbean brown skin; painted face texture (no Face plates).
-Outfit: coral crop, indigo shorts, brown boots, updo/braids + amber headband.
+female.glb — Mixamo "Erika Archer" skinned character + Idle (Standing Idle) + Walk
+animations merged in Blender (tools/char_build/merge_mixamo_female.py).
+Source FBX redistributed via Rokojori/winter-tales Mixamo asset mirror (same Mixamo origin).
+Adobe Mixamo TOU applies. Clips: Idle, Walk.
 
-Build script: tools/char_build/build_chars.py (Blender 4.x headless).
-Select-screen thumbs are in-engine captures of these GLBs.
+soldier_mixamo.glb — same as male (kept as fallback alias of three.js Soldier).
+xbot.glb — Mixamo X Bot (three.js examples) optional fallback.
 
-soldier_mixamo.glb — three.js examples Soldier.glb (Mixamo demo) optional fallback.
-xbot.glb — Mixamo X Bot optional fallback.
+NOT used: from-scratch Blender box-rig chars; Quaternius Casual plate-face packs.
+Select-screen thumbs are in-engine captures of these modern Mixamo GLBs.

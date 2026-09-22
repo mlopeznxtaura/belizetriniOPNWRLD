@@ -25,8 +25,9 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — from-scratch stylized low-poly male/female GLBs (Idle/Walk).
- * Painted-face Caribbean skin; no Quaternius plates / kitbash. Ground vehicles keep rider visible.
+ * Third-person player — modern Mixamo humanoid male/female GLBs (Idle/Walk).
+ * Male: Mixamo Soldier (three.js). Female: Mixamo Erika Archer + Idle/Walk.
+ * No box-rig / Quaternius Casual plates. Ground vehicles keep rider visible.
  */
 export class Player {
   constructor(scene, spawn, world, opts = {}) {
@@ -155,10 +156,15 @@ export class Player {
       });
     }
 
-    // Normalize scale — custom / Mixamo fallbacks vary
-    const box = new THREE.Box3().setFromObject(this.model);
+    // Some Mixamo exports land Z-up; rotate to Y-up before height normalize.
+    let box = new THREE.Box3().setFromObject(this.model);
     const size = new THREE.Vector3();
     box.getSize(size);
+    if (size.z >= size.y && size.z >= size.x) {
+      this.model.rotation.x = -Math.PI / 2;
+      box = new THREE.Box3().setFromObject(this.model);
+      box.getSize(size);
+    }
     const targetH = 1.8;
     const s = size.y > 0.01 ? targetH / size.y : 1;
     this.model.scale.setScalar(s);

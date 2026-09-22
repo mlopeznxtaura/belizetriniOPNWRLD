@@ -61,14 +61,20 @@ model.traverse((o) => {
     }
   }
 });
-const box = new THREE.Box3().setFromObject(model);
+let box = new THREE.Box3().setFromObject(model);
 const size = new THREE.Vector3();
 box.getSize(size);
-const s = 1.8 / size.y;
+if (size.z >= size.y && size.z >= size.x) {
+  model.rotation.x = -Math.PI / 2;
+  box = new THREE.Box3().setFromObject(model);
+  box.getSize(size);
+}
+const s = 1.8 / Math.max(size.y, 0.01);
 model.scale.setScalar(s);
 box.setFromObject(model);
 model.position.y = -box.min.y;
-model.rotation.y = Math.PI * 0.15;
+// Face camera (camera is at -Z); female Mixamo often needs +PI after Z-up fix
+model.rotation.y = /female/i.test(url) ? Math.PI * 1.15 : Math.PI * 0.15;
 scene.add(model);
 
 const idle = (gltf.animations || []).find(c => /idle/i.test(c.name));
