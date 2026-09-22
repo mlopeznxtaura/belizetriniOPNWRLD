@@ -91,7 +91,7 @@ PATH="/workspace/app23-nextaura-fit/cf-worker/node_modules/.bin:$PATH" wrangler 
 |------|-------|
 | Repo | https://github.com/mlopeznxtaura/belizetriniOPNWRLD.git |
 | Branch | `main` |
-| Commit SHA | **PLACEHOLDER_SHA** |
+| Commit SHA | `8594a53614d717a672b9cfdb3120be2ee58d8b2e` |
 | Message | `Use clean Quaternius casuals; remove character kitbash.` |
 
 ---
