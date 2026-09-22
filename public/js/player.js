@@ -25,10 +25,8 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — Quaternius Casual_Male / Casual_Female (CC0) with Idle/Walk.
- * Sunny-ref kitbash v2: Belize male (white tank, olive cargo, dog tags, backpack)
- * + Trinidad female (red crop, olive shorts, curly updo + headband, gold hoops).
- * Ground vehicles keep rider visible.
+ * Third-person player — Quaternius Casual_Male / Casual_Female (CC0) as-is with Idle/Walk.
+ * No runtime kitbash (no bandana/afro/hoops/recolors). Ground vehicles keep rider visible.
  */
 export class Player {
   constructor(scene, spawn, world, opts = {}) {
@@ -61,7 +59,6 @@ export class Player {
     this.actions = {};
     this._currentAction = null;
     this._headBone = null;
-    this._accessories = null;
     this._seated = false;
 
     this.camera = new THREE.PerspectiveCamera(60, 1, 0.1, 450);
@@ -102,7 +99,6 @@ export class Player {
     this.actions = {};
     this._currentAction = null;
     this._headBone = null;
-    this._accessories = null;
     this.ready = false;
 
     if (!this._placeholder.parent) this.root.add(this._placeholder);
@@ -169,7 +165,6 @@ export class Player {
     box.setFromObject(this.model);
     this.model.position.y = -box.min.y;
 
-    this._applyPortraitLook(this.charId);
 
     this.root.remove(this._placeholder);
     this.root.add(this.model);
@@ -204,141 +199,6 @@ export class Player {
 
     console.info('[player] loaded', this.charId, used, 'clips:', clips.map((c) => c.name).join(', '));
     this.ready = true;
-  }
-
-  /**
-   * Kitbash v2 — match sunny pier refs (Belize male / Trinidad female).
-   * FBX links in mockup are fake; Quaternius Casual bases + procedural accessories.
-   */
-  _applyPortraitLook(charId) {
-    const skin = new THREE.Color(0x5a3320);
-    const face = new THREE.Color(0x6b3d28);
-    const hair = new THREE.Color(0x0a0806);
-    const olive = new THREE.Color(0x5a6b3a); // cargo shorts
-    const boots = new THREE.Color(0x8a6a42); // tan work boots
-    const shirt = charId === 'female'
-      ? new THREE.Color(0xc62828) // red sleeveless crop
-      : new THREE.Color(0xf5f2ea); // white ribbed tank
-
-    this.model.traverse((o) => {
-      if (!o.isMesh || !o.material) return;
-      const mats = Array.isArray(o.material) ? o.material : [o.material];
-      for (let i = 0; i < mats.length; i++) {
-        const m = mats[i].clone();
-        mats[i] = m;
-        const n = (m.name || o.name || '').toLowerCase();
-        if (n.includes('skin')) {
-          m.color.copy(skin);
-          m.roughness = 0.68;
-        } else if (n.includes('face')) {
-          m.color.copy(face);
-          m.roughness = 0.62;
-        } else if (n.includes('hair')) {
-          m.color.copy(hair);
-          m.roughness = 0.95;
-          // Female: hide stock hair under curly updo
-          if (charId === 'female') m.visible = false;
-        } else if (n.includes('shirt')) {
-          m.color.copy(shirt);
-          m.roughness = 0.78;
-        } else if (n.includes('pants') || n.includes('belt')) {
-          m.color.copy(olive);
-          m.roughness = 0.88;
-        } else if (n.includes('shoe') || n.includes('boot') || n.includes('sneaker')) {
-          m.color.copy(boots);
-          m.roughness = 0.9;
-        }
-      }
-      o.material = Array.isArray(o.material) ? mats : mats[0];
-    });
-
-    const host = this._headBone || this.model;
-    this._accessories = new THREE.Group();
-    this._accessories.name = 'sunnyRefAccessories';
-
-    // Backpack (both) — sits on torso, parented to model root so it rides with body
-    const packHost = this.model;
-    const packGroup = new THREE.Group();
-    packGroup.name = 'backpack';
-    const packMat = new THREE.MeshStandardMaterial({ color: 0x2a2e28, roughness: 0.9, metalness: 0.05 });
-    const strapMat = new THREE.MeshStandardMaterial({ color: 0x1a1c18, roughness: 0.92 });
-    const pack = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.42, 0.18), packMat);
-    pack.position.set(0, 1.28, -0.22);
-    packGroup.add(pack);
-    for (const sx of [-0.14, 0.14]) {
-      const strap = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.45, 0.03), strapMat);
-      strap.position.set(sx, 1.35, -0.02);
-      strap.rotation.x = 0.15;
-      packGroup.add(strap);
-    }
-    packHost.add(packGroup);
-    this._accessories.userData.packGroup = packGroup;
-
-    if (charId === 'female') {
-      // Voluminous curly updo
-      const afroMat = new THREE.MeshStandardMaterial({ color: 0x0c0a08, roughness: 0.98, metalness: 0 });
-      const bun = new THREE.Mesh(new THREE.IcosahedronGeometry(0.16, 1), afroMat);
-      bun.scale.set(1.35, 1.45, 1.3);
-      bun.position.set(0, 0.22, -0.02);
-      this._accessories.add(bun);
-      for (const [x, y, z, r] of [
-        [0.12, 0.14, 0.06, 0.1], [-0.12, 0.14, 0.06, 0.1],
-        [0.0, 0.28, -0.06, 0.11], [0.1, 0.2, -0.1, 0.09], [-0.1, 0.2, -0.1, 0.09],
-        [0.08, 0.1, 0.12, 0.08], [-0.08, 0.1, 0.12, 0.08],
-        [0.0, 0.08, 0.14, 0.07], [0.14, 0.22, 0.0, 0.08], [-0.14, 0.22, 0.0, 0.08],
-      ]) {
-        const puff = new THREE.Mesh(new THREE.IcosahedronGeometry(r, 0), afroMat);
-        puff.position.set(x, y, z);
-        this._accessories.add(puff);
-      }
-      // Red/orange patterned headband
-      const bandMat = new THREE.MeshStandardMaterial({ color: 0xe53935, roughness: 0.7, metalness: 0.05 });
-      const band = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.022, 6, 18), bandMat);
-      band.rotation.x = Math.PI / 2.05;
-      band.position.set(0, 0.1, 0.02);
-      this._accessories.add(band);
-      const bandAccent = new THREE.Mesh(
-        new THREE.BoxGeometry(0.06, 0.025, 0.04),
-        new THREE.MeshStandardMaterial({ color: 0xff9800, roughness: 0.65 })
-      );
-      bandAccent.position.set(0.1, 0.1, 0.06);
-      this._accessories.add(bandAccent);
-      // Gold hoop earrings
-      const hoopMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.9, roughness: 0.3 });
-      for (const sx of [-0.13, 0.13]) {
-        const hoop = new THREE.Mesh(new THREE.TorusGeometry(0.038, 0.006, 6, 14), hoopMat);
-        hoop.rotation.y = Math.PI / 2;
-        hoop.position.set(sx, -0.02, 0.02);
-        this._accessories.add(hoop);
-      }
-      // Thin gold necklace pendant (on model)
-      const neckMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.85, roughness: 0.35 });
-      const pendant = new THREE.Mesh(new THREE.SphereGeometry(0.018, 6, 6), neckMat);
-      pendant.position.set(0, 1.55, 0.14);
-      packHost.add(pendant);
-    } else {
-      // Male: short hair kept; add slight beard silhouette + dog tags
-      const beardMat = new THREE.MeshStandardMaterial({ color: 0x1a120c, roughness: 0.95 });
-      const beard = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 6), beardMat);
-      beard.scale.set(0.95, 0.55, 0.7);
-      beard.position.set(0, -0.08, 0.06);
-      this._accessories.add(beard);
-      // Dog tags
-      const tagMat = new THREE.MeshStandardMaterial({ color: 0xc0c4c8, metalness: 0.75, roughness: 0.4 });
-      const chainMat = new THREE.MeshStandardMaterial({ color: 0x9a9ea2, metalness: 0.7, roughness: 0.45 });
-      const chain = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.006, 4, 16), chainMat);
-      chain.rotation.x = Math.PI / 2.4;
-      chain.position.set(0, 1.58, 0.08);
-      packHost.add(chain);
-      for (const ox of [-0.025, 0.025]) {
-        const tag = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.07, 0.008), tagMat);
-        tag.position.set(ox, 1.48, 0.14);
-        tag.rotation.z = ox > 0 ? 0.15 : -0.1;
-        packHost.add(tag);
-      }
-    }
-
-    host.add(this._accessories);
   }
 
   _fadeTo(name, duration = 0.2) {
@@ -387,10 +247,11 @@ export class Player {
 
   _makeHiFiProcedural() {
     const g = new THREE.Group();
-    const skin = this._mat(0x6b3f2a, { roughness: 0.7 });
-    const jeans = this._mat(0x5a6b3a, { roughness: 0.85 });
-    const tee = this._mat(this.charId === 'female' ? 0xc62828 : 0xf5f2ea, { roughness: 0.7 });
-    const shoe = this._mat(0x8a6a42, { roughness: 0.9 });
+    // Neutral casual fallback only if GLB fails — not poster-matching kitbash
+    const skin = this._mat(0xc68642, { roughness: 0.7 });
+    const jeans = this._mat(this.charId === 'female' ? 0x3d4a6b : 0x2f4a7a, { roughness: 0.85 });
+    const tee = this._mat(this.charId === 'female' ? 0xe8a0b0 : 0x5a8f6a, { roughness: 0.7 });
+    const shoe = this._mat(0x222222, { roughness: 0.9 });
     const hair = this._mat(0x1a120c, { roughness: 0.95 });
 
     for (const sx of [-0.13, 0.13]) {
