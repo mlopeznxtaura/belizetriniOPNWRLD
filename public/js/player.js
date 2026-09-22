@@ -141,7 +141,7 @@ export class Player {
           const mats = Array.isArray(o.material) ? o.material : [o.material];
           for (const mat of mats) {
             mat.side = THREE.FrontSide;
-            mat.metalness = Math.min(mat.metalness ?? 0, 0.25);
+            this._ensureStockMaterial(mat);
           }
         }
       }
@@ -199,6 +199,32 @@ export class Player {
 
     console.info('[player] loaded', this.charId, used, 'clips:', clips.map((c) => c.name).join(', '));
     this.ready = true;
+  }
+
+
+  /**
+   * FBX2glTF left Quaternius Skin near-black (baseColor ~0.01) + metalness 0.4.
+   * Restore stock warm-beige casual skin so MeshStandardMaterial responds to dayNight lights.
+   * Not Caribbean kitbash — only repairs broken pack materials.
+   */
+  _ensureStockMaterial(mat) {
+    if (!mat) return;
+    const name = (mat.name || '').toLowerCase();
+    const c = mat.color;
+    const lum = c ? 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b : 1;
+    if (name.includes('skin') || (lum < 0.04 && !name.includes('hair') && !name.includes('belt') && !name.includes('pant') && !name.includes('shirt') && !name.includes('shoe'))) {
+      // sRGB #E8C4A8 warm beige (Quaternius casual default look)
+      mat.color.setHex(0xe8c4a8);
+      mat.metalness = 0;
+      mat.roughness = 0.72;
+      mat.emissive?.setHex(0x000000);
+    } else if (name.includes('face')) {
+      mat.metalness = 0;
+      mat.roughness = Math.max(mat.roughness ?? 0.55, 0.5);
+    } else {
+      mat.metalness = Math.min(mat.metalness ?? 0, 0.12);
+    }
+    if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
   }
 
   _fadeTo(name, duration = 0.2) {

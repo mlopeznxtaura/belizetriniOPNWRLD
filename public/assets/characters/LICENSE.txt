@@ -4,8 +4,10 @@ Source: https://quaternius.com / OpenGameArt (quaternius). Converted FBX→GLB v
 Clips include Idle, Walk, SitDown (+ others). Free for any use including commercial (CC0).
 player.glb is kept as an alias/fallback of male.glb.
 
-Characters ship stock Quaternius casuals as-is. Runtime kitbash (bandanas, afro meshes,
-hoop earrings, poster shirt tints, backpacks, dog tags) was removed.
+Characters ship stock Quaternius casuals (no Caribbean kitbash accessories/recolors).
+FBX2glTF left Skin baseColor near-black (~0.01) + metallicFactor 0.4; Skin was repaired
+to warm beige (#E8C4A8) with metalness 0 so MeshStandardMaterial reads under game lights.
+Face (eye/brow plates) kept as pack light-gray Quaternius style.
 
 Select-screen thumbs are neutral in-engine GLB captures (not concept-art crops).
 
