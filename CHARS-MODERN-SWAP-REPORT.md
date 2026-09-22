@@ -92,7 +92,7 @@ PATH="/workspace/app23-nextaura-fit/cf-worker/node_modules/.bin:$PATH" wrangler 
 |------|-------|
 | Repo | https://github.com/mlopeznxtaura/belizetriniOPNWRLD.git |
 | Branch | `main` |
-| Commit SHA | _(filled after push)_ |
+| Commit SHA | `6e6faf7b02245489799b9a5a7df212bd64e3f467` |
 | Message | `Swap box-rig chars for Mixamo Soldier + Erika Idle/Walk.` |
 
 ---
