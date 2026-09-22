@@ -25,8 +25,8 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — Quaternius Casual_Male / Casual_Female (CC0) as-is with Idle/Walk.
- * No runtime kitbash (no bandana/afro/hoops/recolors). Ground vehicles keep rider visible.
+ * Third-person player — from-scratch stylized low-poly male/female GLBs (Idle/Walk).
+ * Painted-face Caribbean skin; no Quaternius plates / kitbash. Ground vehicles keep rider visible.
  */
 export class Player {
   constructor(scene, spawn, world, opts = {}) {
@@ -155,7 +155,7 @@ export class Player {
       });
     }
 
-    // Normalize scale — Quaternius / Mixamo vary
+    // Normalize scale — custom / Mixamo fallbacks vary
     const box = new THREE.Box3().setFromObject(this.model);
     const size = new THREE.Vector3();
     box.getSize(size);
@@ -203,27 +203,13 @@ export class Player {
 
 
   /**
-   * FBX2glTF left Quaternius Skin near-black (baseColor ~0.01) + metalness 0.4.
-   * Restore stock warm-beige casual skin so MeshStandardMaterial responds to dayNight lights.
-   * Not Caribbean kitbash — only repairs broken pack materials.
+   * Preserve authored Caribbean skin/cloth colors. Only clamp runaway metalness and
+   * fix texture colorSpace — do not recolor to Quaternius beige.
    */
   _ensureStockMaterial(mat) {
     if (!mat) return;
-    const name = (mat.name || '').toLowerCase();
-    const c = mat.color;
-    const lum = c ? 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b : 1;
-    if (name.includes('skin') || (lum < 0.04 && !name.includes('hair') && !name.includes('belt') && !name.includes('pant') && !name.includes('shirt') && !name.includes('shoe'))) {
-      // sRGB #E8C4A8 warm beige (Quaternius casual default look)
-      mat.color.setHex(0xe8c4a8);
-      mat.metalness = 0;
-      mat.roughness = 0.72;
-      mat.emissive?.setHex(0x000000);
-    } else if (name.includes('face')) {
-      mat.metalness = 0;
-      mat.roughness = Math.max(mat.roughness ?? 0.55, 0.5);
-    } else {
-      mat.metalness = Math.min(mat.metalness ?? 0, 0.12);
-    }
+    mat.metalness = Math.min(mat.metalness ?? 0, 0.08);
+    if (mat.roughness == null) mat.roughness = 0.7;
     if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
   }
 

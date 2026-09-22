@@ -1,15 +1,14 @@
-male.glb / player.glb — Quaternius "Casual_Male" from Ultimate Animated Character Pack (CC0).
-female.glb — Quaternius "Casual_Female" from Ultimate Animated Character Pack (CC0).
-Source: https://quaternius.com / OpenGameArt (quaternius). Converted FBX→GLB via FBX2glTF.
-Clips include Idle, Walk, SitDown (+ others). Free for any use including commercial (CC0).
-player.glb is kept as an alias/fallback of male.glb.
+male.glb / player.glb — Original from-scratch stylized low-poly character (Blender boxes →
+Rigify → Idle/Walk → GLB). Belizetrini / Marco Lopez project asset. Not Quaternius.
+Clips: Idle, Walk (looping). Warm Caribbean brown skin; painted face texture (no Face plates).
+Outfit: teal tank, khaki cargo shorts, brown boots, short dark hair / beard suggestion.
 
-Characters ship stock Quaternius casuals (no Caribbean kitbash accessories/recolors).
-FBX2glTF left Skin baseColor near-black (~0.01) + metallicFactor 0.4; Skin was repaired
-to warm beige (#E8C4A8) with metalness 0 so MeshStandardMaterial reads under game lights.
-Face (eye/brow plates) kept as pack light-gray Quaternius style.
+female.glb — Original from-scratch stylized low-poly character (same pipeline).
+Clips: Idle, Walk (looping). Warm Caribbean brown skin; painted face texture (no Face plates).
+Outfit: coral crop, indigo shorts, brown boots, updo/braids + amber headband.
 
-Select-screen thumbs are neutral in-engine GLB captures (not concept-art crops).
+Build script: tools/char_build/build_chars.py (Blender 4.x headless).
+Select-screen thumbs are in-engine captures of these GLBs.
 
 soldier_mixamo.glb — three.js examples Soldier.glb (Mixamo demo) optional fallback.
-xbot.glb — Mixamo X Bot optional fallback. Prefer Quaternius for licensing.
+xbot.glb — Mixamo X Bot optional fallback.

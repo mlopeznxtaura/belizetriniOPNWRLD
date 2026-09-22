@@ -1,0 +1,2 @@
+{'sex': 'male', 'tris': 23568, 'glb': '/workspace/app13-caribcrime/public/assets/characters/male.glb', 'bytes': 1057632}
+{'sex': 'female', 'tris': 21264, 'glb': '/workspace/app13-caribcrime/public/assets/characters/female.glb', 'bytes': 983432}

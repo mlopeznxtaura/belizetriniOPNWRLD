@@ -30,7 +30,7 @@ document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87b8d8);
 const camera = new THREE.PerspectiveCamera(35, w/h, 0.1, 100);
-camera.position.set(0.55, 1.35, 3.1);
+camera.position.set(0.55, 1.35, -3.0);
 camera.lookAt(0, 0.95, 0);
 
 // Explicit Ambient + Hemisphere + key — MeshStandardMaterial needs lights
@@ -45,20 +45,8 @@ scene.add(fill);
 
 function ensureStock(mat) {
   if (!mat) return;
-  const name = (mat.name || '').toLowerCase();
-  const c = mat.color;
-  const lum = c ? 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b : 1;
-  if (name.includes('skin') || lum < 0.04 && !/hair|belt|pant|shirt|shoe/.test(name)) {
-    mat.color.setHex(0xe8c4a8);
-    mat.metalness = 0;
-    mat.roughness = 0.72;
-    mat.emissive?.setHex(0x000000);
-  } else if (name.includes('face')) {
-    mat.metalness = 0;
-    mat.roughness = Math.max(mat.roughness ?? 0.55, 0.5);
-  } else {
-    mat.metalness = Math.min(mat.metalness ?? 0, 0.12);
-  }
+  mat.metalness = Math.min(mat.metalness ?? 0, 0.08);
+  if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
 }
 
 const loader = new GLTFLoader();
@@ -80,7 +68,7 @@ const s = 1.8 / size.y;
 model.scale.setScalar(s);
 box.setFromObject(model);
 model.position.y = -box.min.y;
-model.rotation.y = Math.PI * 0.12;
+model.rotation.y = Math.PI * 0.15;
 scene.add(model);
 
 const idle = (gltf.animations || []).find(c => /idle/i.test(c.name));
