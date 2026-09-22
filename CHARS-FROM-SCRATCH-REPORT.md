@@ -97,7 +97,8 @@ PATH="/workspace/app23-nextaura-fit/cf-worker/node_modules/.bin:$PATH" wrangler 
 |------|-------|
 | Repo | https://github.com/mlopeznxtaura/belizetriniOPNWRLD.git |
 | Branch | `main` |
-| Commit SHA | `f91658f70ed3b243da5aaee317de6668aa9bd8d2` | Message | `Ship from-scratch low-poly male/female chars (Rigify Idle/Walk).` |
+| Commit SHA | `040cb590141429a250130dd0b981e34a9905d577` |
+| Message | `Ship from-scratch low-poly male/female chars (Rigify Idle/Walk).` |
 
 ---
 
