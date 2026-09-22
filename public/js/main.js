@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { buildWorld, districtAt } from './world.js';
-import { Player } from './player.js';
-import { spawnFleet, nearestVehicle } from './vehicle.js';
+import { Player, getStoredChar, setStoredChar } from './player.js';
+import { spawnFleet, nearestVehicle, vehicleLabel } from './vehicle.js';
 import { spawnCops } from './ai.js';
 import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
@@ -32,6 +32,8 @@ class Game {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = false;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    // Default clear matches afternoon sky; dayNight.bindRenderer keeps it in sync
+    this.renderer.setClearColor(0x52b0e4, 1);
 
     this.clock = new THREE.Clock();
     this.running = false;
@@ -44,6 +46,7 @@ class Game {
     this._wantedDecay = 0;
 
     this.world = buildWorld(this.scene);
+    this.world?.dayNight?.bindRenderer?.(this.renderer);
     this.player = new Player(this.scene, this.world.markers.spawn, this.world);
     this.vehicles = spawnFleet(this.scene, this.world.markers, this.world);
     this.cops = spawnCops(this.scene, this.world);
@@ -62,6 +65,7 @@ class Game {
   }
 
   _bindUI() {
+    this._bindCharSelect();
     document.getElementById('btn-start')?.addEventListener('click', () => this.beginPlay());
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyP' || e.code === 'Escape') {
@@ -76,6 +80,18 @@ class Game {
         if (this._fLatch) return;
         this._fLatch = true;
         this._onInteract();
+      }
+      // Time-of-day: [ ] scrub · T pause clock
+      const dn = this.world?.dayNight;
+      if (dn && (e.code === 'BracketLeft' || e.code === 'BracketRight' || e.code === 'KeyT')) {
+        if (e.code === 'KeyT') {
+          const paused = dn.togglePause();
+          this.hud?.toast(paused ? 'Clock paused' : 'Clock running');
+        } else {
+          const delta = e.code === 'BracketRight' ? 0.75 : -0.75;
+          dn.setHour(dn.hour + delta);
+          this.hud?.setClock?.(dn.clockString(), dn.phaseIcon());
+        }
       }
     });
     window.addEventListener('keyup', (e) => {
@@ -138,8 +154,34 @@ class Game {
     });
   }
 
+
+  _bindCharSelect() {
+    const cards = document.querySelectorAll('.char-card');
+    const sync = (id) => {
+      const chosen = setStoredChar(id);
+      cards.forEach((c) => {
+        const on = c.dataset.char === chosen;
+        c.classList.toggle('selected', on);
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      this.player.setCharacter(chosen);
+    };
+    const stored = getStoredChar();
+    sync(stored);
+    cards.forEach((c) => {
+      c.addEventListener('click', () => sync(c.dataset.char));
+    });
+    document.getElementById('btn-change-char')?.addEventListener('click', () => {
+      document.getElementById('char-select')?.classList.remove('picked');
+      cards.forEach((c) => c.classList.remove('hidden'));
+    });
+  }
+
   async beginPlay() {
-    try { await this.player.whenReady(); } catch (_) {}
+    try {
+      await this.player.setCharacter(getStoredChar());
+      await this.player.whenReady();
+    } catch (_) {}
     document.getElementById('start-screen')?.classList.add('hidden');
     this.hud.show();
     this.running = true;
@@ -153,7 +195,7 @@ class Game {
     this.missions.start(1);
     this.drive.start();
     this.canvas.requestPointerLock?.();
-    this.hud.toast('belizetriniOPNWRLD — night run');
+    this.hud.toast('belizetriniOPNWRLD — Caribbean day cycle');
   }
 
   setPaused(p) {
@@ -179,9 +221,7 @@ class Game {
     const near = nearestVehicle(this.vehicles, this.player.position, 4.5);
     if (near) {
       this.player.enterVehicle(near);
-      const label =
-        near.type === 'scooter' ? 'Scooter' : near.type === 'van' ? 'Van' : 'Sedan';
-      this.hud.toast(label);
+      this.hud.toast(vehicleLabel(near.type));
       if (this._nearCops(18) && this._crimeCooldown <= 0) {
         this.addWanted(1);
         this._crimeCooldown = 5;
@@ -206,6 +246,20 @@ class Game {
     this._raf = requestAnimationFrame(() => this._loop());
     const dt = Math.min(this.clock.getDelta(), 0.05);
 
+    // Day/night advances on title + in play (pause freezes gameplay but clock still ticks unless T)
+    if (this.world?.dayNight) {
+      const clockDt = (this.running && this.paused) ? 0 : dt;
+      this.world.dayNight.update(clockDt);
+      // Keep clear color locked to TOD bg (do not rely only on scene.background)
+      if (this.scene.background?.isColor) {
+        this.renderer.setClearColor(this.scene.background, 1);
+      }
+      this.hud?.setClock?.(
+        this.world.dayNight.clockString(),
+        this.world.dayNight.phaseIcon()
+      );
+    }
+
     if (this.running && !this.paused) {
       this._update(dt);
     } else if (!this.running) {
@@ -225,7 +279,7 @@ class Game {
     this.missions.update(dt);
 
     for (const v of this.vehicles) {
-      if (!v.occupied) v.speed = 0;
+      if (!v.occupied) v.park();
     }
 
     const pos = this.player.position;
@@ -268,11 +322,14 @@ class Game {
       if (near) {
         const mid = m?.id;
         if (!(mid === 1 && near.type === 'scooter') && ![2, 3, 4, 5, 6].includes(mid)) {
-          this.hud.showPrompt('Press F — enter vehicle');
+          this.hud.showPrompt(`Press F — ${vehicleLabel(near.type)}`);
         }
       }
     } else {
-      this.hud.showPrompt('Press F — exit vehicle');
+      const exitHint = this.player.vehicle?.isAir
+        ? 'Press F — exit (lands you)'
+        : 'Press F — exit';
+      this.hud.showPrompt(exitHint);
     }
 
     this.hud.setCash(this.cash);

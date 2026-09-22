@@ -12,9 +12,15 @@ export class HUD {
     this.toastEl = document.getElementById('toast');
     this.minimap = document.getElementById('minimap');
     this.mctx = this.minimap.getContext('2d');
+    this.clockEl = document.getElementById('tod-clock');
     this._toastTimer = null;
     this._promptClear = null;
     this.setWanted(0);
+  }
+
+  setClock(hhmm, icon = '☀') {
+    if (!this.clockEl) return;
+    this.clockEl.textContent = `${icon} ${hhmm}`;
   }
 
   show() {

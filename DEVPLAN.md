@@ -30,15 +30,41 @@ GTA III was **realtime 3D** (RenderWare): streamed city blocks, low-poly buildin
 3. **No engine rewrite.** Budget: draw calls, point lights, shadows, main-thread updates.
 4. **Art pipeline:** one shared texture atlas, modular building kits, 3–5 car chassis — not unique mesh per prop.
 
+## Art bar — Wind Waker / GameCube (locked 2026-09-22)
+
+Marco: trick the player with a **fake environment**. World detail is low priority as long as it does not look stupid. Think Zelda Wind Waker on GameCube (~20MB headroom): big readable shapes, soft fog, few materials — not curb-prop density porn.
+
+**Hero focus (ship this):**
+1. Characters (Quaternius-level animated GLTF — already on player)
+2. Vehicles that work as **one system**: cars, scooters, planes, helicopters
+3. **Real physics** feel (momentum, grip/slip, gravity/lift for air) — not rubber arcade only
+4. Enter/exit + camera that fits each mode
+
+**Backdrop (keep cheap):**
+- Stylized low-poly city + water + fog is enough
+- Stop chasing Iteration A “district density” until rideables feel good
+- Reject list still stands: no capsule player, yellow boxes, neon-orb lamps, box-limb humanoids
+
 ## Iteration roadmap
 
-### Iteration A — City read (NEXT)
+### Iteration A — City read (DEPRIORITIZED — WW fake-env only)
 Goal: from “tech demo blocks” → “you’re in a Caribbean night district.”
 - Road graph (lanes, intersections, sidewalks) for Belize + POS cores
 - Building kit: 6–8 facade variants, roofs, balconies, neon signs (atlas)
 - Prop scatter along curb (bins, stalls, barrels) via instancing
 - Fog + tone so distant city collapses cleanly
 - Exit criteria: still 50+ fps on mid laptop; screenshot pass looks denser at street level
+
+### Iteration V — Vehicles & physics (IN PROGRESS — 2026-09-22)
+Goal: one rideable system the player trusts.
+- Shared controller: sedan / scooter / van on ground with **velocity vector**, accel/brake/reverse, lateral grip/slip, collision softens velocity
+- Scooter lean; car body roll from steer/speed (body subgroup)
+- Plane + helicopter kits (fuselage/wings/rotors/glass/gear) in same Vehicle class
+- Air: throttle + pitch/yaw (plane); collective + strafe-lite (heli); gravity when low throttle; soft land y≈0; alt clamp ~80/70m
+- Same F enter/exit + nearest-vehicle picker; HUD names Plane / Helicopter
+- Spawns: plane Belize waterfront (-112,-52); heli POS pad (168,-58)
+- Exit criteria: steal scooter → sedan → take off in plane or heli without mode feeling bolted on; no rubber-band collisions
+- See `VEHICLE-PHYSICS-WW-REPORT.md`
 
 ### Iteration B — Traffic & life
 - Car kits (sedan, scooter, van) with simple materials

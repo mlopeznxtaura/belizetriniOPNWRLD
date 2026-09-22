@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="description" content="belizetriniOPNWRLD — fiction GTA III–era night open world. Belize City ↔ Port of Spain." />
+  <meta name="description" content="belizetriniOPNWRLD — fiction Caribbean open world with day/night. Belize City ↔ Port of Spain." />
   <title>belizetriniOPNWRLD</title>
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>" />
@@ -13,14 +13,32 @@
     <div class="title-block">
       <h1>belizetriniOPNWRLD</h1>
       <p class="subtitle">Belize ↔ Trinidad · open world</p>
-      <p class="tagline">Iteration A restart · GTA III–era night city</p>
+      <p class="tagline">Belize · Trinidad · sunny piers → neon nights</p>
       <div class="age-note">
         <strong>18+ / Adult fiction.</strong> Stylized crime entertainment.
         No real cartels, addresses, or crime tutorials. Violence is arcade / non-graphic.
       </div>
+
+      <div id="char-select" class="char-select">
+        <p class="char-label">Choose character</p>
+        <div class="char-cards" role="listbox" aria-label="Playable characters">
+          <button type="button" class="char-card" data-char="male" id="char-male" aria-pressed="false">
+            <img src="/assets/characters/portraits/thumb_male.png" alt="Belize — white tank, cargo" width="120" height="140" />
+            <span class="char-name">Belize</span>
+            <span class="char-desc">White tank · olive cargo</span>
+          </button>
+          <button type="button" class="char-card" data-char="female" id="char-female" aria-pressed="false">
+            <img src="/assets/characters/portraits/thumb_female.png" alt="Trinidad — red crop, updo" width="120" height="140" />
+            <span class="char-name">Trinidad</span>
+            <span class="char-desc">Red crop · curly updo</span>
+          </button>
+        </div>
+        <button type="button" id="btn-change-char" class="btn-link hidden">Change character</button>
+      </div>
+
       <button id="btn-start" type="button">START GAME</button>
       <p class="controls-hint">
-        WASD move · Mouse look · F enter/exit · Space brake · P pause
+        WASD move · Mouse look · F enter/exit · Space brake · P pause · [ ] time · T clock pause
       </p>
     </div>
   </div>
@@ -37,6 +55,7 @@
     </div>
     <canvas id="minimap" width="160" height="160"></canvas>
     <div id="district-label">Belize City</div>
+    <div id="tod-clock" aria-label="time of day">☀ 14:00</div>
     <div id="prompt" class="hidden"></div>
     <div id="toast" class="hidden"></div>
   </div>

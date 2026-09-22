@@ -3,7 +3,7 @@ import * as THREE from 'three';
 /**
  * belizetriniOPNWRLD — Iteration A city builder
  * Explicit road graph (Belize west + Port of Spain east + causeway),
- * building kit, instanced curb props, night tropical atmosphere.
+ * building kit, instanced curb props, day↔night tropical atmosphere.
  */
 
 export const MAP = {
@@ -19,10 +19,10 @@ const PALETTE = {
   sidewalk: 0x2a2a34,
   lane: 0xc9b86a,
   curb: 0x3a3a44,
-  grassBelize: 0x14281c,
-  grassPOS: 0x121c22,
-  sand: 0x6b5840,
-  water: 0x082838,
+  grassBelize: 0x1e3a28,
+  grassPOS: 0x1a2e28,
+  sand: 0x8a6e48,
+  water: 0x0a4a5c,
   palmTrunk: 0x4a3020,
   palmLeaf: 0x1a5c32,
   neonPink: 0xf72585,
@@ -786,6 +786,279 @@ function addInstancedProps(group, mats, scatters, realLights) {
   }
 }
 
+
+/**
+ * Time-of-day clock — lerps sun↔dusk↔night.
+ * Full cycle ~5 real minutes. Default start = 14:00 (bright afternoon).
+ * Night sky stays navy (not pure black); sky dome fills upper frustum.
+ * Pass renderer so setClearColor tracks TOD every frame.
+ */
+export function createDayNight(scene, realLights = [], mats = null, renderer = null) {
+  const ambient = new THREE.AmbientLight(0xffe8c8, 0.7);
+  const hemi = new THREE.HemisphereLight(0x87ceeb, 0x3d6a32, 0.95);
+  const sun = new THREE.DirectionalLight(0xfff2d6, 1.35);
+  sun.position.set(55, 95, 35);
+  sun.castShadow = false;
+  const moon = new THREE.DirectionalLight(0x9eb6ff, 0.05);
+  moon.position.set(-50, 90, 40);
+  moon.castShadow = false;
+  scene.add(ambient);
+  scene.add(hemi);
+  scene.add(sun);
+  scene.add(moon);
+
+  // Large inward sky dome — fog:false so FogExp2 never flattens upper view to a black slab
+  const skyMat = new THREE.MeshBasicMaterial({
+    color: 0x5cb8e8,
+    side: THREE.BackSide,
+    depthWrite: false,
+    fog: false,
+  });
+  const skyDome = new THREE.Mesh(new THREE.SphereGeometry(480, 32, 20), skyMat);
+  skyDome.name = 'skyDome';
+  skyDome.renderOrder = -1000;
+  scene.add(skyDome);
+
+  // Stars — fade out in daytime (fog:false so they stay visible at night)
+  const starGeo = new THREE.BufferGeometry();
+  const starPos = [];
+  for (let i = 0; i < 350; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(0.15 + Math.random() * 0.85); // upper hemisphere bias
+    const r = 420;
+    starPos.push(
+      r * Math.sin(phi) * Math.cos(theta),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+  starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+  const starMat = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 1.1,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0,
+    depthWrite: false,
+    fog: false,
+  });
+  const stars = new THREE.Points(starGeo, starMat);
+  stars.renderOrder = -999;
+  scene.add(stars);
+
+  scene.fog = new THREE.FogExp2(0xb8d4f0, 0.0018);
+  scene.background = new THREE.Color(0x5cb8e8);
+  if (renderer) renderer.setClearColor(0x5cb8e8, 1);
+
+  const street = realLights.map((l) => ({ light: l, base: l.intensity }));
+
+  // Keyframes: dusk/night bg lifted to navy — never a pure-black upper slab.
+  // Daytime fog softened; night fog moderate so neon stays readable.
+  const KEYS = [
+    {
+      h: 0,
+      ambC: 0x2a3a58, ambI: 0.52,
+      hemiSky: 0x2a3868, hemiGnd: 0x0c2018, hemiI: 0.68,
+      sunC: 0x9eb6ff, sunI: 0.02, sunPos: [-40, 70, 30],
+      moonC: 0x9eb6ff, moonI: 0.45,
+      fogC: 0x1a2848, fogD: 0.0042, bg: 0x1a2a50,
+      streetMul: 1.15, stars: 1, water: 0x082838,
+    },
+    {
+      h: 5.5,
+      ambC: 0x5a4870, ambI: 0.5,
+      hemiSky: 0xff7a40, hemiGnd: 0x2a2818, hemiI: 0.75,
+      sunC: 0xff8a40, sunI: 0.55, sunPos: [-70, 18, 40],
+      moonC: 0x9eb6ff, moonI: 0.12,
+      fogC: 0x5a4060, fogD: 0.0032, bg: 0x6a5080,
+      streetMul: 0.7, stars: 0.35, water: 0x1a3a48,
+    },
+    {
+      h: 7.5,
+      ambC: 0xffe0b8, ambI: 0.68,
+      hemiSky: 0x7ec8ff, hemiGnd: 0x4a7a38, hemiI: 0.95,
+      sunC: 0xffe8c0, sunI: 1.2, sunPos: [-50, 45, 30],
+      moonC: 0x9eb6ff, moonI: 0,
+      fogC: 0xc8dff0, fogD: 0.0020, bg: 0x6ab8e0,
+      streetMul: 0.12, stars: 0, water: 0x1a7a8c,
+    },
+    {
+      h: 12,
+      ambC: 0xfff0e0, ambI: 0.82,
+      hemiSky: 0x6ec8ff, hemiGnd: 0x4a8a3a, hemiI: 1.1,
+      sunC: 0xfff8ee, sunI: 1.6, sunPos: [20, 110, 10],
+      moonC: 0x9eb6ff, moonI: 0,
+      fogC: 0xb8d8f0, fogD: 0.0016, bg: 0x4aa8e0,
+      streetMul: 0.05, stars: 0, water: 0x1a8a9c,
+    },
+    {
+      h: 14,
+      ambC: 0xffeed8, ambI: 0.8,
+      hemiSky: 0x70c8ff, hemiGnd: 0x4a8a38, hemiI: 1.08,
+      sunC: 0xfff4e0, sunI: 1.5, sunPos: [40, 95, 15],
+      moonC: 0x9eb6ff, moonI: 0,
+      fogC: 0xc0daf0, fogD: 0.0017, bg: 0x52b0e4,
+      streetMul: 0.06, stars: 0, water: 0x1a8898,
+    },
+    {
+      h: 16.5,
+      ambC: 0xffd8a8, ambI: 0.74,
+      hemiSky: 0xffb060, hemiGnd: 0x4a6a30, hemiI: 0.98,
+      sunC: 0xffc070, sunI: 1.35, sunPos: [70, 48, 25],
+      moonC: 0x9eb6ff, moonI: 0,
+      fogC: 0xe8c8a0, fogD: 0.0020, bg: 0xe09858,
+      streetMul: 0.1, stars: 0, water: 0x1a6a7c,
+    },
+    {
+      h: 18.75,
+      ambC: 0xffa070, ambI: 0.55,
+      hemiSky: 0xff8060, hemiGnd: 0x2a2818, hemiI: 0.8,
+      sunC: 0xff7040, sunI: 0.75, sunPos: [80, 14, 20],
+      moonC: 0x9eb6ff, moonI: 0.1,
+      fogC: 0x7a5868, fogD: 0.0030, bg: 0x8a6080,
+      streetMul: 0.55, stars: 0.25, water: 0x0a3a48,
+    },
+    {
+      h: 20.5,
+      ambC: 0x2a3a58, ambI: 0.54,
+      hemiSky: 0x2a3868, hemiGnd: 0x0c2018, hemiI: 0.7,
+      sunC: 0x9eb6ff, sunI: 0.02, sunPos: [-40, 70, 30],
+      moonC: 0x9eb6ff, moonI: 0.42,
+      fogC: 0x1c2a48, fogD: 0.0040, bg: 0x1e3058,
+      streetMul: 1.1, stars: 0.95, water: 0x082838,
+    },
+    {
+      h: 24,
+      ambC: 0x2a3a58, ambI: 0.52,
+      hemiSky: 0x2a3868, hemiGnd: 0x0c2018, hemiI: 0.68,
+      sunC: 0x9eb6ff, sunI: 0.02, sunPos: [-40, 70, 30],
+      moonC: 0x9eb6ff, moonI: 0.45,
+      fogC: 0x1a2848, fogD: 0.0042, bg: 0x1a2a50,
+      streetMul: 1.15, stars: 1, water: 0x082838,
+    },
+  ];
+
+  const _cA = new THREE.Color();
+  const _cB = new THREE.Color();
+  const _cOut = new THREE.Color();
+
+  function sample(hour) {
+    let h = ((hour % 24) + 24) % 24;
+    let i0 = 0;
+    for (let i = 0; i < KEYS.length - 1; i++) {
+      if (h >= KEYS[i].h && h <= KEYS[i + 1].h) {
+        i0 = i;
+        break;
+      }
+    }
+    const a = KEYS[i0];
+    const b = KEYS[i0 + 1];
+    const span = b.h - a.h || 1;
+    const t = THREE.MathUtils.clamp((h - a.h) / span, 0, 1);
+    const smooth = t * t * (3 - 2 * t);
+    const lerpN = (x, y) => x + (y - x) * smooth;
+    const lerpCol = (ca, cb) => {
+      _cA.setHex(ca);
+      _cB.setHex(cb);
+      return _cOut.copy(_cA).lerp(_cB, smooth).getHex();
+    };
+    return {
+      ambC: lerpCol(a.ambC, b.ambC),
+      ambI: lerpN(a.ambI, b.ambI),
+      hemiSky: lerpCol(a.hemiSky, b.hemiSky),
+      hemiGnd: lerpCol(a.hemiGnd, b.hemiGnd),
+      hemiI: lerpN(a.hemiI, b.hemiI),
+      sunC: lerpCol(a.sunC, b.sunC),
+      sunI: lerpN(a.sunI, b.sunI),
+      sunPos: [
+        lerpN(a.sunPos[0], b.sunPos[0]),
+        lerpN(a.sunPos[1], b.sunPos[1]),
+        lerpN(a.sunPos[2], b.sunPos[2]),
+      ],
+      moonC: lerpCol(a.moonC, b.moonC),
+      moonI: lerpN(a.moonI, b.moonI),
+      fogC: lerpCol(a.fogC, b.fogC),
+      fogD: lerpN(a.fogD, b.fogD),
+      bg: lerpCol(a.bg, b.bg),
+      streetMul: lerpN(a.streetMul, b.streetMul),
+      stars: lerpN(a.stars, b.stars),
+      water: lerpCol(a.water, b.water),
+    };
+  }
+
+  let hour = 14; // bright afternoon — first load obviously sunny
+  const CYCLE_SEC = 5 * 60; // ~5 min full day
+  let paused = false;
+
+  function apply() {
+    const s = sample(hour);
+    ambient.color.setHex(s.ambC);
+    ambient.intensity = s.ambI;
+    hemi.color.setHex(s.hemiSky);
+    hemi.groundColor.setHex(s.hemiGnd);
+    hemi.intensity = s.hemiI;
+    sun.color.setHex(s.sunC);
+    sun.intensity = s.sunI;
+    sun.position.set(s.sunPos[0], s.sunPos[1], s.sunPos[2]);
+    moon.color.setHex(s.moonC);
+    moon.intensity = s.moonI;
+    if (scene.fog) {
+      scene.fog.color.setHex(s.fogC);
+      scene.fog.density = s.fogD;
+    }
+    if (scene.background && scene.background.isColor) {
+      scene.background.setHex(s.bg);
+    }
+    skyMat.color.setHex(s.bg);
+    if (renderer) renderer.setClearColor(s.bg, 1);
+    starMat.opacity = s.stars;
+    stars.visible = s.stars > 0.02;
+    for (const st of street) {
+      st.light.intensity = st.base * s.streetMul;
+    }
+    if (mats?.water?.color) mats.water.color.setHex(s.water);
+  }
+
+  apply();
+
+  return {
+    get hour() { return hour; },
+    setHour(h) {
+      hour = ((h % 24) + 24) % 24;
+      apply();
+    },
+    /** Bind WebGLRenderer later so clear color tracks TOD */
+    bindRenderer(r) {
+      renderer = r;
+      if (renderer && scene.background && scene.background.isColor) {
+        renderer.setClearColor(scene.background.getHex(), 1);
+      }
+    },
+    pause(p) { paused = !!p; },
+    togglePause() { paused = !paused; return paused; },
+    /** Advance clock; dt in real seconds */
+    update(dt) {
+      if (!paused) {
+        hour = (hour + (dt / CYCLE_SEC) * 24) % 24;
+      }
+      apply();
+    },
+    /** HH:MM game clock */
+    clockString() {
+      const h = Math.floor(hour) % 24;
+      const m = Math.floor((hour % 1) * 60);
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    },
+    /** sun | half | moon for HUD icon */
+    phaseIcon() {
+      if (hour >= 6.5 && hour < 17.5) return '☀';
+      if ((hour >= 5.5 && hour < 6.5) || (hour >= 17.5 && hour < 19.5)) return '🌤';
+      return '☾';
+    },
+    lights: { ambient, hemi, sun, moon, stars, skyDome },
+  };
+}
+
 /**
  * Build the open world into `scene`.
  * Returns markers, blips, colliders for gameplay.
@@ -853,34 +1126,8 @@ export function buildWorld(scene) {
   const scatters = scatterPropsAlongRoads(ROADS);
   addInstancedProps(root, mats, scatters, realLights);
 
-  // Atmosphere
-  scene.add(new THREE.AmbientLight(0x1a2838, 0.35));
-  scene.add(new THREE.HemisphereLight(0x1e2850, 0x0a1810, 0.55));
-  const moon = new THREE.DirectionalLight(0x9eb6ff, 0.35);
-  moon.position.set(-50, 90, 40);
-  moon.castShadow = false;
-  scene.add(moon);
-
-  scene.fog = new THREE.FogExp2(0x06061a, 0.0095);
-  scene.background = new THREE.Color(0x06061a);
-
-  // Stars
-  const starGeo = new THREE.BufferGeometry();
-  const starPos = [];
-  for (let i = 0; i < 350; i++) {
-    starPos.push(
-      (Math.random() - 0.5) * 700,
-      50 + Math.random() * 100,
-      (Math.random() - 0.5) * 700
-    );
-  }
-  starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
-  scene.add(
-    new THREE.Points(
-      starGeo,
-      new THREE.PointsMaterial({ color: 0xffffff, size: 0.55, sizeAttenuation: true })
-    )
-  );
+  // Atmosphere — time-of-day (default 14:00 afternoon)
+  const dayNight = createDayNight(scene, realLights, mats);
 
   const markers = {
     belikinDocks: new THREE.Vector3(-108, 0, -36),
@@ -919,6 +1166,7 @@ export function buildWorld(scene) {
     roads: ROADS,
     palette: PALETTE,
     mats,
+    dayNight,
     resolveCollision(pos, radius = 0.45) {
       resolveAABB(pos, radius, colliders);
       const b = MAP.bounds;

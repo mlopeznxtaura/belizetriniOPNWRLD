@@ -142,6 +142,22 @@ html, body {
   background: rgba(5, 10, 30, 0.85);
   box-shadow: 0 0 16px rgba(0,0,0,0.5);
 }
+#tod-clock {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff4d6;
+  text-shadow: 0 0 10px rgba(255, 180, 80, 0.55), 0 1px 3px rgba(0,0,0,0.65);
+  background: rgba(8, 16, 32, 0.45);
+  border: 1px solid rgba(255, 200, 120, 0.35);
+  border-radius: 999px;
+  padding: 0.28rem 0.85rem;
+  pointer-events: none;
+}
 #district-label {
   position: absolute; bottom: 186px; right: 16px;
   font-size: 0.7rem;
@@ -227,3 +243,74 @@ html, body {
 @media (min-width: 900px) {
   #mobile-controls { display: none !important; }
 }
+
+
+/* —— Character select —— */
+.char-select {
+  margin: 1.1rem 0 0.4rem;
+}
+.char-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7ee8fa;
+  margin-bottom: 0.65rem;
+}
+.char-cards {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.char-card {
+  width: 140px;
+  padding: 0.55rem 0.45rem 0.7rem;
+  background: rgba(8, 12, 32, 0.85);
+  border: 2px solid rgba(123, 44, 191, 0.45);
+  border-radius: 10px;
+  color: #e8f0ff;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.char-card img {
+  width: 112px;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #0a1020;
+  pointer-events: none;
+}
+.char-card .char-name {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.char-card .char-desc {
+  font-size: 0.68rem;
+  color: #8899aa;
+}
+.char-card:hover {
+  transform: translateY(-2px);
+  border-color: #00f5d4;
+}
+.char-card.selected,
+.char-card[aria-pressed="true"] {
+  border-color: #00f5d4;
+  box-shadow: 0 0 18px rgba(0, 245, 212, 0.35);
+}
+.btn-link {
+  margin-top: 0.55rem;
+  background: transparent;
+  border: none;
+  color: #c77dff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  letter-spacing: 0.06em;
+}
+.btn-link:hover { color: #00f5d4; }

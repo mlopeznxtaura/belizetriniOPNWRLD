@@ -1,6 +1,10 @@
 name = "nextaura-app13-us"
 main = "worker.js"
 compatibility_date = "2026-08-16"
+workers_dev = true
+
+# Serve the game from Cloudflare — no IBM Code Engine origin
+assets = { directory = "../public", binding = "ASSETS", not_found_handling = "single-page-application" }
 
 routes = [
   { pattern = "app13.nextaura.us/*", zone_name = "nextaura.us" }

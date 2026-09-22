@@ -1,0 +1,817 @@
+{
+  "title": "Open Game Asset Atlas v3 \u2014 seed extracted for belizetriniOPNWRLD",
+  "saved": "2026-09-22",
+  "seed_count": 68,
+  "sources": [
+    {
+      "name": "Kenney",
+      "url": "https://kenney.nl/assets",
+      "q": 5,
+      "note": "all CC0",
+      "tags": [
+        "2d",
+        "3d",
+        "audio",
+        "ui"
+      ]
+    },
+    {
+      "name": "Poly Haven",
+      "url": "https://polyhaven.com/",
+      "q": 5,
+      "note": "all CC0",
+      "tags": [
+        "3d",
+        "hdri",
+        "texture"
+      ]
+    },
+    {
+      "name": "Quaternius",
+      "url": "https://quaternius.com/",
+      "q": 5,
+      "note": "all CC0",
+      "tags": [
+        "3d",
+        "animated"
+      ]
+    },
+    {
+      "name": "ambientCG",
+      "url": "https://ambientcg.com/",
+      "q": 5,
+      "note": "all CC0",
+      "tags": [
+        "texture",
+        "pbr"
+      ]
+    },
+    {
+      "name": "NASA Media",
+      "url": "https://science.nasa.gov/multimedia/",
+      "q": 5,
+      "note": "public domain",
+      "tags": [
+        "hdri",
+        "photo"
+      ]
+    },
+    {
+      "name": "ShareTextures",
+      "url": "https://www.sharetextures.com/",
+      "q": 4,
+      "note": "CC0 filter",
+      "tags": [
+        "texture",
+        "pbr"
+      ]
+    },
+    {
+      "name": "Sketchfab CC0",
+      "url": "https://sketchfab.com/search?features=downloadable&licenses=322a749bcfa841b29dff1e8a1bb74b0b&type=models",
+      "q": 4,
+      "note": "CC0 license filter",
+      "tags": [
+        "3d"
+      ]
+    },
+    {
+      "name": "Freesound CC0",
+      "url": "https://freesound.org/search/?f=license:%22Creative+Commons+0%22",
+      "q": 4,
+      "note": "CC0 filter",
+      "tags": [
+        "audio",
+        "sfx"
+      ]
+    },
+    {
+      "name": "game-icons.net",
+      "url": "https://game-icons.net/",
+      "q": 4,
+      "note": "CC-BY 3.0",
+      "tags": [
+        "2d",
+        "icons"
+      ]
+    },
+    {
+      "name": "Kay Lousberg",
+      "url": "https://kaylousberg.itch.io/",
+      "q": 4,
+      "note": "mostly CC0",
+      "tags": [
+        "2d",
+        "3d"
+      ]
+    },
+    {
+      "name": "OpenGameArt CC0",
+      "url": "https://opengameart.org/art-search-advanced?field_art_licenses_tid%5B%5D=4",
+      "q": 3,
+      "note": "CC0 filter",
+      "tags": [
+        "2d",
+        "3d",
+        "audio"
+      ]
+    },
+    {
+      "name": "itch.io CC0 tag",
+      "url": "https://itch.io/game-assets/free/tag-cc0",
+      "q": 3,
+      "note": "CC0 tag",
+      "tags": [
+        "2d",
+        "3d"
+      ]
+    },
+    {
+      "name": "Openclipart",
+      "url": "https://openclipart.org/",
+      "q": 3,
+      "note": "public domain",
+      "tags": [
+        "2d",
+        "vector"
+      ]
+    },
+    {
+      "name": "Wikimedia CC0",
+      "url": "https://commons.wikimedia.org/wiki/Category:CC-Zero",
+      "q": 3,
+      "note": "CC0 category",
+      "tags": [
+        "2d",
+        "3d"
+      ]
+    },
+    {
+      "name": "FreePBR",
+      "url": "https://freepbr.com/",
+      "q": 3,
+      "note": "mixed CC0",
+      "tags": [
+        "texture"
+      ]
+    }
+  ],
+  "seed": [
+    {
+      "name": "100 CC0 SFX",
+      "type": "Audio / SFX",
+      "size": "2.9 MB",
+      "mb": 2.9,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/100-CC0-SFX.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "100 CC0 SFX #2",
+      "type": "Audio / SFX",
+      "size": "2.4 MB",
+      "mb": 2.4,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/sfx_100_v2.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "100 CC0 Metal and Wood SFX",
+      "type": "Audio / SFX",
+      "size": "2.0 MB",
+      "mb": 2,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/100-CC0-wood-metal-SFX.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Dungeon Pack",
+      "type": "2D / Tiles / Sprites",
+      "size": "3.3 MB",
+      "mb": 3.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/dungeon_sprites_pack.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Platformer Asset Collection",
+      "type": "2D / Platformer",
+      "size": "37.4 KB",
+      "mb": 0.0374,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/platformer_assets_collection.zip",
+      "bucket": "10-100 KB"
+    },
+    {
+      "name": "Platform Tileset - Nature",
+      "type": "2D / Tileset",
+      "size": "418.8 KB",
+      "mb": 0.4188,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/PlatformTiles_brownNature_ByEris.zip",
+      "bucket": "100 KB-1 MB"
+    },
+    {
+      "name": "Basic 16x16 Character Sprites",
+      "type": "2D / Characters",
+      "size": "3.3 KB",
+      "mb": 0.0033,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/sprites.png",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Game Backgrounds",
+      "type": "2D / Backgrounds",
+      "size": "15.2 MB",
+      "mb": 15.2,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/backgrounds.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Cute Characters and Monsters",
+      "type": "2D / Characters",
+      "size": "13.9 MB",
+      "mb": 13.9,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/All%20Assets.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Breakout Game Assets",
+      "type": "2D / Complete Kit",
+      "size": "2.4 MB",
+      "mb": 2.4,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/BREAKOUT.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Game Sprites",
+      "type": "2D / Pixel Art",
+      "size": "823.6 KB",
+      "mb": 0.8236,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/sprites.zip",
+      "bucket": "100 KB-1 MB"
+    },
+    {
+      "name": "Block Pack",
+      "type": "2D / RPG / Tiles",
+      "size": "1.1 MB",
+      "mb": 1.1,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_blockpack.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Physics Assets v2",
+      "type": "2D / Physics",
+      "size": "2.6 MB",
+      "mb": 2.6,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_physicsAssets_v2.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Physics Assets",
+      "type": "2D / Physics",
+      "size": "1.6 MB",
+      "mb": 1.6,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_physicsAssets.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Background Elements",
+      "type": "2D / Backgrounds",
+      "size": "1.1 MB",
+      "mb": 1.1,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_backgroundElements.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Monster Builder Pack",
+      "type": "2D / Characters",
+      "size": "1.3 MB",
+      "mb": 1.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_monsterbuilderpack.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Generic Items",
+      "type": "2D / Props / Icons",
+      "size": "2.3 MB",
+      "mb": 2.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/kenney_genericItems_updatedCross.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Heavy Terror Machine Assets",
+      "type": "2D / Characters / Sprites",
+      "size": "57.8 MB",
+      "mb": 57.8,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Heavy_Terror_sprites_NS.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Dungeon Assets - Low Poly",
+      "type": "3D / Models",
+      "size": "1.6 MB",
+      "mb": 1.6,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Dungeon.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Money - 3D Models",
+      "type": "3D / Props",
+      "size": "13.9 MB",
+      "mb": 13.9,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/money.7z",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Jet Plane Sprites and Tilesets",
+      "type": "2D / Shmup",
+      "size": "594.2 KB",
+      "mb": 0.5942,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/jetskyspritesandtileset.zip",
+      "bucket": "100 KB-1 MB"
+    },
+    {
+      "name": "Oldschool FPS Decoration Sprites",
+      "type": "2D / FPS",
+      "size": "48.8 KB",
+      "mb": 0.0488,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/oldschool_fps_decoration_sprites.zip",
+      "bucket": "10-100 KB"
+    },
+    {
+      "name": "Bitmap Font",
+      "type": "Font / UI",
+      "size": "4.6 KB",
+      "mb": 0.0046,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/font.zip",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Bitmap Font 5x12",
+      "type": "Font / UI",
+      "size": "117.3 KB",
+      "mb": 0.1173,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/gnsh-bitmapfont.zip",
+      "bucket": "100 KB-1 MB"
+    },
+    {
+      "name": "First Time Writing Font",
+      "type": "Font / UI",
+      "size": "10.3 MB",
+      "mb": 10.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/firsttimewriting_font_1_35.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "BitScript True Type Font",
+      "type": "Font / UI",
+      "size": "3.8 KB",
+      "mb": 0.0038,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/BitScript.zip",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Boxfont Round",
+      "type": "Font / UI",
+      "size": "18.4 KB",
+      "mb": 0.0184,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/boxfont_round_1.5g.zip",
+      "bucket": "10-100 KB"
+    },
+    {
+      "name": "GGBotNet Fonts CC0 All-in-1",
+      "type": "Font / UI",
+      "size": "22.3 MB",
+      "mb": 22.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/ggbotnet_fonts_cc0_2025_dec.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "DeepKyd Normal OTF",
+      "type": "Font / UI",
+      "size": "2.4 KB",
+      "mb": 0.0024,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/deepkyd-normal.otf_.zip",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Portal",
+      "type": "Music",
+      "size": "5 MB",
+      "mb": 5,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/portal.ogg",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Technological Messup",
+      "type": "Music",
+      "size": "3.5 MB",
+      "mb": 3.5,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/tecnological_messup_v2.ogg",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Charge",
+      "type": "Music",
+      "size": "1.8 MB",
+      "mb": 1.8,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/charge.ogg",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Final Hour OGG",
+      "type": "Music",
+      "size": "2.7 MB",
+      "mb": 2.7,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Final-Hour-isaiah658.ogg",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Final Hour MP3",
+      "type": "Music",
+      "size": "2.2 MB",
+      "mb": 2.2,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Final-Hour-isaiah658.mp3",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Final Hour WAV",
+      "type": "Music",
+      "size": "24.2 MB",
+      "mb": 24.2,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Final-Hour-isaiah658.wav",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "One Step at a Time",
+      "type": "Music",
+      "size": "27.3 MB",
+      "mb": 27.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/OneStepAtATIme.wav",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Music Loops Action",
+      "type": "Music / Loops",
+      "size": "15.1 MB",
+      "mb": 15.1,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/action.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Music Loops Battle",
+      "type": "Music / Loops",
+      "size": "2.9 MB",
+      "mb": 2.9,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/battle.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Music Loops Horror",
+      "type": "Music / Loops",
+      "size": "32.3 MB",
+      "mb": 32.3,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/horror.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Music Loops Chiptune 1",
+      "type": "Music / Loops",
+      "size": "37.5 MB",
+      "mb": 37.5,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/chiptune_1.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Music Loops Chiptune 2",
+      "type": "Music / Loops",
+      "size": "13.6 MB",
+      "mb": 13.6,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/chiptune_2.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Our Expanse MP3",
+      "type": "Music",
+      "size": "2.1 MB",
+      "mb": 2.1,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/our_expanse_-_with_tail-version-.mp3",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Our Expanse OGG",
+      "type": "Music",
+      "size": "4.5 MB",
+      "mb": 4.5,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/our_expanse_-_with_tail-version-0.ogg",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Our Expanse V0 files",
+      "type": "Music / Source",
+      "size": "13.1 MB",
+      "mb": 13.1,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/version0-files.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Our Expanse V1 files",
+      "type": "Music / Source",
+      "size": "12.9 MB",
+      "mb": 12.9,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/version1-files.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Our Expanse V2 files",
+      "type": "Music / Source",
+      "size": "9.2 MB",
+      "mb": 9.2,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/version2-files.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Snake Sprite Sheet",
+      "type": "2D / Character",
+      "size": "5.6 KB",
+      "mb": 0.0056,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Snake.png",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Snake Flipped Sprite Sheet",
+      "type": "2D / Character",
+      "size": "5.6 KB",
+      "mb": 0.0056,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/SnakeFlip.png",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Snake Die Sound",
+      "type": "Audio / SFX",
+      "size": "37 KB",
+      "mb": 0.037,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/DieSound_CC0_by_EugeneLoza.ogg",
+      "bucket": "10-100 KB"
+    },
+    {
+      "name": "Snake Eat Sound",
+      "type": "Audio / SFX",
+      "size": "7.3 KB",
+      "mb": 0.0073,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/EatSound_CC0_by_EugeneLoza.ogg",
+      "bucket": "1-10 KB"
+    },
+    {
+      "name": "Snake WAV 1",
+      "type": "Audio / SFX",
+      "size": "75.8 KB",
+      "mb": 0.0758,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Untitled%201.wav",
+      "bucket": "10-100 KB"
+    },
+    {
+      "name": "Snake WAV 2",
+      "type": "Audio / SFX",
+      "size": "795.8 KB",
+      "mb": 0.7958,
+      "license": "CC0 1.0",
+      "url": "https://opengameart.org/sites/default/files/Untitled%202.wav",
+      "bucket": "100 KB-1 MB"
+    },
+    {
+      "name": "Poly Haven Didelta Spinosa",
+      "type": "3D / Model",
+      "size": "38.6 MB",
+      "mb": 38.6,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/glTF/1k/didelta_spinosa/didelta_spinosa_1k.gltf.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Classic Console 01",
+      "type": "3D / Model",
+      "size": "26.82 MB",
+      "mb": 26.82,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/glTF/1k/ClassicConsole_01/ClassicConsole_01_1k.gltf.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Aerial Wood Snips",
+      "type": "Material / Texture",
+      "size": "82.96 MB",
+      "mb": 82.96,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/1k/aerial_wood_snips/aerial_wood_snips_1k.zip",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Solitude HDRI",
+      "type": "HDRI / Environment",
+      "size": "85.29 MB",
+      "mb": 85.29,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/soliltude/soliltude_1k.hdr",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Pretville Street HDRI",
+      "type": "HDRI / Environment",
+      "size": "96.39 MB",
+      "mb": 96.39,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/pretville_street/pretville_street_1k.hdr",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Lot 01 HDRI",
+      "type": "HDRI / Environment",
+      "size": "92.73 MB",
+      "mb": 92.73,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lot_01/lot_01_1k.hdr",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "Poly Haven Cannon HDRI",
+      "type": "HDRI / Environment",
+      "size": "6.83 MB",
+      "mb": 6.83,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/cannon/cannon_1k.hdr",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Poly Haven Near The River HDRI",
+      "type": "HDRI / Environment",
+      "size": "22.06 MB",
+      "mb": 22.06,
+      "license": "CC0 1.0",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/near_the_river_01/near_the_river_01_1k.hdr",
+      "bucket": "10-100 MB"
+    },
+    {
+      "name": "CC0Tree repo",
+      "type": "3D / Props / Environment",
+      "size": "GB-scale repo",
+      "mb": 1024,
+      "license": "CC0 1.0",
+      "url": "https://codeload.github.com/SkywolfGameStudios/CC0Tree/zip/refs/heads/main",
+      "bucket": "1 GB+",
+      "repo": true
+    },
+    {
+      "name": "SpriteCook repo",
+      "type": "2D / 3D / UI",
+      "size": "MB-scale repo",
+      "mb": 50,
+      "license": "CC0 1.0",
+      "url": "https://codeload.github.com/SpriteCook/spritecook-free-game-assets/zip/refs/heads/main",
+      "bucket": "10-100 MB",
+      "repo": true
+    },
+    {
+      "name": "pmndrs assets repo",
+      "type": "3D / HDRI / Texture / Font",
+      "size": "MB-scale repo",
+      "mb": 50,
+      "license": "CC0 1.0",
+      "url": "https://codeload.github.com/pmndrs/assets/zip/refs/heads/master",
+      "bucket": "10-100 MB",
+      "repo": true
+    },
+    {
+      "name": "Cyberspace Sprites",
+      "type": "2D / Pixel Art",
+      "size": "2 MB",
+      "mb": 2,
+      "license": "CC-BY 3.0",
+      "url": "https://opengameart.org/sites/default/files/CyberspaceSprites.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "UI Pack Buttons and Dialogue",
+      "type": "2D / UI",
+      "size": "3 MB",
+      "mb": 3,
+      "license": "CC-BY 3.0",
+      "url": "https://opengameart.org/sites/default/files/Free-Game-Assets-04.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "UI Pack Source Files",
+      "type": "2D / UI / Source",
+      "size": "7.9 MB",
+      "mb": 7.9,
+      "license": "CC-BY 3.0",
+      "url": "https://opengameart.org/sites/default/files/Free-Game-Assets-04-Source-Files.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Complete RTS Graphics",
+      "type": "2D / RTS",
+      "size": "3 MB",
+      "mb": 3,
+      "license": "CC-BY 3.0",
+      "url": "https://opengameart.org/sites/default/files/StrategyGame.zip",
+      "bucket": "1-10 MB"
+    },
+    {
+      "name": "Crosstown Smash GFX Assets",
+      "type": "2D / Complete Kit",
+      "size": "1.5 MB",
+      "mb": 1.5,
+      "license": "CC-BY 3.0",
+      "url": "https://opengameart.org/sites/default/files/ctsassets.zip",
+      "bucket": "1-10 MB"
+    }
+  ],
+  "iteration_a_picks": {
+    "goal": "City read densify for belizetriniOPNWRLD Iteration A",
+    "prefer_sources": [
+      "Kenney",
+      "Quaternius",
+      "Poly Haven",
+      "ambientCG",
+      "Kay Lousberg"
+    ],
+    "from_seed_now": [
+      {
+        "use": "night street ambient / IBL",
+        "item": "Poly Haven Pretville Street HDRI"
+      },
+      {
+        "use": "waterfront / canal mood",
+        "item": "Poly Haven Near The River HDRI"
+      },
+      {
+        "use": "empty lot / industrial pad",
+        "item": "Poly Haven Lot 01 HDRI"
+      },
+      {
+        "use": "small interior prop set-dressing",
+        "item": "Poly Haven Classic Console 01"
+      },
+      {
+        "use": "tropical plant accent (sparse)",
+        "item": "Poly Haven Didelta Spinosa"
+      },
+      {
+        "use": "curb/prop scatter later from Kenney city kits (browse source, not OGA 2D packs)",
+        "item": "Kenney source"
+      },
+      {
+        "use": "extra low-poly building/prop kits",
+        "item": "Quaternius source"
+      }
+    ],
+    "skip_for_now": "Most OGA 2D/platformer/snake/chiptune rows \u2014 wrong era/read for GTA3-style 3D night city"
+  }
+}

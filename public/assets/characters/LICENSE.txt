@@ -1,6 +1,14 @@
-player.glb — Quaternius "Casual_Male" from Ultimate Animated Character Pack (CC0).
+male.glb / player.glb — Quaternius "Casual_Male" from Ultimate Animated Character Pack (CC0).
+female.glb — Quaternius "Casual_Female" from Ultimate Animated Character Pack (CC0).
 Source: https://quaternius.com / OpenGameArt (quaternius). Converted FBX→GLB via FBX2glTF.
-Clips: Idle, Walk (+ others). Free for any use including commercial (CC0).
+Clips include Idle, Walk, SitDown (+ others). Free for any use including commercial (CC0).
+player.glb is kept as an alias/fallback of male.glb.
 
-soldier_mixamo.glb — three.js examples Soldier.glb (Mixamo demo character) kept as
-optional fallback with Idle/Walk/Run. Prefer Quaternius player.glb for licensing.
+Runtime kitbash v2 (app code): Belize male — white tank, olive cargo shorts, tan boots,
+dog tags, backpack, short beard mesh. Trinidad female — red crop shirt, olive shorts,
+curly updo + red/orange headband, gold hoops/pendant, backpack.
+Select-screen thumbs cropped from sunny pier character ref (refs/sunny_pair_belize_trinidad.png).
+Mockup FBX URLs (cdn.example.com) are conceptual — not downloaded.
+
+soldier_mixamo.glb — three.js examples Soldier.glb (Mixamo demo) optional fallback.
+xbot.glb — Mixamo X Bot optional fallback. Prefer Quaternius for licensing.
