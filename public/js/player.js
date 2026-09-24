@@ -10,10 +10,10 @@ export const CHAR_PATHS = {
 };
 
 /**
- * Marco Belizean/Trinidadian simulated trimesh parts face local -Z (Mixamo convention); root.rotation.y =
- * atan2(dx, dz) aligns local +Z with movement. Offset mesh yaw so walk-forward faces forward.
+ * build_characters v3 turnaround trimeshes face local +Z; root.rotation.y = atan2(dx, dz)
+ * already aligns local +Z with movement — no extra mesh yaw. (Prior simulated kit faced -Z / used PI.)
  */
-export const MODEL_YAW_OFFSET = Math.PI;
+export const MODEL_YAW_OFFSET = 0;
 
 export function getStoredChar() {
   try {
@@ -31,9 +31,9 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — Marco-authored Belizean male / Trinidadian female simulated trimesh GLBs.
- * Hierarchical part meshes (tank/cargo/backpack/locks/jewelry); no skins or clips yet.
- * MODEL_YAW_OFFSET keeps Mixamo-facing convention (-Z). Static pose stays visible if no Idle/Walk.
+ * Third-person player — Marco build_characters v3 Belizean male / Trinidadian female trimesh GLBs.
+ * Hierarchical part meshes (crop/tank, headwrap, tattoos, jewelry); no skins or clips yet.
+ * MODEL_YAW_OFFSET=0 (faces +Z). Static pose stays visible if no Idle/Walk.
  * Ground vehicles keep rider visible.
  */
 export class Player {

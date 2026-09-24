@@ -1,8 +1,10 @@
-"""Normalize Marco Belizean/Trinidadian simulated trimesh GLBs for app13.
+"""Normalize Marco Belizean/Trinidadian build_characters turnaround GLBs for app13.
 
 Keep character standing on Blender +Z (native up). glTF export_yup maps
 Blender Z-up -> glTF Y-up. Do NOT pre-rotate to Y or export double-converts.
 Scale to ~1.7m, feet on z=0, recalc normals, binary GLB.
+
+Source: build_characters.py v3 turnaround kit (static trimeshes, no skins/clips).
 """
 import bpy
 import shutil
@@ -13,14 +15,16 @@ OUT_DIR = "/workspace/app13-caribcrime/public/assets/characters"
 
 JOBS = [
     (
-        "/workspace/marco-char-delta2/unzipped/male_belizean_simulated.glb",
+        "/workspace/marco-char-delta3/male_belizean_build.glb",
         f"{OUT_DIR}/male.glb",
         "male",
+        f"{OUT_DIR}/male_belizean_build.glb",
     ),
     (
-        "/workspace/marco-char-delta2/unzipped/female_trinidadian_simulated.glb",
+        "/workspace/marco-char-delta3/female_trinidadian_build.glb",
         f"{OUT_DIR}/female.glb",
         "female",
+        f"{OUT_DIR}/female_trinidadian_build.glb",
     ),
 ]
 
@@ -49,6 +53,29 @@ def apply_sel(meshes):
     bpy.context.view_layer.update()
 
 
+def ensure_z_up(meshes, label):
+    """Blender glTF import usually yields Z-up; some files may already be Y-up in Blender.
+    If tallest axis is Y (or X), rotate so standing height is on +Z before normalize.
+    """
+    mins, maxs = world_bounds(meshes)
+    hx, hy, hz = (maxs - mins).x, (maxs - mins).y, (maxs - mins).z
+    print(f"[{label}] pre-orient size X={hx:.3f} Y={hy:.3f} Z={hz:.3f}")
+    if hz >= hx and hz >= hy:
+        return  # already Z-up
+    # Rotate so the tallest axis becomes +Z
+    if hy >= hx and hy >= hz:
+        # Y is up -> rotate -90° about X (Y -> Z)
+        print(f"[{label}] Y-up detected; rotating -90° about X to Z-up")
+        for o in meshes:
+            o.rotation_euler.x -= 1.5707963267948966
+    elif hx >= hy and hx >= hz:
+        print(f"[{label}] X-up detected; rotating +90° about Y to Z-up")
+        for o in meshes:
+            o.rotation_euler.y += 1.5707963267948966
+    bpy.context.view_layer.update()
+    apply_sel(meshes)
+
+
 def process(src, dst, label):
     clear_scene()
     bpy.ops.import_scene.gltf(filepath=src)
@@ -70,6 +97,7 @@ def process(src, dst, label):
 
     meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     apply_sel(meshes)
+    ensure_z_up(meshes, label)
 
     mins, maxs = world_bounds(meshes)
     hx, hy, hz = (maxs - mins).x, (maxs - mins).y, (maxs - mins).z
@@ -125,8 +153,10 @@ def process(src, dst, label):
 
 
 def main():
-    for src, dst, label in JOBS:
+    for src, dst, label, provenance in JOBS:
         process(src, dst, label)
+        shutil.copyfile(dst, provenance)
+        print(f"provenance {dst} -> {provenance}")
     shutil.copyfile(f"{OUT_DIR}/male.glb", f"{OUT_DIR}/player.glb")
     print("copied male.glb -> player.glb")
 

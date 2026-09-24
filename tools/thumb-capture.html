@@ -81,7 +81,7 @@ box.setFromObject(model);
 model.position.y = -box.min.y;
 // Face camera (camera lives at -Z); slight yaw so face+hair+shoulder kit read
 const yawParam = params.get('yaw');
-model.rotation.y = yawParam != null ? parseFloat(yawParam) : 0;  // face camera at -Z; override with ?yaw=
+model.rotation.y = yawParam != null ? parseFloat(yawParam) : Math.PI;  // build_characters face +Z; PI faces camera at -Z
 scene.add(model);
 
 // Reframe on head cluster if present — avoids gray blocky head cropped wrong

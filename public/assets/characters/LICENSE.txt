@@ -1,31 +1,29 @@
-male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian simulated trimesh
-===========================================================================================
+male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian build_characters v3
+=============================================================================================
 Author: Marco Lopez (Belize / Trinidad character parts for belizetriniOPNWRLD)
 
 Source GLBs (kept for provenance in this folder):
-  male_belizean_simulated.glb / female_trinidadian_simulated.glb  — this ship (simulated kit)
-  male_belizean.glb / female_trinidadian.glb                      — prior Marco delta (kept)
+  male_belizean_build.glb / female_trinidadian_build.glb  — this ship (build_characters.py turnaround)
+  male_belizean_simulated.glb / female_trinidadian_simulated.glb — prior simulated kit (kept)
+  male_belizean.glb / female_trinidadian.glb                      — earlier Marco delta (kept)
 
-Content: hierarchical part meshes (no skins, no animations; source POSITION-only) —
-  limbs, cargo_shorts + pockets, tank / trinidad_red_top, backpack + straps,
-  boots (upper/sole/toe + laces), hair strands / dreads / headwrap, beard,
-  face parts (eyes/nose/lips/ears), jewelry (necklace, pendant, wristbands),
-  belt/buckle, tattoo bands (male).
+Content: hierarchical part meshes (no skins, no animations) —
+  Male: off-white tank, cargo shorts, backpack, beard/moustache, arm tattoo bands, watch, dog tag
+  Female: red crop_top, headwrap (+ gold/green stripes + knot), hoop earrings, curls/locs, armband
 
 Pipeline (tools/marco_char_delta/normalize_export.py, Blender 4.3):
-  - Import glTF (Y-up) → Blender Z-up; export_yup maps once back to Y-up
+  - Import glTF → Blender Z-up (auto-orient if needed); export_yup maps once back to Y-up
   - Normalize standing height to ~1.7 m with feet on ground (y = 0 in-engine)
-  - Recalculate outward normals; export binary GLB (adds NORMAL for lighting)
+  - Recalculate outward normals; export binary GLB
   - player.glb is a copy of male.glb
+  - Authoring script kept: tools/marco_char_delta/build_characters.py
+  - Turnaround ref: public/assets/characters/refs/build_characters_turnaround.png
 
 Known limits (honest):
   - Static pose only — no Idle / Walk / Run clips yet (player.js keeps mesh visible)
   - No skinning / armature — parts are separate meshes, not bone-driven
-  - Low-poly simulated trimesh (spheres/cyls/boxes), not photoreal
-  - Face is minimal (tiny eye dots; nose/lips present but low-contrast)
+  - Low-poly trimesh kit from build_characters.py, not photoreal
 
 NOT used: Mixamo Soldier / Erika, OPNassetBUILDER heroes, Quaternius Casual packs.
 
-Select-screen thumbs: in-engine captures of these simulated Marco GLBs (face-forward framing).
-Refs (look targets only): public/assets/characters/refs/male_belize_crop.png,
-      public/assets/characters/refs/female_trinidad_crop.png
+Select-screen thumbs: in-engine captures of these build_characters GLBs (face-forward, head-cluster).
