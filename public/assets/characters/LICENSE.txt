@@ -1,15 +1,31 @@
-male.glb / player.glb — Mixamo "Soldier" / Vanguard character with Idle, Walk, Run
-(from three.js examples models/gltf/Soldier.glb — Mixamo demo export).
-Adobe Mixamo characters/animations: free for personal and commercial use per Mixamo TOU.
-Clips: Idle, Walk, Run, TPose.
+male.glb / player.glb / female.glb — OPNassetBUILDER hero meshes
+================================================================
+Base meshes: OPNassetBUILDER (repo mlopeznxtaura/OPNassetBUILDER),
+live library assets "Belize male" / "Trinidad female" pointing at
+  https://app14.nextaura.us/assets/male-hero.gltf
+  https://app14.nextaura.us/assets/female-hero.gltf
+Mirrored for build at /workspace/opn-chars/{male,female}-hero.gltf.
 
-female.glb — Mixamo "Erika Archer" skinned character + Idle (Standing Idle) + Walk
-animations merged in Blender (tools/char_build/merge_mixamo_female.py).
-Source FBX redistributed via Rokojori/winter-tales Mixamo asset mirror (same Mixamo origin).
-Adobe Mixamo TOU applies. Clips: Idle, Walk.
+Pipeline (tools/opn_hero_build/build_opn_heroes.py, Blender 4.3):
+  - Recolor materials toward Belizean / Trinidadian refs
+    (dark Caribbean skin; male white tank + olive shorts + tan boots;
+     female red crop + khaki shorts + tan boots; dark hair/eyes)
+  - Split skin faces into shorts/boots slots via primary joint weights
+  - Procedural Idle / Walk / Run on the 17-bone humanoid
+    (hips/spine/chest/neck/head/shoulders/elbows/hands/thighs/knees/ankles)
+  - Yawed to Mixamo-facing (-Z) so existing MODEL_YAW_OFFSET = PI stays valid
+  - Export binary GLB; player.glb is a copy of male.glb
 
-soldier_mixamo.glb — same as male (kept as fallback alias of three.js Soldier).
-xbot.glb — Mixamo X Bot (three.js examples) optional fallback.
+Known limits (honest):
+  - Still low-poly OPN heroes (~1.2k tris, segmented limbs) — NOT the
+    12k-poly photoreal ref sheets under characters/refs/
+  - No backpack / tattoos / jewelry / curly-hair sculpt (not in base mesh)
+  - Shorts/boots are material remaps of skin regions, not unique authored garments
+  - Animations are procedural keyframes, not mocap
 
-NOT used: from-scratch Blender box-rig chars; Quaternius Casual plate-face packs.
-Select-screen thumbs are in-engine captures of these modern Mixamo GLBs.
+NOT used: Mixamo Soldier / Erika (rejected), Quaternius Casual plate packs,
+from-scratch box-rig chars.
+
+Select-screen thumbs: in-engine captures of these OPN-based GLBs.
+Refs: public/assets/characters/refs/male_belize_crop.png,
+      public/assets/characters/refs/female_trinidad_crop.png

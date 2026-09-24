@@ -10,8 +10,8 @@ export const CHAR_PATHS = {
 };
 
 /**
- * Mixamo Soldier/Erika face local -Z; root.rotation.y = atan2(dx, dz) aligns
- * local +Z with movement. Offset mesh yaw so walk-forward faces forward.
+ * OPN heroes are exported facing local -Z (Mixamo convention); root.rotation.y =
+ * atan2(dx, dz) aligns local +Z with movement. Offset mesh yaw so walk-forward faces forward.
  */
 export const MODEL_YAW_OFFSET = Math.PI;
 
@@ -31,9 +31,9 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — modern Mixamo humanoid male/female GLBs (Idle/Walk).
- * Male: Mixamo Soldier (three.js). Female: Mixamo Erika Archer + Idle/Walk.
- * No box-rig / Quaternius Casual plates. Ground vehicles keep rider visible.
+ * Third-person player — OPNassetBUILDER hero male/female GLBs (Idle/Walk/Run).
+ * Sources: app14 male-hero / female-hero with material remap + procedural anims.
+ * MODEL_YAW_OFFSET keeps Mixamo-facing convention (-Z). Ground vehicles keep rider visible.
  */
 export class Player {
   constructor(scene, spawn, world, opts = {}) {
