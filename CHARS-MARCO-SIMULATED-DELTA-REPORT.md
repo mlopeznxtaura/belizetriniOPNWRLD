@@ -37,3 +37,12 @@ Honest limit: characters still do **not** walk-animate (no Idle/Walk clips). `pl
 - `tools/thumb-capture.html` — face-forward / head-framed capture
 
 NOT used: Mixamo Soldier / Erika, OPNassetBUILDER heroes.
+
+## Ship
+
+| | |
+|---|---|
+| Commit | `9a42e71eaaba74c384a66d5a87731201d8621759` |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `d8132638-a861-4a54-b537-6c60b6006d73` |
+| Live | https://app13.nextaura.us |
+| Verify | Hard-refresh select screen — new simulated thumbs; in-world static kit (no walk clips) |
