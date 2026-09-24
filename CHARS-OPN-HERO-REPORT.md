@@ -41,3 +41,11 @@
 ```bash
 blender -b -P tools/opn_hero_build/build_opn_heroes.py
 ```
+
+## Ship
+| Item | Value |
+|------|--------|
+| Commit | `04243d39a6c87d2a1543ea9ab6119f4465658e5c` (`04243d3`) |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `5450a280-58a6-44b5-ab91-b6613c1e2591` |
+| Live | https://app13.nextaura.us |
+| Verified | live `male.glb`/`player.glb`/`female.glb` ≈122 KB, md5 male=player=`2764b571…`, clips Idle/Walk/Run |
