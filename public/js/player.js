@@ -61,6 +61,8 @@ export class Player {
     this._currentAction = null;
     this._headBone = null;
     this._seated = false;
+    /** Monotonic load id — stale async GLB loads must not add a second mesh. */
+    this._loadGen = 0;
 
     this.camera = new THREE.PerspectiveCamera(60, 1, 0.1, 450);
     this._camPos = new THREE.Vector3();
@@ -84,19 +86,56 @@ export class Player {
 
   async setCharacter(id) {
     const next = setStoredChar(id);
-    if (next === this.charId && this.ready && this.model) return this._loadPromise;
+    // Same selection: do not bump _loadGen (avoids constructor + char-select init race).
+    if (next === this.charId) {
+      if (this.ready && this.model) return this._loadPromise;
+      if (this._loadPromise) return this._loadPromise;
+    }
     this.charId = next;
     this._loadPromise = this._loadCharacter();
     return this._loadPromise;
   }
 
-  async _loadCharacter() {
-    // Clear previous model
-    if (this.model) {
-      this.root.remove(this.model);
-      this.model = null;
+  /** Remove + dispose a character Object3D (geometry/materials). */
+  _disposeObject(obj) {
+    if (!obj) return;
+    obj.traverse((o) => {
+      if (o.geometry) o.geometry.dispose?.();
+      if (o.material) {
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const mat of mats) mat.dispose?.();
+      }
+    });
+  }
+
+  _detachAndDispose(obj) {
+    if (!obj) return;
+    if (obj.parent) obj.parent.remove(obj);
+    this._disposeObject(obj);
+  }
+
+  /** Drop every non-placeholder child so raced loads cannot leave a ghost mesh. */
+  _clearRootModels() {
+    const keep = this._placeholder;
+    const doomed = this.root.children.filter((c) => c !== keep);
+    for (const c of doomed) {
+      this.root.remove(c);
+      this._disposeObject(c);
     }
-    this.mixer = null;
+  }
+
+  async _loadCharacter() {
+    const gen = ++this._loadGen;
+    const wantChar = this.charId;
+
+    // Tear down prior mesh + any orphaned race leftovers immediately.
+    this._detachAndDispose(this.model);
+    this.model = null;
+    this._clearRootModels();
+    if (this.mixer) {
+      this.mixer.stopAllAction();
+      this.mixer = null;
+    }
     this.actions = {};
     this._currentAction = null;
     this._headBone = null;
@@ -106,15 +145,16 @@ export class Player {
     this._placeholder.visible = true;
 
     const loader = new GLTFLoader();
-    const primary = CHAR_PATHS[this.charId] || CHAR_PATHS.male;
-    const urls = [
-      primary,
-      '/assets/characters/player.glb',
-      '/assets/characters/soldier_mixamo.glb',
-    ];
+    // Only the selected gender is primary. Fallbacks are male Soldier aliases —
+    // never load female.glb when male is selected (and vice-versa for primary).
+    const primary = CHAR_PATHS[wantChar] || CHAR_PATHS.male;
+    const urls = wantChar === 'female'
+      ? [primary]
+      : [primary, '/assets/characters/player.glb', '/assets/characters/soldier_mixamo.glb'];
     let gltf = null;
     let used = '';
     for (const url of urls) {
+      if (gen !== this._loadGen) return;
       try {
         gltf = await loader.loadAsync(url);
         used = url;
@@ -124,8 +164,15 @@ export class Player {
       }
     }
 
+    // Stale load (newer setCharacter / constructor race won) — discard.
+    if (gen !== this._loadGen) {
+      if (gltf?.scene) this._disposeObject(gltf.scene);
+      return;
+    }
+
     if (!gltf) {
       console.warn('[player] GLB unavailable — using procedural hi-fi fallback');
+      this._clearRootModels();
       this.root.remove(this._placeholder);
       this.model = this._makeHiFiProcedural();
       this.root.add(this.model);
@@ -171,18 +218,32 @@ export class Player {
     box.setFromObject(this.model);
     this.model.position.y = -box.min.y;
 
+    if (gen !== this._loadGen) {
+      this._disposeObject(this.model);
+      this.model = null;
+      return;
+    }
 
+    this._clearRootModels();
     this.root.remove(this._placeholder);
     this.root.add(this.model);
 
-    // Animations — case-insensitive Idle/Walk
+    // Animations — Idle/Walk; never treat TPose as idle (bind-pose ghost).
     this.mixer = new THREE.AnimationMixer(this.model);
     const clips = gltf.animations || [];
+    const isTPose = (c) => /t[\s_-]?pose/i.test(c.name);
     const find = (...needles) =>
-      clips.find((c) => needles.some((n) => c.name.toLowerCase().includes(n)));
+      clips.find(
+        (c) => !isTPose(c) && needles.some((n) => c.name.toLowerCase().includes(n))
+      );
 
-    const idleClip = find('idle') || clips[0];
-    const walkClip = clips.find((c) => /walk/i.test(c.name) && !/carry/i.test(c.name)) || find('walk');
+    const idleClip =
+      find('idle') ||
+      clips.find((c) => !isTPose(c)) ||
+      null;
+    const walkClip =
+      clips.find((c) => /walk/i.test(c.name) && !/carry/i.test(c.name) && !isTPose(c)) ||
+      find('walk');
     const runClip = find('run') || null;
     const sitClip = find('sit');
 
@@ -196,11 +257,25 @@ export class Player {
     }
 
     if (this.actions.idle) {
-      this.actions.idle.play();
+      this.actions.idle.reset().play();
       this._currentAction = this.actions.idle;
     } else if (this.actions.walk) {
-      this.actions.walk.play();
+      this.actions.walk.reset().play();
       this._currentAction = this.actions.walk;
+    } else {
+      // No usable clip — hide rather than leave a T-pose ghost in-world.
+      console.warn('[player] no Idle/Walk clips — hiding bind-pose mesh', used);
+      this.model.visible = false;
+    }
+
+    // One more race check after wiring.
+    if (gen !== this._loadGen) {
+      this._detachAndDispose(this.model);
+      this.model = null;
+      this.mixer = null;
+      this.actions = {};
+      this._currentAction = null;
+      return;
     }
 
     console.info('[player] loaded', this.charId, used, 'clips:', clips.map((c) => c.name).join(', '));
