@@ -10,7 +10,7 @@ export const CHAR_PATHS = {
 };
 
 /**
- * Marco Belizean/Trinidadian trimesh parts face local -Z (Mixamo convention); root.rotation.y =
+ * Marco Belizean/Trinidadian simulated trimesh parts face local -Z (Mixamo convention); root.rotation.y =
  * atan2(dx, dz) aligns local +Z with movement. Offset mesh yaw so walk-forward faces forward.
  */
 export const MODEL_YAW_OFFSET = Math.PI;
@@ -31,7 +31,7 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — Marco-authored Belizean male / Trinidadian female trimesh GLBs.
+ * Third-person player — Marco-authored Belizean male / Trinidadian female simulated trimesh GLBs.
  * Hierarchical part meshes (tank/cargo/backpack/locks/jewelry); no skins or clips yet.
  * MODEL_YAW_OFFSET keeps Mixamo-facing convention (-Z). Static pose stays visible if no Idle/Walk.
  * Ground vehicles keep rider visible.
@@ -272,7 +272,7 @@ export class Player {
       this.actions.walk.reset().play();
       this._currentAction = this.actions.walk;
     } else {
-      // No Idle/Walk clips (Marco static trimesh) — keep mesh visible for visual delta.
+      // No Idle/Walk clips (Marco static simulated trimesh) — keep mesh visible for visual delta.
       // Optional later: hierarchical bob/walk without skins.
       console.info('[player] no Idle/Walk clips — keeping static mesh visible', used);
       this.model.visible = true;

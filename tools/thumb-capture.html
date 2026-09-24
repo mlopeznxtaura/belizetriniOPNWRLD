@@ -29,35 +29,41 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87b8d8);
-const camera = new THREE.PerspectiveCamera(35, w/h, 0.1, 100);
-camera.position.set(0.55, 1.35, -3.0);
-camera.lookAt(0, 0.95, 0);
+const camera = new THREE.PerspectiveCamera(32, w/h, 0.05, 100);
 
 // Explicit Ambient + Hemisphere + key — MeshStandardMaterial needs lights
-scene.add(new THREE.AmbientLight(0xfff5e8, 0.95));
-scene.add(new THREE.HemisphereLight(0xb8e0ff, 0x6a8a50, 0.7));
-const sun = new THREE.DirectionalLight(0xfff2d6, 1.25);
+scene.add(new THREE.AmbientLight(0xfff5e8, 1.05));
+scene.add(new THREE.HemisphereLight(0xb8e0ff, 0x6a8a50, 0.75));
+const sun = new THREE.DirectionalLight(0xfff2d6, 1.35);
 sun.position.set(2.5, 5, 3);
 scene.add(sun);
-const fill = new THREE.DirectionalLight(0xc8e0ff, 0.35);
-fill.position.set(-2, 2, -1);
+const fill = new THREE.DirectionalLight(0xc8e0ff, 0.45);
+fill.position.set(-2, 2.5, -1.5);
 scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffe8c8, 0.35);
+rim.position.set(0.5, 2.2, 2.5);
+scene.add(rim);
 
 function ensureStock(mat) {
   if (!mat) return;
   mat.metalness = Math.min(mat.metalness ?? 0, 0.08);
+  mat.roughness = Math.max(mat.roughness ?? 0.7, 0.55);
   if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
 }
 
-const loader = new GLTFLoader();
-const gltf = await loader.loadAsync(url);
+const gltf = await new GLTFLoader().loadAsync(url);
 const model = gltf.scene;
+const headBoxes = [];
 model.traverse((o) => {
   if (o.isMesh && o.material) {
     const mats = Array.isArray(o.material) ? o.material : [o.material];
     for (const m of mats) {
       m.side = THREE.FrontSide;
       ensureStock(m);
+    }
+    const n = (o.name || '').toLowerCase();
+    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || n.startsWith('eye') || n === 'nose' || n === 'lips') {
+      headBoxes.push(new THREE.Box3().setFromObject(o));
     }
   }
 });
@@ -69,13 +75,50 @@ if (size.z >= size.y && size.z >= size.x) {
   box = new THREE.Box3().setFromObject(model);
   box.getSize(size);
 }
-const s = 1.8 / Math.max(size.y, 0.01);
+const s = 1.75 / Math.max(size.y, 0.01);
 model.scale.setScalar(s);
 box.setFromObject(model);
 model.position.y = -box.min.y;
-// Face camera (camera is at -Z); female Mixamo often needs +PI after Z-up fix
-model.rotation.y = /female/i.test(url) ? Math.PI * 1.15 : Math.PI * 0.15;
+// Face camera (camera lives at -Z); slight yaw so face+hair+shoulder kit read
+const yawParam = params.get('yaw');
+model.rotation.y = yawParam != null ? parseFloat(yawParam) : 0;  // face camera at -Z; override with ?yaw=
 scene.add(model);
+
+// Reframe on head cluster if present — avoids gray blocky head cropped wrong
+box.setFromObject(model);
+const bodyCenter = new THREE.Vector3();
+box.getCenter(bodyCenter);
+let look = new THREE.Vector3(0, Math.max(bodyCenter.y + 0.15, box.max.y * 0.72), 0);
+let camY = look.y + 0.05;
+let camDist = 2.15;
+if (headBoxes.length) {
+  const hb = headBoxes[0].clone();
+  for (let i = 1; i < headBoxes.length; i++) hb.union(headBoxes[i]);
+  // Recompute head boxes after scale/pose
+  const hb2 = new THREE.Box3();
+  model.traverse((o) => {
+    if (!o.isMesh) return;
+    const n = (o.name || '').toLowerCase();
+    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || n.startsWith('eye') || n === 'nose' || n === 'lips' || n.startsWith('ear')) {
+      hb2.expandByObject(o);
+    }
+  });
+  if (!hb2.isEmpty()) {
+    const hc = new THREE.Vector3();
+    hb2.getCenter(hc);
+    const hs = new THREE.Vector3();
+    hb2.getSize(hs);
+    look = hc.clone();
+    // Bias slightly down so chest/backpack straps still peek in
+    look.y -= Math.min(0.12, hs.y * 0.15);
+    camY = hc.y + hs.y * 0.15;
+    camDist = Math.max(1.55, Math.max(hs.x, hs.y) * 5.2);
+    window.__HEAD__ = { center: hc.toArray(), size: hs.toArray(), camDist, camY };
+  }
+}
+
+camera.position.set(0.35, camY, -camDist);
+camera.lookAt(look.x, look.y, look.z);
 
 const idle = (gltf.animations || []).find(c => /idle/i.test(c.name));
 if (idle) {
@@ -88,6 +131,7 @@ if (idle) {
 renderer.render(scene, camera);
 document.title = 'READY';
 window.__SHOT__ = renderer.domElement.toDataURL('image/png');
+window.__SIZE__ = size.toArray();
 </script>
 </body>
 </html>

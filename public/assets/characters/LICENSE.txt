@@ -1,29 +1,31 @@
-male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian trimesh
-===============================================================================
+male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian simulated trimesh
+===========================================================================================
 Author: Marco Lopez (Belize / Trinidad character parts for belizetriniOPNWRLD)
 
 Source GLBs (kept for provenance in this folder):
-  male_belizean.glb
-  female_trinidadian.glb
+  male_belizean_simulated.glb / female_trinidadian_simulated.glb  — this ship (simulated kit)
+  male_belizean.glb / female_trinidadian.glb                      — prior Marco delta (kept)
 
-Content: hierarchical part meshes (no skins, no animations) —
-  limbs, cargo_shorts / shorts, tank / red_tank, backpack, boots,
-  hair / locks, jewelry (necklace, dogtag/pendant, wristbands), belt/buckle.
+Content: hierarchical part meshes (no skins, no animations; source POSITION-only) —
+  limbs, cargo_shorts + pockets, tank / trinidad_red_top, backpack + straps,
+  boots (upper/sole/toe + laces), hair strands / dreads / headwrap, beard,
+  face parts (eyes/nose/lips/ears), jewelry (necklace, pendant, wristbands),
+  belt/buckle, tattoo bands (male).
 
 Pipeline (tools/marco_char_delta/normalize_export.py, Blender 4.3):
-  - Keep Blender Z-up standing; glTF export_yup maps once to Y-up
-  - Faces local -Z so MODEL_YAW_OFFSET = PI stays valid
+  - Import glTF (Y-up) → Blender Z-up; export_yup maps once back to Y-up
   - Normalize standing height to ~1.7 m with feet on ground (y = 0 in-engine)
-  - Recalculate outward normals; export binary GLB
+  - Recalculate outward normals; export binary GLB (adds NORMAL for lighting)
   - player.glb is a copy of male.glb
 
 Known limits (honest):
   - Static pose only — no Idle / Walk / Run clips yet (player.js keeps mesh visible)
   - No skinning / armature — parts are separate meshes, not bone-driven
-  - Low-poly trimesh parts (box/cyl limbs + authored garments), not photoreal
+  - Low-poly simulated trimesh (spheres/cyls/boxes), not photoreal
+  - Face is minimal (tiny eye dots; nose/lips present but low-contrast)
 
 NOT used: Mixamo Soldier / Erika, OPNassetBUILDER heroes, Quaternius Casual packs.
 
-Select-screen thumbs: in-engine captures of these Marco GLBs.
+Select-screen thumbs: in-engine captures of these simulated Marco GLBs (face-forward framing).
 Refs (look targets only): public/assets/characters/refs/male_belize_crop.png,
       public/assets/characters/refs/female_trinidad_crop.png

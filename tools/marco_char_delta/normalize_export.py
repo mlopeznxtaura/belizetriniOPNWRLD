@@ -1,4 +1,4 @@
-"""Normalize Marco Belizean/Trinidadian trimesh GLBs for app13.
+"""Normalize Marco Belizean/Trinidadian simulated trimesh GLBs for app13.
 
 Keep character standing on Blender +Z (native up). glTF export_yup maps
 Blender Z-up -> glTF Y-up. Do NOT pre-rotate to Y or export double-converts.
@@ -12,8 +12,16 @@ TARGET_H = 1.7
 OUT_DIR = "/workspace/app13-caribcrime/public/assets/characters"
 
 JOBS = [
-    ("/workspace/marco-char-delta/unzipped/male_belizean.glb", f"{OUT_DIR}/male.glb", "male"),
-    ("/workspace/marco-char-delta/unzipped/female_trinidadian.glb", f"{OUT_DIR}/female.glb", "female"),
+    (
+        "/workspace/marco-char-delta2/unzipped/male_belizean_simulated.glb",
+        f"{OUT_DIR}/male.glb",
+        "male",
+    ),
+    (
+        "/workspace/marco-char-delta2/unzipped/female_trinidadian_simulated.glb",
+        f"{OUT_DIR}/female.glb",
+        "female",
+    ),
 ]
 
 
@@ -51,26 +59,28 @@ def process(src, dst, label):
     # Drop empties — flatten so transforms live on meshes
     for o in list(bpy.context.scene.objects):
         if o.type != "MESH" and o.type != "CAMERA" and o.type != "LIGHT":
-            # unparent children keep transform
             for c in list(o.children):
                 mw = c.matrix_world.copy()
                 c.parent = None
                 c.matrix_world = mw
-            if o.name != "world" or True:
-                try:
-                    bpy.data.objects.remove(o, do_unlink=True)
-                except Exception:
-                    pass
+            try:
+                bpy.data.objects.remove(o, do_unlink=True)
+            except Exception:
+                pass
 
     meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     apply_sel(meshes)
 
     mins, maxs = world_bounds(meshes)
-    # Source is already Z-up (height along Z). Confirm.
     hx, hy, hz = (maxs - mins).x, (maxs - mins).y, (maxs - mins).z
     print(f"[{label}] raw size X={hx:.3f} Y={hy:.3f} Z={hz:.3f} minZ={mins.z:.3f}")
     if hz < hx or hz < hy:
-        raise RuntimeError(f"[{label}] expected Z-up source, got size {hx,hy,hz}")
+        raise RuntimeError(f"[{label}] expected Z-up after import, got size {hx,hy,hz}")
+
+    # Head size note (detect oversized / wrong head)
+    for o in meshes:
+        if o.name.lower().startswith("head") and "wrap" not in o.name.lower():
+            print(f"[{label}] head mesh dims={tuple(round(d, 4) for d in o.dimensions)} name={o.name}")
 
     scale = TARGET_H / hz
     for o in meshes:
@@ -79,14 +89,12 @@ def process(src, dst, label):
     apply_sel(meshes)
 
     mins, maxs = world_bounds(meshes)
-    # Feet on z=0 (Blender up)
     dz = -mins.z
     for o in meshes:
         o.location.z += dz
     bpy.context.view_layer.update()
     apply_sel(meshes)
 
-    # Recalc normals outside
     for o in meshes:
         bpy.ops.object.select_all(action="DESELECT")
         o.select_set(True)
@@ -97,7 +105,10 @@ def process(src, dst, label):
         bpy.ops.object.mode_set(mode="OBJECT")
 
     mins, maxs = world_bounds(meshes)
-    print(f"[{label}] Blender FINAL H(z)={maxs.z-mins.z:.3f} minZ={mins.z:.3f} size={(maxs-mins).x:.3f},{(maxs-mins).y:.3f},{(maxs-mins).z:.3f}")
+    print(
+        f"[{label}] Blender FINAL H(z)={maxs.z-mins.z:.3f} minZ={mins.z:.3f} "
+        f"size={(maxs-mins).x:.3f},{(maxs-mins).y:.3f},{(maxs-mins).z:.3f} meshes={len(meshes)}"
+    )
 
     bpy.ops.object.select_all(action="SELECT")
     bpy.ops.export_scene.gltf(
@@ -108,7 +119,7 @@ def process(src, dst, label):
         export_animations=False,
         export_skins=False,
         export_morph=False,
-        export_yup=True,  # Blender Z-up -> glTF Y-up (correct once)
+        export_yup=True,
     )
     print(f"[{label}] wrote {dst}")
 
