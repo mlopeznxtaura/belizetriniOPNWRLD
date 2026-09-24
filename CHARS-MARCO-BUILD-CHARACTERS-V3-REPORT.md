@@ -39,7 +39,7 @@ Honest limit: characters still do **not** walk-animate (no Idle/Walk clips). `pl
 
 | | |
 |---|---|
-| Commit | *(filled after push)* |
-| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID *(filled after deploy)* |
+| Commit | `98a75b838b79c1ae7ea059c59c667927d37f6992` |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `113eed9d-13ad-4b75-a53b-f48567b37662` |
 | Live | https://app13.nextaura.us |
 | Verify | Hard-refresh select screen — new thumbs (crop_top/headwrap / tank+beard+tattoos); in-world static kit (no walk clips) |
