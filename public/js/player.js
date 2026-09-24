@@ -9,6 +9,12 @@ export const CHAR_PATHS = {
   female: '/assets/characters/female.glb',
 };
 
+/**
+ * Mixamo Soldier/Erika face local -Z; root.rotation.y = atan2(dx, dz) aligns
+ * local +Z with movement. Offset mesh yaw so walk-forward faces forward.
+ */
+export const MODEL_YAW_OFFSET = Math.PI;
+
 export function getStoredChar() {
   try {
     const v = localStorage.getItem(CHAR_KEY);
@@ -215,6 +221,8 @@ export class Player {
     const targetH = 1.8;
     const s = size.y > 0.01 ? targetH / size.y : 1;
     this.model.scale.setScalar(s);
+    // Face movement direction (Mixamo forward ≠ Three.js +Z)
+    this.model.rotation.y = MODEL_YAW_OFFSET;
     box.setFromObject(this.model);
     this.model.position.y = -box.min.y;
 
@@ -401,10 +409,11 @@ export class Player {
   }
 
   _seatOffset(type) {
-    if (type === 'scooter') return { x: 0, y: 0.52, z: 0.18, scale: 0.92, yaw: Math.PI };
-    if (type === 'van') return { x: 0.42, y: 0.62, z: 0.25, scale: 0.95, yaw: Math.PI };
+    // yaw 0: MODEL_YAW_OFFSET already orients Mixamo toward vehicle forward
+    if (type === 'scooter') return { x: 0, y: 0.52, z: 0.18, scale: 0.92, yaw: 0 };
+    if (type === 'van') return { x: 0.42, y: 0.62, z: 0.25, scale: 0.95, yaw: 0 };
     // sedan default
-    return { x: 0.38, y: 0.48, z: 0.12, scale: 0.95, yaw: Math.PI };
+    return { x: 0.38, y: 0.48, z: 0.12, scale: 0.95, yaw: 0 };
   }
 
   bindInput(dom) {
