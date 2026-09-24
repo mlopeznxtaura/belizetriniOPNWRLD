@@ -1,31 +1,29 @@
-male.glb / player.glb / female.glb — OPNassetBUILDER hero meshes
-================================================================
-Base meshes: OPNassetBUILDER (repo mlopeznxtaura/OPNassetBUILDER),
-live library assets "Belize male" / "Trinidad female" pointing at
-  https://app14.nextaura.us/assets/male-hero.gltf
-  https://app14.nextaura.us/assets/female-hero.gltf
-Mirrored for build at /workspace/opn-chars/{male,female}-hero.gltf.
+male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian trimesh
+===============================================================================
+Author: Marco Lopez (Belize / Trinidad character parts for belizetriniOPNWRLD)
 
-Pipeline (tools/opn_hero_build/build_opn_heroes.py, Blender 4.3):
-  - Recolor materials toward Belizean / Trinidadian refs
-    (dark Caribbean skin; male white tank + olive shorts + tan boots;
-     female red crop + khaki shorts + tan boots; dark hair/eyes)
-  - Split skin faces into shorts/boots slots via primary joint weights
-  - Procedural Idle / Walk / Run on the 17-bone humanoid
-    (hips/spine/chest/neck/head/shoulders/elbows/hands/thighs/knees/ankles)
-  - Yawed to Mixamo-facing (-Z) so existing MODEL_YAW_OFFSET = PI stays valid
-  - Export binary GLB; player.glb is a copy of male.glb
+Source GLBs (kept for provenance in this folder):
+  male_belizean.glb
+  female_trinidadian.glb
+
+Content: hierarchical part meshes (no skins, no animations) —
+  limbs, cargo_shorts / shorts, tank / red_tank, backpack, boots,
+  hair / locks, jewelry (necklace, dogtag/pendant, wristbands), belt/buckle.
+
+Pipeline (tools/marco_char_delta/normalize_export.py, Blender 4.3):
+  - Keep Blender Z-up standing; glTF export_yup maps once to Y-up
+  - Faces local -Z so MODEL_YAW_OFFSET = PI stays valid
+  - Normalize standing height to ~1.7 m with feet on ground (y = 0 in-engine)
+  - Recalculate outward normals; export binary GLB
+  - player.glb is a copy of male.glb
 
 Known limits (honest):
-  - Still low-poly OPN heroes (~1.2k tris, segmented limbs) — NOT the
-    12k-poly photoreal ref sheets under characters/refs/
-  - No backpack / tattoos / jewelry / curly-hair sculpt (not in base mesh)
-  - Shorts/boots are material remaps of skin regions, not unique authored garments
-  - Animations are procedural keyframes, not mocap
+  - Static pose only — no Idle / Walk / Run clips yet (player.js keeps mesh visible)
+  - No skinning / armature — parts are separate meshes, not bone-driven
+  - Low-poly trimesh parts (box/cyl limbs + authored garments), not photoreal
 
-NOT used: Mixamo Soldier / Erika (rejected), Quaternius Casual plate packs,
-from-scratch box-rig chars.
+NOT used: Mixamo Soldier / Erika, OPNassetBUILDER heroes, Quaternius Casual packs.
 
-Select-screen thumbs: in-engine captures of these OPN-based GLBs.
-Refs: public/assets/characters/refs/male_belize_crop.png,
+Select-screen thumbs: in-engine captures of these Marco GLBs.
+Refs (look targets only): public/assets/characters/refs/male_belize_crop.png,
       public/assets/characters/refs/female_trinidad_crop.png

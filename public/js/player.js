@@ -10,7 +10,7 @@ export const CHAR_PATHS = {
 };
 
 /**
- * OPN heroes are exported facing local -Z (Mixamo convention); root.rotation.y =
+ * Marco Belizean/Trinidadian trimesh parts face local -Z (Mixamo convention); root.rotation.y =
  * atan2(dx, dz) aligns local +Z with movement. Offset mesh yaw so walk-forward faces forward.
  */
 export const MODEL_YAW_OFFSET = Math.PI;
@@ -31,9 +31,10 @@ export function setStoredChar(id) {
 }
 
 /**
- * Third-person player — OPNassetBUILDER hero male/female GLBs (Idle/Walk/Run).
- * Sources: app14 male-hero / female-hero with material remap + procedural anims.
- * MODEL_YAW_OFFSET keeps Mixamo-facing convention (-Z). Ground vehicles keep rider visible.
+ * Third-person player — Marco-authored Belizean male / Trinidadian female trimesh GLBs.
+ * Hierarchical part meshes (tank/cargo/backpack/locks/jewelry); no skins or clips yet.
+ * MODEL_YAW_OFFSET keeps Mixamo-facing convention (-Z). Static pose stays visible if no Idle/Walk.
+ * Ground vehicles keep rider visible.
  */
 export class Player {
   constructor(scene, spawn, world, opts = {}) {
@@ -271,9 +272,10 @@ export class Player {
       this.actions.walk.reset().play();
       this._currentAction = this.actions.walk;
     } else {
-      // No usable clip — hide rather than leave a T-pose ghost in-world.
-      console.warn('[player] no Idle/Walk clips — hiding bind-pose mesh', used);
-      this.model.visible = false;
+      // No Idle/Walk clips (Marco static trimesh) — keep mesh visible for visual delta.
+      // Optional later: hierarchical bob/walk without skins.
+      console.info('[player] no Idle/Walk clips — keeping static mesh visible', used);
+      this.model.visible = true;
     }
 
     // One more race check after wiring.
