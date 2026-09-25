@@ -40,4 +40,4 @@ The new boot `eyelet_*` meshes matched the head-cluster filter (`startsWith('eye
 | Commit | `838b7037df2959ef181c3b7d04068b8612236368` |
 | Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `d1d26501-6d3e-464c-b938-4c211381e826` |
 | Live | https://app13.nextaura.us |
-| Verify | Live sha256 of male/female/player/provenance GLBs and thumbs matches local |
+| Verify | Live sha256 (app13 + workers.dev) of male/female/player/*_build_v2 GLBs and thumbs matches local. The first check right after deploy still returned iteration 1 files; everything matched ~1 min later (edge propagation). |
