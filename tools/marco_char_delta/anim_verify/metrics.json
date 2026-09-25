@@ -1,0 +1,80 @@
+{
+  "male_rig": {
+    "meshes": 181,
+    "moved": 181,
+    "fillers": [
+      "LowerArm_L:0.055",
+      "Hand_L:0.035",
+      "LowerArm_R:0.055",
+      "Hand_R:0.035"
+    ]
+  },
+  "male_walk": {
+    "speed": 2.6,
+    "stances": 7,
+    "footSlipMaxCm": 0.08,
+    "footLiftDuringStanceMaxCm": 0.41,
+    "kneeMinDeg": 2.2,
+    "elbowMaxDeg": -10,
+    "noseAheadMinM": 0.106,
+    "soleMinYcm": -0.02,
+    "soleMinAt": "boot_heel_L phase=0.280 (L-phase)",
+    "cadenceHz": 1.76
+  },
+  "male_run": {
+    "speed": 9,
+    "stances": 8,
+    "footSlipMaxCm": 0,
+    "footLiftDuringStanceMaxCm": 0,
+    "kneeMinDeg": 2.2,
+    "elbowMaxDeg": -85,
+    "noseAheadMinM": 0.104,
+    "soleMinYcm": -0.01,
+    "soleMinAt": "boot_sole_L phase=0.122 (L-phase)",
+    "cadenceHz": 2.56
+  },
+  "male_stopTimeFromSprintS": 0.77,
+  "male_scooter_riderTopY": 1.831,
+  "male_scooter_riderFacesForward": 0.099,
+  "male_sedan_riderTopY": 1.264,
+  "male_sedan_riderFacesForward": 0.101,
+  "female_rig": {
+    "meshes": 223,
+    "moved": 223,
+    "fillers": [
+      "LowerArm_L:0.038",
+      "Hand_L:0.028",
+      "LowerArm_R:0.038",
+      "Hand_R:0.028"
+    ]
+  },
+  "female_walk": {
+    "speed": 2.6,
+    "stances": 7,
+    "footSlipMaxCm": 0.1,
+    "footLiftDuringStanceMaxCm": 0.49,
+    "kneeMinDeg": 2.1,
+    "elbowMaxDeg": -10,
+    "noseAheadMinM": 0.101,
+    "soleMinYcm": -0.02,
+    "soleMinAt": "boot_heel_L phase=0.276 (L-phase)",
+    "cadenceHz": 1.76
+  },
+  "female_run": {
+    "speed": 9,
+    "stances": 8,
+    "footSlipMaxCm": 0,
+    "footLiftDuringStanceMaxCm": 0,
+    "kneeMinDeg": 2.1,
+    "elbowMaxDeg": -85,
+    "noseAheadMinM": 0.099,
+    "soleMinYcm": -0.02,
+    "soleMinAt": "boot_sole_R phase=0.626 (L-phase)",
+    "cadenceHz": 2.56
+  },
+  "female_stopTimeFromSprintS": 0.77,
+  "female_scooter_riderTopY": 1.865,
+  "female_scooter_riderFacesForward": 0.095,
+  "female_sedan_riderTopY": 1.3,
+  "female_sedan_riderFacesForward": 0.096
+}

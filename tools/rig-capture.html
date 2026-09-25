@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>html,body{margin:0;background:#9cc8e4;overflow:hidden}</style>
+</head>
+<body>
+<!-- Headless verification of the procedural rig (tools/rig-capture.js serves public/ and loads this). -->
+<script type="importmap">
+{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { Player, MOVE } from '/js/player.js';
+import { Vehicle } from '/js/vehicle.js';
+
+const W = 360, H = 460;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(1);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x9cc8e4);
+scene.add(new THREE.HemisphereLight(0xcfe8ff, 0x8a7a55, 1.0));
+scene.add(new THREE.AmbientLight(0xfff3e0, 0.45));
+const sun = new THREE.DirectionalLight(0xfff0d0, 1.6);
+sun.position.set(-3, 6, 4);
+scene.add(sun);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.MeshStandardMaterial({ color: 0xd8c79a, roughness: 1 }));
+ground.rotation.x = -Math.PI / 2;
+scene.add(ground);
+// 0.5 m grid stripes so foot contact / sliding reads
+const grid = new THREE.GridHelper(400, 800, 0xb8a676, 0xc4b488);
+grid.position.y = 0.002;
+scene.add(grid);
+const cam = new THREE.PerspectiveCamera(30, W / H, 0.05, 200);
+const world = { resolveCollision() {} };
+
+const images = {};
+const metrics = {};
+const shot = (name) => { renderer.render(scene, cam); images[name] = renderer.domElement.toDataURL('image/png'); };
+
+function frameOn(root, off, look = 0.95, lookOffZ = 0) {
+  const p = root.getWorldPosition(new THREE.Vector3());
+  cam.position.set(p.x + off[0], p.y + off[1], p.z + off[2]);
+  cam.lookAt(p.x, p.y + look, p.z + lookOffZ);
+}
+
+function stepTo(pl, targetPhase, dt = 1 / 240, maxSteps = 4000) {
+  for (let i = 0; i < maxSteps; i++) {
+    const before = pl.rig.phase;
+    pl.update(dt);
+    const after = pl.rig.phase;
+    const crossed = before <= after
+      ? (targetPhase > before && targetPhase <= after)
+      : (targetPhase > before || targetPhase <= after);
+    if (crossed) return true;
+  }
+  return false;
+}
+
+function worldPos(o) { return o.getWorldPosition(new THREE.Vector3()); }
+function boxC(o) { return new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3()); }
+
+/** Run steady locomotion and measure foot slip + facing + joint sign sanity. */
+function measure(pl, label, frames) {
+  const foot = pl.model.getObjectByName('rig_Foot_L');
+  const nose = pl.model.getObjectByName('nose');
+  const head = pl.model.getObjectByName('rig_Head');
+  const P = pl.rig.pivots;
+  let kneeMin = 1e9, elbowMax = -1e9, faceMin = 1e9, groundMin = 1e9, minAt = '';
+  let cur = null;
+  const drifts = [];
+  const dt = 1 / 120;
+  for (let i = 0; i < frames; i++) {
+    pl.update(dt);
+    pl.model.updateMatrixWorld(true);
+    const rig = pl.rig;
+    const beta = THREE.MathUtils.lerp(0.58, Math.min(0.34, Math.max(0.22, 0.40 - 0.02 * pl.groundSpeed)), rig.runW);
+    const u = rig.phase / beta;
+    const hp = THREE.MathUtils.lerp(0.15, 0.08, rig.runW);
+    const rs = THREE.MathUtils.lerp(0.62, 0.48, rig.runW);
+    const flat = rig.phase < beta && u > hp + 0.02 && u < rs - 0.02;
+    const fp = worldPos(foot);
+    if (flat) {
+      if (!cur) cur = { min: fp.z, max: fp.z, ymin: fp.y, ymax: fp.y, n: 0 };
+      cur.min = Math.min(cur.min, fp.z); cur.max = Math.max(cur.max, fp.z);
+      cur.ymin = Math.min(cur.ymin, fp.y); cur.ymax = Math.max(cur.ymax, fp.y); cur.n++;
+    } else if (cur) {
+      if (cur.n > 3) drifts.push({ dz: cur.max - cur.min, dy: cur.ymax - cur.ymin });
+      cur = null;
+    }
+    for (const s of ['L', 'R']) {
+      kneeMin = Math.min(kneeMin, P[`LowerLeg_${s}`].rotation.x);
+      elbowMax = Math.max(elbowMax, P[`LowerArm_${s}`].rotation.x);
+    }
+    const n = boxC(nose).sub(boxC(pl.model.getObjectByName('head')));
+    const fwd = new THREE.Vector3(Math.sin(pl.heading), 0, Math.cos(pl.heading));
+    faceMin = Math.min(faceMin, n.dot(fwd));
+    // lowest boot sole point in world (penetration check)
+    for (const s of ['L', 'R']) {
+      for (const nm of [`boot_sole_${s}`, `boot_heel_${s}`, `boot_toe_${s}`, `boot_foot_${s}`]) {
+        const b = new THREE.Box3().setFromObject(pl.model.getObjectByName(nm), true);
+        if (b.min.y < groundMin) { groundMin = b.min.y; minAt = `${nm} phase=${rig.phase.toFixed(3)} (L-phase)`; }
+      }
+    }
+  }
+  const maxDz = Math.max(0, ...drifts.map((d) => d.dz));
+  const maxDy = Math.max(0, ...drifts.map((d) => d.dy));
+  metrics[label] = {
+    speed: +pl.groundSpeed.toFixed(3),
+    stances: drifts.length,
+    footSlipMaxCm: +(maxDz * 100).toFixed(2),
+    footLiftDuringStanceMaxCm: +(maxDy * 100).toFixed(2),
+    kneeMinDeg: +(kneeMin * 180 / Math.PI).toFixed(1),
+    elbowMaxDeg: +(elbowMax * 180 / Math.PI).toFixed(1),
+    noseAheadMinM: +faceMin.toFixed(3),
+    soleMinYcm: +(groundMin * 100).toFixed(2),
+    soleMinAt: minAt,
+    cadenceHz: +(pl.groundSpeed / THREE.MathUtils.lerp(0.8 + 0.26 * pl.groundSpeed, 0.9 + 0.29 * pl.groundSpeed, pl.rig.runW)).toFixed(2),
+  };
+}
+
+async function character(id) {
+  const pl = new Player(scene, new THREE.Vector3(0, 0, 0), world, { charId: id });
+  await pl.whenReady();
+  if (!pl.rig) throw new Error('rig not built for ' + id);
+  metrics[id + '_rig'] = { ...pl.rig.stats, fillers: pl.rig.fillers };
+  pl.yaw = Math.PI; // camera behind; W walks toward +Z
+  pl._mouseIdle = 0;
+  const three4 = [-2.9, 1.25, 2.3];
+  const side = [-3.9, 1.1, 0.25];
+
+  // Idle
+  for (let i = 0; i < 180; i++) pl.update(1 / 60);
+  frameOn(pl.root, three4);
+  shot(`${id}_idle`);
+
+  // Walk
+  pl.keys.KeyW = true;
+  for (let i = 0; i < 150; i++) { pl.update(1 / 60); pl.yaw = Math.PI; }
+  measure(pl, `${id}_walk`, 480);
+  const bW = THREE.MathUtils.lerp(0.58, 0.3, pl.rig.runW);
+  stepTo(pl, 0.01); frameOn(pl.root, side); shot(`${id}_walk_contact`);
+  stepTo(pl, bW + 0.5 * (1 - bW)); frameOn(pl.root, three4); shot(`${id}_walk_passing`);
+
+  // Run (Shift sprint)
+  pl.keys.ShiftLeft = true;
+  for (let i = 0; i < 200; i++) { pl.update(1 / 60); pl.yaw = Math.PI; }
+  measure(pl, `${id}_run`, 480);
+  const bR = Math.min(0.34, Math.max(0.22, 0.40 - 0.02 * pl.groundSpeed));
+  stepTo(pl, (bR + 0.5) / 2); frameOn(pl.root, side); shot(`${id}_run_flight`);
+  stepTo(pl, bR * 0.5); frameOn(pl.root, three4); shot(`${id}_run_stance`);
+  // close-up of knees/elbows in the run pose (gap check)
+  frameOn(pl.root, [-1.9, 0.75, 0.9], 0.72); shot(`${id}_run_closeup`);
+
+  // Stop: decel back to idle
+  pl.keys.KeyW = false; pl.keys.ShiftLeft = false;
+  let t = 0;
+  while (pl.groundSpeed > 0.01 && t < 3) { pl.update(1 / 60); t += 1 / 60; }
+  metrics[id + '_stopTimeFromSprintS'] = +t.toFixed(2);
+
+  // Seated on scooter + sedan (real vehicle meshes)
+  for (const type of ['scooter', 'sedan']) {
+    const v = new Vehicle(scene, { position: new THREE.Vector3(pl.root.position.x + 6, 0, pl.root.position.z), type, yaw: Math.PI / 2 });
+    pl.enterVehicle(v);
+    for (let i = 0; i < 30; i++) pl.rig.update(1 / 60, { speed: 0, scale: pl._rigScale(), seated: pl._seatPoseCur });
+    v.mesh.updateMatrixWorld(true);
+    // vehicle forward is (-sin yaw, -cos yaw) = -X here; view from the vehicle's left-front
+    const vp = v.mesh.position;
+    const nv = boxC(pl.model.getObjectByName('nose')).sub(boxC(pl.model.getObjectByName('head')));
+    const hb = new THREE.Box3().setFromObject(pl.model);
+    metrics[`${id}_${type}_riderTopY`] = +hb.max.y.toFixed(3);
+    const vf = new THREE.Vector3(-Math.sin(v.yaw), 0, -Math.cos(v.yaw));
+    metrics[`${id}_${type}_riderFacesForward`] = +nv.dot(vf).toFixed(3);
+    if (type === 'sedan') { cam.position.set(vp.x - 3.2, 2.4, vp.z + 6.2); cam.lookAt(vp.x - 0.2, 0.9, vp.z); }
+    else { cam.position.set(vp.x - 2.6, 1.9, vp.z + 3.6); cam.lookAt(vp.x - 0.1, 1.0, vp.z); }
+    shot(`${id}_${type}`);
+    pl.exitVehicle();
+    scene.remove(v.mesh);
+  }
+  scene.remove(pl.root);
+}
+
+function sheet(rows, cols, title, file) {
+  const pad = 34, lab = 30;
+  const c = document.createElement('canvas');
+  c.width = cols.length * W + 150;
+  c.height = rows.length * (H + lab) + pad + 10;
+  const g = c.getContext('2d');
+  g.fillStyle = '#f3f4f7'; g.fillRect(0, 0, c.width, c.height);
+  g.fillStyle = '#1b1d22'; g.font = 'bold 22px DejaVu Sans, sans-serif';
+  g.fillText(title, 16, 26);
+  const imgs = [];
+  for (let r = 0; r < rows.length; r++) {
+    g.fillStyle = '#1b1d22'; g.font = 'bold 22px DejaVu Sans, sans-serif';
+    g.fillText(rows[r].label, 16, pad + lab + r * (H + lab) + H / 2);
+    for (let k = 0; k < cols.length; k++) {
+      const x = 150 + k * W, y = pad + lab + r * (H + lab);
+      g.font = '16px DejaVu Sans, sans-serif'; g.fillStyle = '#333';
+      g.fillText(cols[k].label, x + 8, y - 8);
+      const im = new Image();
+      imgs.push(new Promise((res) => { im.onload = () => { g.drawImage(im, x, y, W, H); res(); }; im.src = images[`${rows[r].id}_${cols[k].id}`]; }));
+    }
+  }
+  return Promise.all(imgs).then(() => { images[file] = c.toDataURL('image/png'); });
+}
+
+try {
+  await character('male');
+  await character('female');
+  const rows = [{ id: 'male', label: 'MALE' }, { id: 'female', label: 'FEMALE' }];
+  await sheet(rows, [
+    { id: 'idle', label: 'Idle (breathing, weight shift)' },
+    { id: 'walk_contact', label: `Walk ${MOVE.walkSpeed} m/s: heel strike` },
+    { id: 'walk_passing', label: 'Walk: passing' },
+    { id: 'run_flight', label: `Sprint ${MOVE.sprintSpeed} m/s: flight` },
+    { id: 'run_stance', label: 'Sprint: stance' },
+  ], 'Marco build_characters iter2 — procedural idle / walk / run (live code, headless)', 'SHEET_anim');
+  await sheet(rows, [
+    { id: 'run_closeup', label: 'Sprint close-up (joint gaps)' },
+    { id: 'scooter', label: 'Seated: scooter' },
+    { id: 'sedan', label: 'Seated: sedan' },
+  ], 'Joint close-ups + seated rider (vehicle faces left)', 'SHEET_seated');
+  window.__METRICS__ = metrics;
+} catch (e) {
+  window.__ERROR__ = String(e && e.stack || e);
+}
+window.__IMAGES__ = images;
+document.title = 'READY';
+</script>
+</body>
+</html>
