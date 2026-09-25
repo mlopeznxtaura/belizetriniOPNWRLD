@@ -1,30 +1,33 @@
-male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian LOWPOLY generation (live test)
-=====================================================================================================
+male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian build_characters v3 (iteration 2)
+==========================================================================================================
 Author: Marco Lopez (Belize / Trinidad character parts for belizetriniOPNWRLD)
 
 Source GLBs (kept for provenance in this folder):
-  male_belizean_lowpoly.glb / female_trinidadian_lowpoly.glb    — this ship (lowpoly generation, normalized)
-  male_belizean_build_v2.glb / female_trinidadian_build_v2.glb  — build_characters iteration 2 (ROLLBACK TARGET, commit 838b703)
-  male_belizean_build.glb / female_trinidadian_build.glb        — build_characters iteration 1
-  male_belizean_simulated.glb / female_trinidadian_simulated.glb — simulated kit
-  male_belizean.glb / female_trinidadian.glb                    — earliest Marco delta
+  male_belizean_build_v2.glb / female_trinidadian_build_v2.glb — this ship (build_characters.py iteration 2: fingers + detail)
+  male_belizean_build.glb / female_trinidadian_build.glb       — build_characters iteration 1 (kept)
+  male_belizean_simulated.glb / female_trinidadian_simulated.glb — prior simulated kit (kept)
+  male_belizean.glb / female_trinidadian.glb                      — earlier Marco delta (kept)
 
-Content (lowpoly): male_*/female_* part meshes (no skins, no animations), ~4.9k tris each —
-  Male: off-white tank, olive cargo shorts + pockets, backpack + straps, beard, 7 top curls, wristbands, necklace
-  Female: red tank, khaki shorts, headwrap, 14 locs, backpack + straps, wristbands, necklace
-  Single hand mesh (no fingers), no eyelids, no laces.
+Content: hierarchical part meshes (no skins, no animations) —
+  Male: off-white tank, cargo shorts, backpack, beard/moustache, arm tattoo bands, watch, dog tag
+  Female: red crop_top, headwrap (+ gold/green stripes + knot), hoop earrings, curls/locs, armband
+  Iteration 2 adds: separate fingers (index/middle/ring/pinky) + thumb per hand, eyelids, inner ears,
+    boot lace eyelets, extra hair/kit detail (181 male / 223 female meshes)
 
 Pipeline (tools/marco_char_delta/normalize_export.py, Blender 4.3):
-  - Source imports lying along Blender -Y at ~5.7 units; rotated -90 deg about X (world matrix),
-    anchor-checked (head above boots, nose in front = glTF +Z, MODEL_YAW_OFFSET 0)
-  - Normalize standing height to 1.7 m with feet on ground (y = 0 in-engine)
-  - Recalculate outward normals; export binary GLB; player.glb is a copy of male.glb
+  - Import glTF → Blender Z-up (auto-orient if needed); export_yup maps once back to Y-up
+  - Normalize standing height to ~1.7 m with feet on ground (y = 0 in-engine)
+  - Recalculate outward normals; export binary GLB
+  - player.glb is a copy of male.glb
+  - Authoring script: tools/marco_char_delta/build_characters.py (iteration 2); iteration 1 kept as build_characters_v1.py
+  - Turnaround refs: public/assets/characters/refs/build_characters_turnaround_v2.png (iteration 2),
+                    public/assets/characters/refs/build_characters_turnaround.png (iteration 1)
 
 Known limits (honest):
-  - Static pose only — no Idle / Walk / Run clips (player.js keeps mesh visible)
-  - No skinning / armature
-  - Authored gaps: head floats ~5-7 cm above neck; eyes sit inside the haircap (not visible);
-    curls/locs point upward (crown look)
+  - Static pose only — no Idle / Walk / Run clips yet (player.js keeps mesh visible)
+  - No skinning / armature — parts are separate meshes, not bone-driven
+  - Low-poly trimesh kit from build_characters.py, not photoreal
 
-Delta render vs iteration 2: tools/marco_char_delta/compare_iter2_vs_lowpoly.png
-Select-screen thumbs: in-engine captures of the lowpoly GLBs (face-forward, head-cluster framing).
+NOT used: Mixamo Soldier / Erika, OPNassetBUILDER heroes, Quaternius Casual packs.
+
+Select-screen thumbs: in-engine captures of these build_characters GLBs (face-forward, head-cluster).

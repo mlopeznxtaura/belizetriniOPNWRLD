@@ -1,5 +1,12 @@
 # CHARS — Marco lowpoly generation (live test vs build_characters iteration 2)
 
+> ## ⚠️ Rolled back (2026-09-24, PT)
+> Marco **rejected** the lowpoly generation. I ran rollback option A: live `male.glb`, `female.glb`, `player.glb`, both select thumbs, `LICENSE.txt` and `index.html` are restored byte-for-byte from `838b703` (build_characters iteration 2).
+> - **Kept:** the matrix/quaternion rotation fix and anchor orient in `normalize_export.py`, and the thumb head-filter prefix fix.
+> - `*_lowpoly.glb` provenance files stay in the repo but are **not live** (nothing references them).
+> - `normalize_export.py` JOBS still point at the delta5 lowpoly sources. Re-point them before re-running, or the script will regenerate lowpoly.
+> - Rollback commit / deploy: see "Rollback ship" at the end.
+
 **Date:** 2026-09-24 (PT)  
 **Goal:** Ship Marco's different lowpoly generation live, compare the delta against iteration 2, and roll back on git if it regressed.
 
@@ -88,3 +95,11 @@ Regenerate it with `blender -b -P tools/marco_char_delta/render_compare.py`.
 | Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `cca794d2-09c6-406a-94ff-21da24b4252a` |
 | Live | https://app13.nextaura.us |
 | Verify | Live sha256 (app13 + workers.dev) of male/female/player, `*_lowpoly`, `*_build_v2` and thumbs matches local, both immediately (18:12 PT) and on the 45 s recheck (18:13 PT) |
+
+## Rollback ship
+
+| | |
+|---|---|
+| Commit | *(filled after push)* |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID *(filled after deploy)* |
+| Verify | *(filled after verify)* |
