@@ -17,7 +17,7 @@ git checkout 838b703 -- public/assets/characters/male.glb public/assets/characte
 git commit -m "Roll back chars to build_characters iteration 2 (838b703)." && git push origin main
 cd cf-worker && unset CLOUDFLARE_API_TOKEN && PATH="/workspace/app23-nextaura-fit/cf-worker/node_modules/.bin:$PATH" wrangler deploy
 ```
-**Rollback option B (full revert):** `git revert --no-edit SHIP_COMMIT` (plus any later doc commits), then push and deploy as above.
+**Rollback option B (full revert):** `git revert --no-edit 173b162` (plus any later doc commits), then push and deploy as above.
 Option B also reverts the normalize quaternion fix and the thumb-filter prefix fix.
 
 ## Orientation fix
@@ -84,7 +84,7 @@ Regenerate it with `blender -b -P tools/marco_char_delta/render_compare.py`.
 
 | | |
 |---|---|
-| Commit | *(filled after push)* |
-| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID *(filled after deploy)* |
+| Commit | `173b162fe77754a7b85387c640755e568b12de3f` |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `cca794d2-09c6-406a-94ff-21da24b4252a` |
 | Live | https://app13.nextaura.us |
-| Verify | *(filled after verify)* |
+| Verify | Live sha256 (app13 + workers.dev) of male/female/player, `*_lowpoly`, `*_build_v2` and thumbs matches local, both immediately (18:12 PT) and on the 45 s recheck (18:13 PT) |
