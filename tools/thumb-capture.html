@@ -51,6 +51,15 @@ function ensureStock(mat) {
   if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
 }
 
+// Head-cluster names: strip male_/female_ prefix (lowpoly kit); exclude boot eyelets (iter2 kit).
+function headBase(name) {
+  return (name || '').toLowerCase().replace(/^(male|female)_/, '');
+}
+function isHeadPart(n) {
+  return n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' ||
+    n === 'beard' || (n.startsWith('eye') && !n.startsWith('eyelet')) || n === 'nose' || n === 'lips';
+}
+
 const gltf = await new GLTFLoader().loadAsync(url);
 const model = gltf.scene;
 const headBoxes = [];
@@ -61,8 +70,8 @@ model.traverse((o) => {
       m.side = THREE.FrontSide;
       ensureStock(m);
     }
-    const n = (o.name || '').toLowerCase();
-    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || (n.startsWith('eye') && !n.startsWith('eyelet')) || n === 'nose' || n === 'lips') {
+    const n = headBase(o.name);
+    if (isHeadPart(n)) {
       headBoxes.push(new THREE.Box3().setFromObject(o));
     }
   }
@@ -98,8 +107,8 @@ if (headBoxes.length) {
   const hb2 = new THREE.Box3();
   model.traverse((o) => {
     if (!o.isMesh) return;
-    const n = (o.name || '').toLowerCase();
-    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || (n.startsWith('eye') && !n.startsWith('eyelet')) || n === 'nose' || n === 'lips' || n.startsWith('ear')) {
+    const n = headBase(o.name);
+    if (isHeadPart(n) || n.startsWith('ear')) {
       hb2.expandByObject(o);
     }
   });

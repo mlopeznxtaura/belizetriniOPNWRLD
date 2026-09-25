@@ -4,8 +4,9 @@ Keep character standing on Blender +Z (native up). glTF export_yup maps
 Blender Z-up -> glTF Y-up. Do NOT pre-rotate to Y or export double-converts.
 Scale to ~1.7m, feet on z=0, recalc normals, binary GLB.
 
-Source: build_characters.py iteration 2 (fingers + detail; static trimeshes, no skins/clips).
-Prior iteration 1 sources: /workspace/marco-char-delta3/*_build.glb (provenance *_build.glb kept).
+Source: Marco lowpoly generation (male_*/female_* parts, ~4.9k tris; static, no skins/clips).
+These files import lying along Blender -Y at ~5.7 units; orient_by_anchors() stands them on +Z.
+Prior sources: delta4 *_build_v2.glb (iter2, rollback target 838b703), delta3 *_build.glb (iter1).
 """
 import bpy
 import shutil
@@ -16,16 +17,16 @@ OUT_DIR = "/workspace/app13-caribcrime/public/assets/characters"
 
 JOBS = [
     (
-        "/workspace/marco-char-delta4/male_belizean_build_v2.glb",
+        "/workspace/marco-char-delta5/male_belizean_lowpoly.glb",
         f"{OUT_DIR}/male.glb",
         "male",
-        f"{OUT_DIR}/male_belizean_build_v2.glb",
+        f"{OUT_DIR}/male_belizean_lowpoly.glb",
     ),
     (
-        "/workspace/marco-char-delta4/female_trinidadian_build_v2.glb",
+        "/workspace/marco-char-delta5/female_trinidadian_lowpoly.glb",
         f"{OUT_DIR}/female.glb",
         "female",
-        f"{OUT_DIR}/female_trinidadian_build_v2.glb",
+        f"{OUT_DIR}/female_trinidadian_lowpoly.glb",
     ),
 ]
 
@@ -66,15 +67,77 @@ def ensure_z_up(meshes, label):
     # Rotate so the tallest axis becomes +Z
     if hy >= hx and hy >= hz:
         # Y is up -> rotate -90° about X (Y -> Z)
-        print(f"[{label}] Y-up detected; rotating -90° about X to Z-up")
-        for o in meshes:
-            o.rotation_euler.x -= 1.5707963267948966
+        # glTF import uses QUATERNION rotation_mode, so rotate world matrices (not rotation_euler).
+        # -90 about X maps (x, y, z) -> (x, z, -y); anchor check below fixes head-down if needed.
+        print(f"[{label}] Y-tall detected; rotating -90 deg about X")
+        _rot(meshes, "X", -1.5707963267948966)
+        return
     elif hx >= hy and hx >= hz:
-        print(f"[{label}] X-up detected; rotating +90° about Y to Z-up")
-        for o in meshes:
-            o.rotation_euler.y += 1.5707963267948966
+        print(f"[{label}] X-tall detected; rotating +90 deg about Y")
+        _rot(meshes, "Y", 1.5707963267948966)
+        return
     bpy.context.view_layer.update()
     apply_sel(meshes)
+
+
+def _center(o):
+    cs = [o.matrix_world @ Vector(c) for c in o.bound_box]
+    return sum(cs, Vector()) / 8
+
+
+def _find(meshes, *keys):
+    """Match base names with optional male_/female_ prefix (e.g. head, male_head)."""
+    out = []
+    for o in meshes:
+        n = o.name.lower().split(".")[0]
+        for pre in ("male_", "female_"):
+            if n.startswith(pre):
+                n = n[len(pre):]
+                break
+        if any(n == k or n.startswith(k + "_") for k in keys):
+            out.append(o)
+    return out
+
+
+def _rot(meshes, axis, angle):
+    from mathutils import Matrix
+    R = Matrix.Rotation(angle, 4, axis)
+    for o in meshes:
+        o.matrix_world = R @ o.matrix_world
+    bpy.context.view_layer.update()
+    apply_sel(meshes)
+
+
+def orient_by_anchors(meshes, label):
+    """Head above feet on +Z; nose in front of head on Blender -Y (= glTF +Z, MODEL_YAW_OFFSET 0)."""
+    heads = _find(meshes, "head")
+    feet = _find(meshes, "boot", "sole", "boot_sole", "boot_foot")
+    noses = _find(meshes, "nose")
+    if not (heads and feet and noses):
+        print(f"[{label}] anchor meshes missing (head/boot/nose); skip anchor orient")
+        return
+    hc = _center(heads[0])
+    fc = sum((_center(o) for o in feet), Vector()) / len(feet)
+    if hc.z < fc.z:
+        print(f"[{label}] head below feet; rotating 180 about Y")
+        _rot(meshes, "Y", 3.141592653589793)
+        hc = _center(heads[0])
+    nc = _center(noses[0])
+    d = nc - hc
+    if abs(d.x) > abs(d.y):
+        ang = 1.5707963267948966 if d.x > 0 else -1.5707963267948966
+        print(f"[{label}] nose on X; rotating {ang:+.3f} about Z")
+        _rot(meshes, "Z", ang)
+    elif d.y > 0:
+        print(f"[{label}] facing Blender +Y; rotating 180 about Z")
+        _rot(meshes, "Z", 3.141592653589793)
+    hc = _center(heads[0]); nc = _center(noses[0])
+    fc = sum((_center(o) for o in feet), Vector()) / len(feet)
+    mins, maxs = world_bounds(meshes)
+    H = maxs.z - mins.z
+    assert hc.z - fc.z > 0.5 * H, f"[{label}] head not clearly above feet (H={H:.3f})"
+    assert hc.y - nc.y > 0.02 * H, f"[{label}] nose not clearly in front (-Y)"
+    print(f"[{label}] anchor OK head_z={hc.z:.3f} feet_z={fc.z:.3f} nose-head_y={nc.y-hc.y:.3f} (faces glTF +Z)")
 
 
 def process(src, dst, label):
@@ -99,6 +162,7 @@ def process(src, dst, label):
     meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     apply_sel(meshes)
     ensure_z_up(meshes, label)
+    orient_by_anchors(meshes, label)
 
     mins, maxs = world_bounds(meshes)
     hx, hy, hz = (maxs - mins).x, (maxs - mins).y, (maxs - mins).z
@@ -108,7 +172,7 @@ def process(src, dst, label):
 
     # Head size note (detect oversized / wrong head)
     for o in meshes:
-        if o.name.lower().startswith("head") and "wrap" not in o.name.lower():
+        if o in _find(meshes, "head"):
             print(f"[{label}] head mesh dims={tuple(round(d, 4) for d in o.dimensions)} name={o.name}")
 
     scale = TARGET_H / hz
