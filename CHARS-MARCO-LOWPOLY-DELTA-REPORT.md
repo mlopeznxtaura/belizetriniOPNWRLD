@@ -100,6 +100,6 @@ Regenerate it with `blender -b -P tools/marco_char_delta/render_compare.py`.
 
 | | |
 |---|---|
-| Commit | *(filled after push)* |
-| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID *(filled after deploy)* |
-| Verify | *(filled after verify)* |
+| Commit | `2b6cf49ed3679005659947359333c3adcb8ab3c4` |
+| Deploy | Cloudflare Worker `nextaura-app13-us` Version ID `d4ee2f88-ae57-4eff-b286-becd4495efee` |
+| Verify | Live sha256 (app13 + workers.dev) of male/female/player.glb, both thumbs and index.html equals the `838b703` blobs, both immediately (18:14 PT) and on the 45 s recheck (18:15 PT) |
