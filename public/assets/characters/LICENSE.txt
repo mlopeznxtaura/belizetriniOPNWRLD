@@ -1,23 +1,27 @@
-male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian build_characters v3
-=============================================================================================
+male.glb / player.glb / female.glb — Marco-authored Belizean / Trinidadian build_characters v3 (iteration 2)
+==========================================================================================================
 Author: Marco Lopez (Belize / Trinidad character parts for belizetriniOPNWRLD)
 
 Source GLBs (kept for provenance in this folder):
-  male_belizean_build.glb / female_trinidadian_build.glb  — this ship (build_characters.py turnaround)
+  male_belizean_build_v2.glb / female_trinidadian_build_v2.glb — this ship (build_characters.py iteration 2: fingers + detail)
+  male_belizean_build.glb / female_trinidadian_build.glb       — build_characters iteration 1 (kept)
   male_belizean_simulated.glb / female_trinidadian_simulated.glb — prior simulated kit (kept)
   male_belizean.glb / female_trinidadian.glb                      — earlier Marco delta (kept)
 
 Content: hierarchical part meshes (no skins, no animations) —
   Male: off-white tank, cargo shorts, backpack, beard/moustache, arm tattoo bands, watch, dog tag
   Female: red crop_top, headwrap (+ gold/green stripes + knot), hoop earrings, curls/locs, armband
+  Iteration 2 adds: separate fingers (index/middle/ring/pinky) + thumb per hand, eyelids, inner ears,
+    boot lace eyelets, extra hair/kit detail (181 male / 223 female meshes)
 
 Pipeline (tools/marco_char_delta/normalize_export.py, Blender 4.3):
   - Import glTF → Blender Z-up (auto-orient if needed); export_yup maps once back to Y-up
   - Normalize standing height to ~1.7 m with feet on ground (y = 0 in-engine)
   - Recalculate outward normals; export binary GLB
   - player.glb is a copy of male.glb
-  - Authoring script kept: tools/marco_char_delta/build_characters.py
-  - Turnaround ref: public/assets/characters/refs/build_characters_turnaround.png
+  - Authoring script: tools/marco_char_delta/build_characters.py (iteration 2); iteration 1 kept as build_characters_v1.py
+  - Turnaround refs: public/assets/characters/refs/build_characters_turnaround_v2.png (iteration 2),
+                    public/assets/characters/refs/build_characters_turnaround.png (iteration 1)
 
 Known limits (honest):
   - Static pose only — no Idle / Walk / Run clips yet (player.js keeps mesh visible)

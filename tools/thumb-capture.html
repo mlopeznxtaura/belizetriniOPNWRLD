@@ -62,7 +62,7 @@ model.traverse((o) => {
       ensureStock(m);
     }
     const n = (o.name || '').toLowerCase();
-    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || n.startsWith('eye') || n === 'nose' || n === 'lips') {
+    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || (n.startsWith('eye') && !n.startsWith('eyelet')) || n === 'nose' || n === 'lips') {
       headBoxes.push(new THREE.Box3().setFromObject(o));
     }
   }
@@ -99,7 +99,7 @@ if (headBoxes.length) {
   model.traverse((o) => {
     if (!o.isMesh) return;
     const n = (o.name || '').toLowerCase();
-    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || n.startsWith('eye') || n === 'nose' || n === 'lips' || n.startsWith('ear')) {
+    if (n === 'head' || n.startsWith('hair') || n.startsWith('dread') || n === 'headwrap' || n === 'beard' || (n.startsWith('eye') && !n.startsWith('eyelet')) || n === 'nose' || n === 'lips' || n.startsWith('ear')) {
       hb2.expandByObject(o);
     }
   });

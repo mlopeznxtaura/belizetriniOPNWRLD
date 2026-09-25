@@ -24,7 +24,7 @@ def mat(name, hexcol, rough=0.7, metal=0.0):
 
 
 # ----------------------------------------------------------------- geometry
-def loft(rings, seg=20, cap=True):
+def loft(rings, seg=16, cap=True):
     """rings ascending in y: (y, rx, rz, cx, cz). Tiny radius => pole."""
     ang = np.linspace(0, 2 * np.pi, seg, endpoint=False)
     V, R = [], []
@@ -58,7 +58,7 @@ def loft(rings, seg=20, cap=True):
     return trimesh.Trimesh(np.array(V), F[keep], process=False)
 
 
-def tube(p0, p1, rf, t0=0.0, t1=1.0, n=8, seg=18, rd0=False, rd1=False):
+def tube(p0, p1, rf, t0=0.0, t1=1.0, n=6, seg=14, rd0=False, rd1=False):
     """Tapered tube from p0->p1, radius function rf(t). Optional rounded ends."""
     p0, p1 = S(p0), S(p1)
     d = p1 - p0
@@ -251,20 +251,14 @@ def build(gender):
     rig.add('Head', 'nose', ell(Hp(0, -0.020, 0.098), hs * S((0.013, 0.022, 0.018)), 2), skin)
     for sg in (1, -1):
         sd = 'L' if sg > 0 else 'R'
-        rig.add('Head', f'nostril_wing_{sd}', ell(Hp(sg * 0.012, -0.036, 0.097), hs * S((0.009, 0.008, 0.009)), 2), skin)
-        rig.add('Head', f'ear_{sd}', ell(Hp(sg * 0.087, -0.002, -0.005), hs * S((0.010, 0.028, 0.020)), 2), skin_dark)
-        rig.add('Head', f'ear_inner_{sd}', ell(Hp(sg * 0.088, -0.002, -0.001), hs * S((0.005, 0.017, 0.012)), 1), skin)
-        rig.add('Head', f'eye_white_{sd}', ell(Hp(sg * 0.036, 0.012, 0.088), hs * S((0.014, 0.010, 0.008)), 2), eye_w)
-        rig.add('Head', f'iris_{sd}', ell(Hp(sg * 0.036, 0.012, 0.094), hs * S((0.0065, 0.0065, 0.004)), 2), iris)
-        rig.add('Head', f'eyelid_{sd}', box(Hp(sg * 0.036, 0.021, 0.089), hs * S((0.018, 0.005, 0.010)),
-                                             rotz(-sg * 4)), skin)
+        rig.add('Head', f'nostril_wing_{sd}', ell(Hp(sg * 0.012, -0.036, 0.097), hs * S((0.009, 0.008, 0.009)), 1), skin)
+        rig.add('Head', f'ear_{sd}', ell(Hp(sg * 0.087, -0.002, -0.005), hs * S((0.010, 0.028, 0.020)), 1), skin_dark)
+        rig.add('Head', f'eye_white_{sd}', ell(Hp(sg * 0.036, 0.012, 0.088), hs * S((0.014, 0.010, 0.008)), 1), eye_w)
+        rig.add('Head', f'iris_{sd}', ell(Hp(sg * 0.036, 0.012, 0.094), hs * S((0.0065, 0.0065, 0.004)), 1), iris)
         rig.add('Head', f'brow_{sd}', box(Hp(sg * 0.037, 0.040, 0.086), hs * S((0.034, 0.007, 0.010)),
                                             rotz(-sg * (8 if M else 14))), hair_m)
-        rig.add('Head', f'cheekbone_{sd}', ell(Hp(sg * 0.058, -0.018, 0.066), hs * S((0.024, 0.020, 0.026)), 2), skin)
-        rig.add('Neck', f'collarbone_{sd}', ell((sg * 0.062 * wsh, Y(1.475), 0.044), (0.045, 0.014, 0.020), 2), skin)
-    rig.add('Head', 'upper_lip', ell(Hp(0, -0.058, 0.088), hs * S((0.024, 0.008, 0.010)), 2), lips)
-    rig.add('Head', 'lower_lip', ell(Hp(0, -0.069, 0.086), hs * S((0.020, 0.007, 0.009)), 2), lips)
-    rig.add('Head', 'chin', ell(Hp(0, -0.096, 0.058), hs * S((0.030, 0.020, 0.028)), 2), skin)
+    rig.add('Head', 'upper_lip', ell(Hp(0, -0.058, 0.088), hs * S((0.024, 0.008, 0.010)), 1), lips)
+    rig.add('Head', 'lower_lip', ell(Hp(0, -0.069, 0.086), hs * S((0.020, 0.007, 0.009)), 1), lips)
 
     if M:
         # short crop + full beard + moustache
@@ -315,18 +309,13 @@ def build(gender):
         for sg in (1, -1):
             sd = 'L' if sg > 0 else 'R'
             rig.add('Chest', f'chain_{sd}', tube((sg * 0.050, Y(1.535), 0.045), (0, Y(1.375), 0.128), lambda t: 0.0028, n=3, seg=6), chain)
-        tooth = mat('shark_tooth', '#EDE7D9', 0.35)
-        rig.add('Chest', 'pendant_tooth', ell((0, Y(1.355), 0.128), (0.014, 0.026, 0.006), 2), tooth)
-        rig.add('Chest', 'pendant_tooth_cap', box((0, Y(1.378), 0.128), (0.020, 0.008, 0.008), None), metal_dark)
+        rig.add('Chest', 'dog_tag', box((0, Y(1.36), 0.129), (0.024, 0.038, 0.004), None), metal_dark)
     else:
         gold = mat('jewel_gold', '#D4A72C', 0.3, 0.9)
         for sg in (1, -1):
             sd = 'L' if sg > 0 else 'R'
             rig.add('Chest', f'necklace_{sd}', tube((sg * 0.040, Y(1.535), 0.040), (0, Y(1.40), 0.108), lambda t: 0.0025, n=3, seg=6), gold)
-        pr = torus(0.013, 0.0028)
-        pr.apply_translation((0, Y(1.392), 0.112))
-        rig.add('Chest', 'pendant_ring', pr, gold)
-        rig.add('Chest', 'pendant', ell((0, Y(1.372), 0.113), (0.010, 0.014, 0.005), 2), mat('pendant_green', '#3E9A6B', 0.3, 0.2))
+        rig.add('Chest', 'pendant', ell((0, Y(1.395), 0.110), (0.008, 0.012, 0.004), 1), mat('pendant_green', '#3E9A6B', 0.3, 0.2))
 
     # ------------------------------------------------------------- backpack
     rig.add('Chest', 'backpack_body', box((0, Y(1.29), -0.190), (0.29 * (1 if M else 0.85), 0.40 * s, 0.12), None), pack_m)
@@ -339,14 +328,6 @@ def build(gender):
         rig.add('Chest', f'strap_front_{sd}', box((sx, Y(1.34), 0.124 if M else 0.114), (0.045, 0.30 * s, 0.018), rotx(-3)), strap_m)
         rig.add('Chest', f'strap_back_{sd}', box((sx, Y(1.34), -0.125), (0.045, 0.30 * s, 0.018), None), strap_m)
     rig.add('Chest', 'chest_strap', box((0, Y(1.36), 0.122 if M else 0.112), (0.20 * wsh, 0.014, 0.014), None), strap_m)
-    rig.add('Chest', 'chest_strap_buckle', box((0, Y(1.36), 0.126 if M else 0.116), (0.028, 0.020, 0.008), None), buckle)
-    rig.add('Chest', 'pack_zipper_pull', box((0, Y(1.10), -0.256), (0.010, 0.024, 0.006), None), metal_dark)
-    rig.add('Chest', 'pack_zipper_line', box((0, Y(1.30), -0.253), (0.004, 0.42 * s, 0.004), None), metal_dark)
-    for sg in (1, -1):
-        sd = 'L' if sg > 0 else 'R'
-        sx = sg * 0.125 * (1 if M else 0.82)
-        rig.add('Chest', f'strap_buckle_top_{sd}', box((sx, Y(1.42), 0.02), (0.040, 0.018, 0.020), None), buckle)
-        rig.add('Chest', f'compression_strap_{sd}', box((sg * 0.150 * (1 if M else 0.85), Y(1.16), -0.24), (0.018, 0.22 * s, 0.014), None), strap_m)
 
     # ------------------------------------------------------------- shorts / belt
     y_hem = Y(0.55) if M else Y(0.72)
@@ -356,11 +337,6 @@ def build(gender):
     rig.add('Spine', 'belt', loft([(Y(0.995), Tp(Y(0.995))[0] * 1.10 + 0.014, Tp(Y(0.995))[1] * 1.12 + 0.014, 0, 0),
                                    (Y(1.035), Tp(Y(1.035))[0] * 1.10 + 0.014, Tp(Y(1.035))[1] * 1.12 + 0.014, 0, 0)], 24, cap=False), belt_m)
     rig.add('Spine', 'belt_buckle', box((0, Y(1.015), Tp(Y(1.015))[1] * 1.12 + 0.02), (0.045, 0.034, 0.010), None), buckle)
-    for i, ang in enumerate(np.linspace(20, 340, 7)):
-        a = np.radians(ang)
-        bx, bz = Tp(Y(1.015))[0] * 1.12 * np.sin(a), Tp(Y(1.015))[1] * 1.14 * np.cos(a)
-        if bz > -0.02:
-            rig.add('Spine', f'belt_loop_{i}', box((bx, Y(1.015), bz), (0.018, 0.044, 0.012), None), belt_m)
 
     for sg, side in ((1, 'L'), (-1, 'R')):
         hip = (sg * hipx, Y(0.90), 0.0)
@@ -378,15 +354,11 @@ def build(gender):
         rf = (lambda t: (0.106 - 0.006 * t)) if M else (lambda t: (0.094 - 0.006 * t))
         rig.add(f'UpperLeg_{side}', f'shorts_leg_{side}', tube(top, bot, rf, n=5, rd0=True), shorts_m)
         rig.add(f'UpperLeg_{side}', f'shorts_hem_{side}', tube(bot + S((0, 0.03, 0)), bot, lambda t: rf(1) + 0.003, n=2, seg=14), shorts_d)
-        rig.add(f'UpperLeg_{side}', f'shorts_side_seam_{side}', box(((top[0] + bot[0]) / 2, (top[1] + bot[1]) / 2, rf(0.5) + 0.003), (0.006, abs(top[1] - bot[1]) * 0.95, 0.006), None), shorts_d)
         if M:
-            # cargo pocket + flap on outer thigh, with rivets and a stitched flap edge
+            # cargo pocket + flap on outer thigh
             px = sg * (hipx + 0.008 + 0.104)
             rig.add(f'UpperLeg_{side}', f'cargo_pocket_{side}', box((px, Y(0.71), 0.01), (0.040, 0.15, 0.10), None), shorts_d)
             rig.add(f'UpperLeg_{side}', f'cargo_flap_{side}', box((px + sg * 0.003, Y(0.775), 0.01), (0.044, 0.045, 0.106), None), shorts_m)
-            for cy in (Y(0.785), Y(0.640)):
-                for cz in (-0.03, 0.045):
-                    rig.add(f'UpperLeg_{side}', f'rivet_{side}_{int(cy*1000)}_{int(cz*1000)}', ell((px + sg * 0.024, cy, cz), (0.005, 0.005, 0.003), 1), buckle)
         else:
             px = sg * (hipx + 0.008 + 0.092)
             rig.add(f'UpperLeg_{side}', f'shorts_pocket_{side}', box((px, Y(0.80), 0.012), (0.030, 0.10, 0.08), None), shorts_d)
@@ -403,23 +375,11 @@ def build(gender):
         rig.add(f'Foot_{side}', f'boot_sole_{side}', box((x, 0.014, 0.065), (0.112 * (1 if M else .92), 0.030, 0.315), None), sole_m)
         rig.add(f'Foot_{side}', f'boot_heel_{side}', box((x, 0.012, -0.070), (0.108 * (1 if M else .92), 0.032, 0.070), None), sole_m)
         rig.add(f'Foot_{side}', f'boot_collar_{side}', tube((x, 0.245 * bh, 0), (x, 0.285 * bh, -0.004), lambda t: 0.066 * (1.0 if M else 0.92), n=2), strap_m)
-        if not M:
-            ab = torus(0.062, 0.0032, nu=24, nv=6)
-            ab.apply_transform(rotx(90))
-            ab.apply_translation((x, 0.300 * bh, -0.004))
-            rig.add(f'Foot_{side}', f'anklet_{side}', ab, mat('jewel_gold', '#D4A72C', 0.3, 0.9))
-        # tongue + eyelets + laces across the front of the boot
+        # laces across the front of the boot
         lace_m = mat('laces', '#1D1A17', 0.9)
-        eyelet_m = mat('eyelet_metal', '#8A8A8A', 0.35, 0.85)
-        rig.add(f'Foot_{side}', f'boot_tongue_{side}', box((x, 0.175 * bh, 0.052 * bw), (0.034 * bw, 0.110 * bh, 0.014), None), boot_m)
         for i in range(5):
             yy = (0.155 + i * 0.024) * bh
             rig.add(f'Foot_{side}', f'lace_{side}_{i}', box((x, yy, 0.062 * bw + 0.004 - i * 0.002), (0.046 * bw, 0.006, 0.008), None), lace_m)
-            for sgn in (1, -1):
-                ee = torus(0.0065, 0.0022, nu=10, nv=6)
-                ee.apply_translation((x + sgn * 0.030 * bw, yy, 0.058 * bw - i * 0.002))
-                rig.add(f'Foot_{side}', f'eyelet_{side}_{i}_{sgn}', ee, eyelet_m)
-
 
     # ------------------------------------------------------------- arms
     for side, sg in (('L', 1), ('R', -1)):
@@ -430,25 +390,12 @@ def build(gender):
         rig.add(f'LowerArm_{side}', f'elbow_{side}', ell(el, (0.045 * k,) * 3, 2), skin)
         rf_f = lambda t: k * (0.047 - 0.012 * t + 0.005 * np.sin(np.pi * t)) + (0.005 if M else 0)
         rig.add(f'LowerArm_{side}', f'forearm_{side}', tube(el, wr, rf_f, n=6), skin)
-        # hand: palm + four separate fingers + thumb
+        # hand
         d = (wr - el) / np.linalg.norm(wr - el)
-        fk = 1.0 if M else 0.92
-        palm_len = 0.050 * fk * k
-        palm_top = wr + d * palm_len
-        rig.add(f'Hand_{side}', f'palm_{side}', tube(wr, palm_top, lambda t: k * (0.037 - 0.007 * t), n=4, seg=14), skin)
-        rig.add(f'Hand_{side}', f'palm_back_{side}', ell(wr + d * palm_len * 0.55, (k * 0.033, k * 0.020, k * 0.030), 2), skin)
-        fnames = ('pinky', 'ring', 'middle', 'index')
-        flens = (0.044 * fk, 0.057 * fk, 0.062 * fk, 0.055 * fk)
-        foffs = (-0.0265, -0.0095, 0.0075, 0.0235)
-        for name, ln, ox in zip(fnames, flens, foffs):
-            fb = palm_top + S((sg * ox * k, 0, 0.014))
-            fe = fb + d * ln + S((0, 0, 0.007 + 0.10 * ln))
-            rig.add(f'Hand_{side}', f'finger_{name}_{side}', tube(fb, fe, lambda t: k * (0.0083 - 0.0033 * t), n=3, seg=8, rd1=True), skin)
-            rig.add(f'Hand_{side}', f'knuckle_{name}_{side}', ell(fb, (k * 0.0078,) * 3, 2), skin)
-        thumb0 = wr + d * palm_len * 0.28 + S((sg * 0.032 * k, 0, 0.020))
-        thumb1 = thumb0 + d * 0.030 * fk + S((sg * 0.026 * k, 0, 0.032 * fk))
-        rig.add(f'Hand_{side}', f'thumb_{side}', tube(thumb0, thumb1, lambda t: k * (0.0098 - 0.0033 * t), n=3, seg=8, rd1=True), skin)
-        rig.add(f'Hand_{side}', f'thumb_base_{side}', ell(thumb0, (k * 0.0105,) * 3, 2), skin)
+        hand_end = wr + d * 0.105 * (1 if M else 0.9)
+        rig.add(f'Hand_{side}', f'hand_{side}', tube(wr - d * 0.005, hand_end, lambda t: k * (0.034 - 0.014 * t), n=4, seg=10, rd1=True), skin)
+        thumb0 = wr + d * 0.03 + S((sg * -0.0, 0, 0.026))
+        rig.add(f'Hand_{side}', f'thumb_{side}', tube(thumb0, thumb0 + d * 0.05 + S((0, 0, 0.012)), lambda t: 0.009 * k, n=3, seg=8, rd1=True), skin)
 
         if M and side == 'L':
             # tattoo sleeve (banded pattern) + watch

@@ -4,7 +4,8 @@ Keep character standing on Blender +Z (native up). glTF export_yup maps
 Blender Z-up -> glTF Y-up. Do NOT pre-rotate to Y or export double-converts.
 Scale to ~1.7m, feet on z=0, recalc normals, binary GLB.
 
-Source: build_characters.py v3 turnaround kit (static trimeshes, no skins/clips).
+Source: build_characters.py iteration 2 (fingers + detail; static trimeshes, no skins/clips).
+Prior iteration 1 sources: /workspace/marco-char-delta3/*_build.glb (provenance *_build.glb kept).
 """
 import bpy
 import shutil
@@ -15,16 +16,16 @@ OUT_DIR = "/workspace/app13-caribcrime/public/assets/characters"
 
 JOBS = [
     (
-        "/workspace/marco-char-delta3/male_belizean_build.glb",
+        "/workspace/marco-char-delta4/male_belizean_build_v2.glb",
         f"{OUT_DIR}/male.glb",
         "male",
-        f"{OUT_DIR}/male_belizean_build.glb",
+        f"{OUT_DIR}/male_belizean_build_v2.glb",
     ),
     (
-        "/workspace/marco-char-delta3/female_trinidadian_build.glb",
+        "/workspace/marco-char-delta4/female_trinidadian_build_v2.glb",
         f"{OUT_DIR}/female.glb",
         "female",
-        f"{OUT_DIR}/female_trinidadian_build.glb",
+        f"{OUT_DIR}/female_trinidadian_build_v2.glb",
     ),
 ]
 
