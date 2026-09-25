@@ -56,3 +56,9 @@ They are **not modified**. Animation is built at load time in the browser.
   player.js takes over automatically.
 - `tools/marco_char_delta/normalize_export.py` now points at the iter2 build_v2 sources (no more silent
   lowpoly rebuild). It was not re-run.
+
+## Shipped
+- Code commit `9aedc1fc78aa0cc98f1340d2addfc03bf77fc45d`, pushed to main before the deploy.
+- Cloudflare Worker `nextaura-app13-us` version `58baf82f-a4e4-421d-a234-e2f5a29bdddc` (2026-09-24, PT).
+- Live check: https://app13.nextaura.us/js/{player,char_rig,char_rig_data}.js are byte-identical to
+  `git show 9aedc1f:public/js/...`. The live male/female/player.glb are unchanged (same blobs as 838b703).
