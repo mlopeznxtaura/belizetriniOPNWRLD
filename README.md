@@ -25,6 +25,18 @@ docker build -t belizetrini-opnwrld .
 docker run -p 8080:8080 -e PORT=8080 belizetrini-opnwrld
 ```
 
+## Art pass: Wind Waker toon (good-1+1)
+
+World, vehicles and characters use the shared toon system in `public/js/toon.js`:
+- banded gradient ramps and flat albedos
+- inverted-hull outlines (static ones batched into 2 draws)
+- a gradient sky with sun/moon disks and cel clouds
+- stylised foam water
+
+The ramps, fog and sky follow the day/night cycle. Characters keep their geometry and rig, with a softer skin ramp and a thin line.
+Add `?toon=0` to the URL for the old look.
+Captures: `CHROME=/path/to/chrome node tools/toon-capture.js after|before|sheet` → `docs/fidelity/good-1+1/`. See `GOOD-1+1-TOON-REPORT.md`.
+
 ## Controls
 
 | Key | Action |
@@ -97,7 +109,7 @@ belizetrini-opnwrld/
   public/
     index.html
     css/style.css
-    js/{main,world,player,vehicle,missions,hud,ai,drive}.js
+    js/{main,world,toon,player,vehicle,missions,hud,ai,drive}.js
     agent.json, agent.txt, llms.txt, robots.txt, sitemap.xml
     .well-known/agent.json
 ```

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ProceduralRig, SEAT_POSES } from './char_rig.js';
 import { CHAR_RIG_DATA } from './char_rig_data.js';
+import { toonify, forgetOutlines, RAMP_SKIN } from './toon.js';
 
 /** localStorage key for selected playable character */
 export const CHAR_KEY = 'belizetrini_char';
@@ -140,7 +141,9 @@ export class Player {
   /** Remove + dispose a character Object3D (geometry/materials). */
   _disposeObject(obj) {
     if (!obj) return;
+    forgetOutlines(obj);
     obj.traverse((o) => {
+      if (o.userData?.isOutline) return; // shared outline material / hull geometry
       if (o.geometry) o.geometry.dispose?.();
       if (o.material) {
         const mats = Array.isArray(o.material) ? o.material : [o.material];
@@ -280,6 +283,8 @@ export class Player {
     this._clearRootModels();
     this.root.remove(this._placeholder);
     this.root.add(this.model);
+    // good-1+1: softer 3-band skin/cloth ramp + thin outline. Geometry and rig are untouched.
+    toonify(this.model, { klass: 'char', ramp: RAMP_SKIN });
 
     // Animations — Idle/Walk; never treat TPose as idle (bind-pose ghost).
     this.mixer = new THREE.AnimationMixer(this.model);

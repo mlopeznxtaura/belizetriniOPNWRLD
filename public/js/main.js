@@ -6,6 +6,7 @@ import { spawnCops } from './ai.js';
 import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
 import { DriveClient } from './drive.js';
+import { TOON_ON, toonify, updateToon, outlineStats } from './toon.js';
 
 class Game {
   constructor() {
@@ -50,6 +51,11 @@ class Game {
     this.player = new Player(this.scene, this.world.markers.spawn, this.world);
     this.vehicles = spawnFleet(this.scene, this.world.markers, this.world);
     this.cops = spawnCops(this.scene, this.world);
+    if (TOON_ON) {
+      for (const v of this.vehicles) toonify(v.mesh, { klass: 'vehicle' });
+      for (const c of this.cops) toonify(c.mesh, { klass: 'vehicle' });
+    }
+    this.toon = { on: TOON_ON, stats: outlineStats };
     this.hud = new HUD();
     this.missions = new MissionSystem(this);
     this.drive = new DriveClient(this);
@@ -269,6 +275,7 @@ class Game {
       this.player.camera.lookAt(s.x, 2, s.z);
     }
 
+    updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
   }
 

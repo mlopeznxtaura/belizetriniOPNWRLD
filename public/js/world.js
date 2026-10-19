@@ -1,4 +1,8 @@
 import * as THREE from 'three';
+import {
+  TOON_ON, toonMaterial, addOutline, buildStaticOutlines, createToonSky, createToonWaterMaterial,
+  applyToonSkyState, bindSky,
+} from './toon.js';
 
 /**
  * belizetriniOPNWRLD — Iteration A city builder
@@ -49,7 +53,7 @@ function makeMats() {
       metalness: extras.metalness ?? 0.05,
       ...extras,
     });
-  return {
+  const mats = {
     asphalt: std(PALETTE.asphalt, { roughness: 0.97 }),
     sidewalk: std(PALETTE.sidewalk, { roughness: 0.95 }),
     lane: new THREE.MeshBasicMaterial({ color: PALETTE.lane }),
@@ -94,7 +98,29 @@ function makeMats() {
     trimWhite: std(0xe8e0d4, { roughness: 0.85 }),
     lampHead: new THREE.MeshBasicMaterial({ color: 0xffcc66 }),
   };
+  if (TOON_ON) {
+    // Wind Waker pass: bright flat albedos, few materials. Same keys, so the kit code is untouched.
+    for (const [k, hex] of Object.entries(WW_ALBEDO)) {
+      if (!mats[k]) continue;
+      if (mats[k].isMeshBasicMaterial) mats[k].color.setHex(hex);
+      else mats[k] = toonMaterial(hex);
+    }
+  }
+  return mats;
 }
+
+/** good-1+1 toon albedos (daylight-bright, saturated, flat). Night still darkens via the lights. */
+const WW_ALBEDO = {
+  asphalt: 0x4c5260, sidewalk: 0xa39d90, curb: 0xbdb6a6, lane: 0xf4e7a6,
+  grassB: 0x62b04a, grassT: 0x58a65a, sand: 0xe8d29a,
+  wood: 0xb07a42, woodRoof: 0x8a3f2c, concrete: 0xcfc8b8, concreteDark: 0x8e8c9a,
+  warehouse: 0xa39486, market: 0xeab84c, colonial: 0xf2e8d2, gasCanopy: 0xe24a4a,
+  palmTrunk: 0x93683f, palmLeaf: 0x3ea444, metalDark: 0x3c3f4c, bin: 0x3f8f62,
+  barrel: 0xd47c3a, roofFlat: 0x7a6662, steeple: 0xf4ecda,
+  paintCream: 0xf2e3c0, paintTeal: 0x4fb3aa, paintCoral: 0xf27c6a, paintSlate: 0x7088ac,
+  paintMint: 0x8acaa8, paintSand: 0xe4cea0, trimWhite: 0xfbf7ef,
+  stallCanopy: 0xf2607e, window: 0xfff0b8,
+};
 
 // ─── Road graph data ───────────────────────────────────────────────
 /** Axis-aligned road segments: { x1,z1,x2,z2, w } — w = asphalt width */
@@ -533,7 +559,7 @@ function buildRoads(group, mats, roads) {
       for (const side of [-1, 1]) {
         const rail = new THREE.Mesh(
           new THREE.BoxGeometry(0.25, 1.1, len),
-          mats.neonCyan
+          TOON_ON ? mats.trimWhite : mats.neonCyan // toon: painted rail instead of a glowing slab
         );
         rail.rotation.y = rotY;
         const ox = Math.cos(rotY) * (w / 2 + 0.4) * side;
@@ -819,6 +845,15 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
   skyDome.renderOrder = -1000;
   scene.add(skyDome);
 
+  // good-1+1: Wind Waker sky (gradient dome + sun/moon disks + cel clouds) follows the camera so it
+  // sits inside the 450 m far plane. The old flat dome stays for ?toon=0.
+  let toonSky = null;
+  if (TOON_ON) {
+    skyDome.visible = false;
+    toonSky = createToonSky(scene);
+    bindSky(toonSky);
+  }
+
   // Stars — fade out in daytime (fog:false so they stay visible at night)
   const starGeo = new THREE.BufferGeometry();
   const starPos = [];
@@ -844,7 +879,12 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
   });
   const stars = new THREE.Points(starGeo, starMat);
   stars.renderOrder = -999;
-  scene.add(stars);
+  if (toonSky) {
+    stars.scale.setScalar(0.92); // 420 -> ~386 m, inside the far plane once it rides the camera
+    toonSky.group.add(stars);
+  } else {
+    scene.add(stars);
+  }
 
   scene.fog = new THREE.FogExp2(0xb8d4f0, 0.0018);
   scene.background = new THREE.Color(0x5cb8e8);
@@ -1004,7 +1044,8 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
     moon.intensity = s.moonI;
     if (scene.fog) {
       scene.fog.color.setHex(s.fogC);
-      scene.fog.density = s.fogD;
+      // Toon: softer, deeper aerial fog so the far city melts into the sky horizon band.
+      scene.fog.density = TOON_ON ? Math.min(0.0075, s.fogD * 2.3) : s.fogD;
     }
     if (scene.background && scene.background.isColor) {
       scene.background.setHex(s.bg);
@@ -1017,6 +1058,17 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
       st.light.intensity = st.base * s.streetMul;
     }
     if (mats?.water?.color) mats.water.color.setHex(s.water);
+    if (toonSky) {
+      toonSky.apply(s, s.sunPos, moon.position);
+      applyToonSkyState(s);
+      const wu = mats?.water?.uniforms;
+      if (wu) {
+        const day = THREE.MathUtils.smoothstep(s.sunI, 0.05, 1.2);
+        wu.uDeep.value.setHex(s.water).offsetHSL(0.04, 0.12, 0.02 + 0.04 * day);
+        wu.uColor.value.copy(wu.uDeep.value).offsetHSL(-0.035, 0.0, 0.07 + 0.06 * day);
+        wu.uFoam.value.setRGB(1, 1, 1).lerp(_cOut.setHex(s.fogC), 0.15).multiplyScalar(0.45 + 0.55 * day);
+      }
+    }
   }
 
   apply();
@@ -1069,6 +1121,15 @@ export function buildWorld(scene) {
   scene.add(root);
 
   const mats = makeMats();
+  if (TOON_ON) {
+    // Stylised water: flat two-tone + foam wrapping the land edges and the piers.
+    mats.water = createToonWaterMaterial(PALETTE.water, [
+      { minX: -160, minZ: -105, maxX: 60, maxZ: 115 }, // Belize ground
+      { minX: 45, minZ: -95, maxX: 245, maxZ: 105 }, // Port of Spain ground
+      { minX: -126, minZ: -40.75, maxX: -90, maxZ: -35.25 }, // pier 1
+      { minX: -129, minZ: -30.25, maxX: -107, maxZ: -25.75 }, // pier 2
+    ]);
+  }
   const colliders = [];
   const realLights = [];
 
@@ -1086,15 +1147,28 @@ export function buildWorld(scene) {
   root.add(groundT);
 
   // Water — south coast + creek pockets
-  const waterSouth = new THREE.Mesh(new THREE.PlaneGeometry(400, 90), mats.water);
+  const wSeg = TOON_ON ? [80, 18] : [1, 1]; // vertex wave needs some tessellation
+  const waterSouth = new THREE.Mesh(new THREE.PlaneGeometry(400, 90, wSeg[0], wSeg[1]), mats.water);
   waterSouth.rotation.x = -Math.PI / 2;
   waterSouth.position.set(40, MAP.waterY, -95);
+  if (TOON_ON) waterSouth.renderOrder = 1; // after ground/city so hidden water pixels are depth-rejected
   root.add(waterSouth);
 
-  const creek = new THREE.Mesh(new THREE.PlaneGeometry(55, 35), mats.water);
+  const creek = new THREE.Mesh(new THREE.PlaneGeometry(55, 35, TOON_ON ? 11 : 1, TOON_ON ? 7 : 1), mats.water);
   creek.rotation.x = -Math.PI / 2;
   creek.position.set(-95, MAP.waterY, 5);
+  if (TOON_ON) creek.renderOrder = 1;
   root.add(creek);
+
+  // good-1+1: sand beach rims where the land meets the sea (big readable shape, foam lands on it)
+  if (TOON_ON) {
+    for (const [x0, x1, zEdge] of [[-160, 60, -105], [45, 245, -95]]) {
+      const beach = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, 7), mats.sand);
+      beach.rotation.x = -Math.PI / 2;
+      beach.position.set((x0 + x1) / 2, 0.012, zEdge + 3.5);
+      root.add(beach);
+    }
+  }
 
   // Dock piers
   const pierMat = mats.wood;
@@ -1125,6 +1199,22 @@ export function buildWorld(scene) {
   // Curb props (instanced)
   const scatters = scatterPropsAlongRoads(ROADS);
   addInstancedProps(root, mats, scatters, realLights);
+
+  // good-1+1 outlines: inverted hulls on buildings and props (not on ground / roads / water /
+  // unlit decals). Class by size: big shells get the building line, the rest the thinner prop line.
+  if (TOON_ON) {
+    const flat = new Set([mats.asphalt, mats.sidewalk, mats.curb, mats.grassB, mats.grassT, mats.sand, mats.water]);
+    const list = [];
+    const statics = [];
+    root.traverse((o) => { if (o.isMesh) list.push(o); });
+    for (const o of list) {
+      if (flat.has(o.material) || o.geometry.type === 'PlaneGeometry' || !o.material.userData?.toon) continue;
+      if (o.isInstancedMesh) { addOutline(o, 'prop'); continue; }
+      if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
+      statics.push({ mesh: o, klass: o.geometry.boundingSphere.radius >= 2.5 ? 'building' : 'prop' });
+    }
+    buildStaticOutlines(statics, root); // one draw per class instead of one per mesh
+  }
 
   // Atmosphere — time-of-day (default 14:00 afternoon)
   const dayNight = createDayNight(scene, realLights, mats);

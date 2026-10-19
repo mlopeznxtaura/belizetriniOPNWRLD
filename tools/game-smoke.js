@@ -21,7 +21,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 (async () => {
   await new Promise((r) => server.listen(8767, '127.0.0.1', r));
   const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/google-chrome', headless: 'new',
+    executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: 'new',
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--enable-webgl', '--ignore-gpu-blocklist',
       '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
   });
