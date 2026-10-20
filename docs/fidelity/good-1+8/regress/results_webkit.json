@@ -1,0 +1,71 @@
+{
+ "_browser": "27.2",
+ "iphone": {
+  "case": "iphone",
+  "start": {
+   "frames": 39,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 113,
+   "tris": 68598,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 8,
+   "dbw": 292,
+   "dbh": 633,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "mobileControls": true,
+  "stickSpeed": 3.59,
+  "end": {
+   "frames": 55,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 113,
+   "tris": 68598,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    68,
+    75,
+    89,
+    255
+   ],
+   "distinctSamples": 8,
+   "dbw": 292,
+   "dbh": 633,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ }
+}

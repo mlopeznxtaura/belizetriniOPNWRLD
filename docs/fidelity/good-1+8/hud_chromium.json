@@ -1,0 +1,690 @@
+{
+ "iphone15_portrait": {
+  "vw": 390,
+  "vh": 844,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 10,
+    "y": 12,
+    "w": 97,
+    "h": 26.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 10,
+    "y": 96,
+    "w": 256,
+    "h": 84.2
+   },
+   {
+    "id": "cash",
+    "x": 297.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 220,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 188,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 274,
+    "y": 96,
+    "w": 104,
+    "h": 104
+   },
+   {
+    "id": "district-label",
+    "x": 282.3,
+    "y": 206,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 115,
+    "y": 571.7,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 97.5,
+    "y": 352.2,
+    "w": 195,
+    "h": 90
+   },
+   {
+    "id": "btn-pause",
+    "x": 338,
+    "y": 12,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 24,
+    "y": 700,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 296,
+    "y": 680,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 226,
+    "y": 750,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphone15_portrait.png"
+ },
+ "iphoneSE_portrait": {
+  "vw": 375,
+  "vh": 667,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 10,
+    "y": 12,
+    "w": 97,
+    "h": 26.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 10,
+    "y": 96,
+    "w": 241,
+    "h": 84.2
+   },
+   {
+    "id": "cash",
+    "x": 282.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 205,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 173,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 259,
+    "y": 96,
+    "w": 104,
+    "h": 104
+   },
+   {
+    "id": "district-label",
+    "x": 267.3,
+    "y": 206,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 107.5,
+    "y": 444.3,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 93.8,
+    "y": 261.8,
+    "w": 187.5,
+    "h": 90
+   },
+   {
+    "id": "btn-pause",
+    "x": 323,
+    "y": 12,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 24,
+    "y": 523,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 281,
+    "y": 503,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 211,
+    "y": 573,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphoneSE_portrait.png"
+ },
+ "iphone15_landscape": {
+  "vw": 844,
+  "vh": 390,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 369.5,
+    "y": 12,
+    "w": 105,
+    "h": 28.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 14,
+    "y": 12,
+    "w": 320,
+    "h": 67.1
+   },
+   {
+    "id": "cash",
+    "x": 751.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 674,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 642,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 736,
+    "y": 96,
+    "w": 96,
+    "h": 96
+   },
+   {
+    "id": "district-label",
+    "x": 374.2,
+    "y": 50,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 342,
+    "y": 244.8,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 282,
+    "y": 159.4,
+    "w": 280,
+    "h": 40
+   },
+   {
+    "id": "btn-pause",
+    "x": 792,
+    "y": 12,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 24,
+    "y": 246,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 750,
+    "y": 226,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 680,
+    "y": 296,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphone15_landscape.png"
+ },
+ "iphoneSE_landscape": {
+  "vw": 667,
+  "vh": 375,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 281,
+    "y": 12,
+    "w": 105,
+    "h": 28.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 14,
+    "y": 12,
+    "w": 253.5,
+    "h": 84.2
+   },
+   {
+    "id": "cash",
+    "x": 574.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 497,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 465,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 559,
+    "y": 96,
+    "w": 96,
+    "h": 96
+   },
+   {
+    "id": "district-label",
+    "x": 285.7,
+    "y": 50,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 253.5,
+    "y": 234,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 193.5,
+    "y": 152.5,
+    "w": 280,
+    "h": 40
+   },
+   {
+    "id": "btn-pause",
+    "x": 615,
+    "y": 12,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 24,
+    "y": 231,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 573,
+    "y": 211,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 503,
+    "y": 281,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphoneSE_landscape.png"
+ },
+ "iphone15_portrait_insets": {
+  "vw": 390,
+  "vh": 844,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 10,
+    "y": 71,
+    "w": 97,
+    "h": 26.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 10,
+    "y": 155,
+    "w": 256,
+    "h": 84.2
+   },
+   {
+    "id": "cash",
+    "x": 297.9,
+    "y": 71,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 220,
+    "y": 102,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 188,
+    "y": 134.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 274,
+    "y": 155,
+    "w": 104,
+    "h": 104
+   },
+   {
+    "id": "district-label",
+    "x": 282.3,
+    "y": 265,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 115,
+    "y": 537.7,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 97.5,
+    "y": 343.2,
+    "w": 195,
+    "h": 90
+   },
+   {
+    "id": "btn-pause",
+    "x": 338,
+    "y": 71,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 24,
+    "y": 666,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 296,
+    "y": 646,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 226,
+    "y": 716,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphone15_portrait_insets.png"
+ },
+ "iphone15_landscape_insets": {
+  "vw": 844,
+  "vh": 390,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 369.5,
+    "y": 12,
+    "w": 105,
+    "h": 28.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 73,
+    "y": 12,
+    "w": 283,
+    "h": 67.1
+   },
+   {
+    "id": "cash",
+    "x": 692.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 615,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 583,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 677,
+    "y": 96,
+    "w": 96,
+    "h": 96
+   },
+   {
+    "id": "district-label",
+    "x": 374.2,
+    "y": 50,
+    "w": 95.7,
+    "h": 17
+   },
+   {
+    "id": "prompt",
+    "x": 342,
+    "y": 223.8,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 282,
+    "y": 159.4,
+    "w": 280,
+    "h": 40
+   },
+   {
+    "id": "btn-pause",
+    "x": 733,
+    "y": 12,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "id": "stick-zone",
+    "x": 83,
+    "y": 225,
+    "w": 120,
+    "h": 120
+   },
+   {
+    "id": "btn-action",
+    "x": 691,
+    "y": 205,
+    "w": 64,
+    "h": 64
+   },
+   {
+    "id": "btn-brake",
+    "x": 621,
+    "y": 275,
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": true,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_iphone15_landscape_insets.png"
+ },
+ "desktop": {
+  "vw": 1280,
+  "vh": 720,
+  "boxes": [
+   {
+    "id": "tod-clock",
+    "x": 587.5,
+    "y": 12,
+    "w": 105,
+    "h": 28.9
+   },
+   {
+    "id": "mission-brief",
+    "x": 14,
+    "y": 12,
+    "w": 320,
+    "h": 75.9
+   },
+   {
+    "id": "cash",
+    "x": 1235.9,
+    "y": 12,
+    "w": 30.1,
+    "h": 25
+   },
+   {
+    "id": "wanted",
+    "x": 1158,
+    "y": 43,
+    "w": 108,
+    "h": 26.9
+   },
+   {
+    "id": "health-wrap",
+    "x": 1126,
+    "y": 75.9,
+    "w": 140,
+    "h": 10
+   },
+   {
+    "id": "minimap",
+    "x": 1104,
+    "y": 544,
+    "w": 160,
+    "h": 160
+   },
+   {
+    "id": "district-label",
+    "x": 1184.3,
+    "y": 521,
+    "w": 79.7,
+    "h": 13
+   },
+   {
+    "id": "prompt",
+    "x": 560,
+    "y": 482.4,
+    "w": 159.9,
+    "h": 36
+   },
+   {
+    "id": "toast",
+    "x": 470.8,
+    "y": 263,
+    "w": 338.3,
+    "h": 50
+   }
+  ],
+  "overlaps": [],
+  "outside": [],
+  "touchClass": false,
+  "errors": [],
+  "png": "docs/fidelity/good-1+8/chromium_desktop.png"
+ },
+ "_total": 0,
+ "_browser": "130.0.6723.31"
+}

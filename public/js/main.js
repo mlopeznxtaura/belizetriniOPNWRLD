@@ -136,6 +136,7 @@ class Game {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (!isTouch) return;
     document.getElementById('mobile-controls')?.classList.remove('hidden');
+    document.documentElement.classList.add('touch'); // good-1+8: touch HUD layout (style.css)
     const zone = document.getElementById('stick-zone');
     const stick = document.getElementById('stick');
     if (!zone || !stick) return;
