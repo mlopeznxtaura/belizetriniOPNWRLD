@@ -52,6 +52,7 @@
     <div id="mission-brief">
       <div id="mission-title">—</div>
       <div id="mission-text">—</div>
+      <div id="mission-timer" class="hidden"></div>
     </div>
     <canvas id="minimap" width="160" height="160"></canvas>
     <div id="district-label">Belize City</div>
@@ -65,6 +66,29 @@
     <button type="button" id="btn-action">F</button>
     <button type="button" id="btn-brake">Brake</button>
     <button type="button" id="btn-pause" aria-label="Pause and settings">II</button>
+  </div>
+
+  <!-- good-1+9 mission fail / complete screens -->
+  <div id="mission-fail" class="mission-overlay hidden" role="dialog" aria-label="Mission failed">
+    <div class="mo-card">
+      <p class="mo-kicker fail">MISSION FAILED</p>
+      <p class="mf-name"></p>
+      <p class="mf-reason"></p>
+      <div class="mo-btns">
+        <button type="button" id="btn-retry-cp">Retry from checkpoint</button>
+        <button type="button" id="btn-retry-start" class="secondary">Restart mission</button>
+      </div>
+    </div>
+  </div>
+  <div id="mission-complete" class="mission-overlay hidden" role="dialog" aria-label="Mission complete">
+    <div class="mo-card">
+      <p class="mo-kicker done">MISSION COMPLETE</p>
+      <p class="mc-name"></p>
+      <p class="mc-reward"></p>
+      <p class="mc-time"></p>
+      <p class="mc-progress"></p>
+      <div class="mo-btns"><button type="button" id="btn-continue">Continue</button></div>
+    </div>
   </div>
 
   <div id="pause-overlay" class="hidden">

@@ -252,7 +252,7 @@ class Game {
     this.hud.setCash(0);
     this.hud.setWanted(0);
     this.hud.setHealth(100);
-    this.missions.start(1);
+    this.missions.resume(); // good-1+9: saved progress / checkpoint, else mission 1
     this.drive.start();
     safePointerLock(this.canvas);
     this.hud.toast('belizetriniOPNWRLD — Caribbean day cycle');
@@ -288,7 +288,8 @@ class Game {
       this.hud.toast(vehicleLabel(near.type));
       // good-1+7: car theft is a crime; full heat when a cop is within 35 m, half otherwise.
       // (Mission 1's scooter is the mission's own vehicle and its heat comes from the mission.)
-      if (!(this.missions.currentId === 1 && near.type === 'scooter') && this._crimeCooldown <= 0) {
+      const st = this.missions.stage;
+      if (!(st?.type === 'pickup' && st.vehicle === near.type) && this._crimeCooldown <= 0) {
         this.wantedSys.crime('carTheft');
         this._crimeCooldown = 5;
       }
@@ -428,8 +429,7 @@ class Game {
       if (this.player.health <= 0) this._respawn();
     }
 
-    const m = this.missions.current;
-    const blipPos = m ? this.world.markers[m.blip] : null;
+    const blipPos = this.missions.blipPos();
     this.hud.drawMinimap(
       pos,
       this.player.inVehicle ? this.player.vehicle.yaw : this.player.yaw,
@@ -442,8 +442,7 @@ class Game {
     if (!this.player.inVehicle) {
       const near = nearestVehicle(this.vehicles, pos, 4.5);
       if (near) {
-        const mid = m?.id;
-        if (!(mid === 1 && near.type === 'scooter') && ![2, 3, 4, 5, 6].includes(mid)) {
+        if (!this.missions._promptShown) {
           this.hud.showPrompt(`Press F — ${vehicleLabel(near.type)}`);
         }
       }
@@ -459,6 +458,7 @@ class Game {
 
   _respawn() {
     this.hud.toast('Wasted — respawning at docks');
+    this.missions.onWasted(); // good-1+9: wasted fails the active mission (retry from checkpoint)
     if (this.player.inVehicle) this.player.exitVehicle();
     this.player.mesh.position.copy(this.world.markers.spawn);
     this.player.health = 100;

@@ -66,7 +66,7 @@ function buildAgentJson(live = true) {
         description: 'Drive the game session',
         body: {
           action:
-            'start_mission|set_mission|give_cash|clear_wanted|teleport|spawn_car|pause|resume|set_wanted|heal',
+            'start_mission|set_mission|retry_mission|give_cash|clear_wanted|teleport|spawn_car|pause|resume|set_wanted|heal',
           missionId: 'number (optional)',
           amount: 'number (optional, cash)',
           stars: 'number 0-5 (set_wanted; good-1+7 wanted levels: 1 foot cop, 2 cars, 3 roadblock, 4 ramming + heli, 5 spikes)',
@@ -227,6 +227,7 @@ app.post('/api/state-sync', (req, res) => {
   // good-1+6: adaptive-fps governor state (fps, level, tier, pixel ratio...)
   if (b.perf && typeof b.perf === 'object') gameState.perf = b.perf;
   if (b.wantedState && typeof b.wantedState === 'object') gameState.wantedState = b.wantedState; // good-1+7
+  if (b.mission && typeof b.mission === 'object') gameState.mission = b.mission; // good-1+9 stage / checkpoint
   gameState.lastUpdate = new Date().toISOString();
   if (gameState.running && !gameState.startedAt) {
     gameState.startedAt = gameState.lastUpdate;
@@ -257,6 +258,7 @@ app.post('/api/drive', (req, res) => {
     'pause',
     'resume',
     'heal',
+    'retry_mission',
   ]);
   if (!allowed.has(action)) {
     return res.status(400).json({ ok: false, error: 'unknown action', allowed: [...allowed] });

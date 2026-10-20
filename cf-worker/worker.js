@@ -109,6 +109,9 @@ function handleDrive(body) {
       enqueue({ action: 'set_mission', missionId: id });
       break;
     }
+    case 'retry_mission': // good-1+9: retry the current mission from its last checkpoint
+      enqueue({ action: 'retry_mission' });
+      break;
     case 'give_cash':
       gameState.cash += Number(body.amount) || 0;
       enqueue({ action: 'give_cash', amount: Number(body.amount) || 0 });
@@ -118,8 +121,8 @@ function handleDrive(body) {
       enqueue({ action: 'clear_wanted' });
       break;
     case 'set_wanted':
-      gameState.wanted = Math.max(0, Math.min(5, Number(body.wanted) || 0));
-      enqueue({ action: 'set_wanted', wanted: gameState.wanted });
+      gameState.wanted = Math.max(0, Math.min(5, Number(body.stars ?? body.wanted ?? body.amount) || 0));
+      enqueue({ action: 'set_wanted', stars: gameState.wanted, wanted: gameState.wanted });
       break;
     case 'teleport':
       enqueue({
@@ -189,6 +192,7 @@ async function handleApi(request, url) {
     if (body.playerPos) gameState.playerPos = body.playerPos;
     if (body.perf && typeof body.perf === 'object') gameState.perf = body.perf; // good-1+6 governor
     if (body.wantedState && typeof body.wantedState === 'object') gameState.wantedState = body.wantedState; // good-1+7
+    if (body.mission && typeof body.mission === 'object') gameState.mission = body.mission; // good-1+9
     gameState.lastUpdate = new Date().toISOString();
     return json({ ok: true });
   }

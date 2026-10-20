@@ -1,0 +1,602 @@
+{
+ "engine": "chromium",
+ "device": "iphone",
+ "missions": [
+  {
+   "id": 1,
+   "stages": [
+    {
+     "type": "goto",
+     "stage": 0,
+     "wanted": 0,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "pickup",
+     "stage": 1,
+     "wanted": 1,
+     "advancedTo": 2,
+     "checkpoint": 2
+    },
+    {
+     "type": "escape",
+     "stage": 2,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 1,
+    "name": "Scooter Snatch",
+    "stage": 0,
+    "stageType": "goto",
+    "state": "active",
+    "elapsed": 0,
+    "checkpoint": 0,
+    "completed": [],
+    "items": []
+   },
+   "end": {
+    "id": 1,
+    "name": "Scooter Snatch",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "complete",
+    "elapsed": 0.5,
+    "checkpoint": null,
+    "completed": [
+     1
+    ],
+    "items": []
+   },
+   "completeScreen": true,
+   "cash": 200
+  },
+  {
+   "id": 2,
+   "stages": [
+    {
+     "type": "goto",
+     "stage": 0,
+     "wanted": 0,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "pickup",
+     "stage": 1,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 2,
+    "name": "Queen Street Pickup",
+    "stage": 0,
+    "stageType": "goto",
+    "state": "active",
+    "elapsed": 0.3,
+    "checkpoint": 0,
+    "completed": [
+     1
+    ],
+    "items": []
+   },
+   "end": {
+    "id": 2,
+    "name": "Queen Street Pickup",
+    "stage": 1,
+    "stageType": "pickup",
+    "state": "complete",
+    "elapsed": 0.5,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2
+    ],
+    "items": [
+     "package"
+    ]
+   },
+   "completeScreen": true,
+   "cash": 550
+  },
+  {
+   "id": 3,
+   "stages": [
+    {
+     "type": "deliver",
+     "stage": 1,
+     "wanted": 1,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "escape",
+     "stage": 1,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 3,
+    "name": "Creek Drop",
+    "stage": 0,
+    "stageType": "deliver",
+    "state": "active",
+    "elapsed": 0.3,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2
+    ],
+    "items": [
+     "package"
+    ]
+   },
+   "end": {
+    "id": 3,
+    "name": "Creek Drop",
+    "stage": 1,
+    "stageType": "escape",
+    "state": "complete",
+    "elapsed": 0.6,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2,
+     3
+    ],
+    "items": []
+   },
+   "completeScreen": true,
+   "cash": 1050
+  },
+  {
+   "id": 4,
+   "stages": [
+    {
+     "type": "goto",
+     "stage": 0,
+     "wanted": 0,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "chase",
+     "stage": 2,
+     "wanted": 2,
+     "advancedTo": 2,
+     "checkpoint": 2
+    },
+    {
+     "type": "escape",
+     "stage": 2,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 4,
+    "name": "Rival Intercept",
+    "stage": 0,
+    "stageType": "goto",
+    "state": "active",
+    "elapsed": 0.2,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2,
+     3
+    ],
+    "items": []
+   },
+   "end": {
+    "id": 4,
+    "name": "Rival Intercept",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "complete",
+    "elapsed": 0.5,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "items": []
+   },
+   "completeScreen": true,
+   "cash": 1750
+  },
+  {
+   "id": 5,
+   "stages": [
+    {
+     "type": "goto",
+     "stage": 0,
+     "wanted": 0,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "takedown",
+     "stage": 2,
+     "wanted": 2,
+     "advancedTo": 2,
+     "checkpoint": 2
+    },
+    {
+     "type": "escape",
+     "stage": 2,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 0,
+    "stageType": "goto",
+    "state": "active",
+    "elapsed": 0.3,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "items": []
+   },
+   "end": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "complete",
+    "elapsed": 0.5,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "items": []
+   },
+   "completeScreen": true,
+   "cash": 2650
+  },
+  {
+   "id": 6,
+   "stages": [
+    {
+     "type": "survive",
+     "stage": 0,
+     "wanted": 3,
+     "advancedTo": 1,
+     "checkpoint": 0
+    },
+    {
+     "type": "goto",
+     "stage": 1,
+     "wanted": 0,
+     "advancedTo": "complete",
+     "checkpoint": null
+    }
+   ],
+   "start": {
+    "id": 6,
+    "name": "Safehouse Run",
+    "stage": 0,
+    "stageType": "survive",
+    "state": "active",
+    "elapsed": 0.3,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "items": []
+   },
+   "end": {
+    "id": 6,
+    "name": "Safehouse Run",
+    "stage": 1,
+    "stageType": "goto",
+    "state": "complete",
+    "elapsed": 0.3,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": []
+   },
+   "completeScreen": true,
+   "cash": 4150
+  }
+ ],
+ "failures": [
+  {
+   "case": "Creek Drop timer",
+   "failed": {
+    "id": 3,
+    "name": "Creek Drop",
+    "stage": 0,
+    "stageType": "deliver",
+    "state": "failed",
+    "elapsed": 121.4,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": [
+     "package"
+    ],
+    "failScreen": true,
+    "reason": "Out of time"
+   },
+   "retried": {
+    "id": 3,
+    "name": "Creek Drop",
+    "stage": 0,
+    "stageType": "deliver",
+    "state": "active",
+    "elapsed": 0.3,
+    "checkpoint": 0,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": [
+     "package"
+    ],
+    "failScreen": false
+   },
+   "completedAfterRetry": true
+  },
+  {
+   "case": "Warehouse wasted on escape stage",
+   "atEscape": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "active",
+    "elapsed": 0.5,
+    "checkpoint": 2,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": []
+   },
+   "failed": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "failed",
+    "elapsed": 0.5,
+    "checkpoint": 2,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": [],
+    "failScreen": true,
+    "reason": "Wasted",
+    "retryLabel": "Retry from checkpoint (stage 3)"
+   },
+   "retried": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "active",
+    "elapsed": 0.5,
+    "checkpoint": 2,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": [],
+    "wanted": 2
+   },
+   "end": {
+    "id": 5,
+    "name": "Warehouse Soft Hit",
+    "stage": 2,
+    "stageType": "escape",
+    "state": "complete",
+    "elapsed": 0.5,
+    "checkpoint": null,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "items": []
+   }
+  }
+ ],
+ "persistence": {
+  "before": {
+   "id": 4,
+   "name": "Rival Intercept",
+   "stage": 2,
+   "stageType": "escape",
+   "state": "active",
+   "elapsed": 0.5,
+   "checkpoint": 2,
+   "completed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "items": [],
+   "pos": [
+    145.3,
+    11.2
+   ],
+   "cash": 4150,
+   "saved": {
+    "v": 1,
+    "completed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "cash": 4150,
+    "current": {
+     "id": 4,
+     "stage": 2
+    },
+    "checkpoint": {
+     "id": 4,
+     "stage": 2,
+     "pos": [
+      145.33,
+      11.18
+     ],
+     "items": {},
+     "missionT": 0.6050999999998603
+    },
+    "best": {
+     "1": 0.7,
+     "2": 0.8,
+     "3": 1,
+     "4": 1.2,
+     "5": 1.1,
+     "6": 20.8
+    },
+    "updated": 1792469966381
+   }
+  },
+  "after": {
+   "id": 4,
+   "name": "Rival Intercept",
+   "stage": 2,
+   "stageType": "escape",
+   "state": "active",
+   "elapsed": 0.1,
+   "checkpoint": 2,
+   "completed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "items": [],
+   "pos": [
+    145.3,
+    11.2
+   ],
+   "cash": 4150,
+   "wanted": 2
+  },
+  "ok": true
+ },
+ "freshStart": {
+  "id": 1,
+  "name": "Scooter Snatch",
+  "stage": 0,
+  "stageType": "goto",
+  "state": "active",
+  "elapsed": 0.1,
+  "checkpoint": 0,
+  "completed": [],
+  "items": []
+ },
+ "afterStory": {
+  "id": 0,
+  "name": null,
+  "stage": 1,
+  "stageType": null,
+  "state": "story",
+  "elapsed": 0.3,
+  "checkpoint": null,
+  "completed": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "items": [],
+  "progress": {
+   "v": 1,
+   "completed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "cash": 4150,
+   "current": null,
+   "checkpoint": null,
+   "best": {
+    "1": 0.7,
+    "2": 0.8,
+    "3": 1,
+    "4": 1.2,
+    "5": 1.4,
+    "6": 20.8
+   },
+   "updated": 1792469955476
+  }
+ },
+ "errors": []
+}

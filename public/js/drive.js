@@ -30,6 +30,7 @@ export class DriveClient {
           paused: g.paused,
           missionId: g.missions.currentId,
           missionName: g.missions.current?.name || 'None',
+          mission: g.missions.state_ ? g.missions.state_() : undefined,
           cash: g.cash,
           wanted: g.wanted,
           health: g.player.health,
@@ -71,6 +72,10 @@ export class DriveClient {
         if (!g.running) g.beginPlay();
         g.missions.setMission(a.missionId || 1);
         break;
+      case 'retry_mission':
+        if (!g.running) g.beginPlay();
+        g.missions.retry();
+        break;
       case 'give_cash':
         g.cash += Number(a.amount) || 500;
         g.hud.setCash(g.cash);
@@ -81,7 +86,7 @@ export class DriveClient {
         g.hud.toast('Agent: heat cleared');
         break;
       case 'set_wanted':
-        g.wantedSys.setStars(Math.max(0, Math.min(5, Number(a.stars) || Number(a.amount) || 0)));
+        g.wantedSys.setStars(Math.max(0, Math.min(5, Number(a.stars ?? a.wanted ?? a.amount) || 0)));
         break;
       case 'heal':
         g.player.heal(100);

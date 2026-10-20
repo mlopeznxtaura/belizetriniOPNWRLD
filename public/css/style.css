@@ -154,6 +154,32 @@ html, body {
   margin-bottom: 4px;
 }
 #mission-text { font-size: 0.9rem; line-height: 1.35; color: #dce6f5; }
+/* good-1+9 mission timer + fail / complete screens */
+#mission-timer { margin-top: 4px; font-size: 0.85rem; font-weight: 700; color: #ffd166; letter-spacing: 0.05em; }
+#mission-timer.urgent { color: #ff4d6d; }
+.mission-overlay {
+  position: fixed; inset: 0; z-index: 45; display: flex; align-items: center; justify-content: center;
+  background: rgba(4, 6, 16, 0.55); pointer-events: auto;
+  padding: var(--sat) var(--sar) var(--sab) var(--sal);
+}
+.mission-overlay.hidden { display: none; }
+.mo-card {
+  min-width: min(300px, 86vw); max-width: 92vw; padding: 18px 22px; text-align: center;
+  background: rgba(8, 12, 30, 0.92); border: 2px solid rgba(0, 245, 212, 0.45); border-radius: 12px;
+}
+.mo-kicker { font-size: 0.8rem; letter-spacing: 0.3em; font-weight: 800; margin-bottom: 6px; }
+.mo-kicker.fail { color: #ff4d6d; }
+.mo-kicker.done { color: #00f5d4; }
+.mf-name, .mc-name { font-size: 1.25rem; font-weight: 800; color: #fff; }
+.mf-reason { margin-top: 4px; color: #ffb3c1; }
+.mc-reward { margin-top: 6px; font-size: 1.5rem; font-weight: 800; color: #00f5d4; }
+.mc-time, .mc-progress { margin-top: 2px; font-size: 0.85rem; color: #9fb3d1; }
+.mo-btns { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.mo-btns button {
+  padding: 0.6rem 1rem; border-radius: 0.5rem; border: 2px solid #00f5d4; background: #00f5d4; color: #061018;
+  font-weight: 800; font-size: 0.9rem; cursor: pointer;
+}
+.mo-btns button.secondary { background: rgba(10, 12, 24, 0.85); color: #e8f6ff; border-color: rgba(247, 37, 133, 0.6); }
 #minimap {
   position: absolute; bottom: calc(16px + var(--sab)); right: calc(16px + var(--sar));
   width: 160px; height: 160px;

@@ -59,6 +59,17 @@ export class HUD {
     this.missionText.textContent = m.brief;
   }
 
+  /** good-1+9: stage countdown (seconds left) or null to hide; `survive` styles it as a hold timer. */
+  setMissionTimer(left, survive = false) {
+    const el = this.timerEl || (this.timerEl = document.getElementById('mission-timer'));
+    if (!el) return;
+    if (left == null) { el.classList.add('hidden'); return; }
+    const s = Math.ceil(left);
+    el.textContent = `${survive ? 'HOLD' : 'TIME'} ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    el.classList.toggle('urgent', !survive && s <= 10);
+    el.classList.remove('hidden');
+  }
+
   setDistrict(d) {
     this.districtEl.textContent = districtLabel(d);
   }
