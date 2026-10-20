@@ -166,6 +166,8 @@ export class QualityController {
     const cam = g.player.camera;
     cam.far = q.far; cam.updateProjectionMatrix();
     g.world.dayNight.setDrawDistance?.(q.far);
+    g.world.setDrawDistance?.(q.far, q.waterSeg); // good-1+11 ocean tile
+    g.streamer?.setPreset(this.name); // good-1+11 chunk ring radius + build budget
     setToonQuality({ outlines: q.outlines, dist: q.outlineDist, clouds: q.clouds, foam: q.foam });
     // good-1+5: the Lambert (mobile) path never runs a live shadow map; blob decals stand in.
     this._setShadows(this.liveShadows, q.shadowMapSize || 1024);

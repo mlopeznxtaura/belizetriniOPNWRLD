@@ -1,0 +1,99 @@
+{
+ "roads": {
+  "core": 20,
+  "districtPieces": 55,
+  "districtWhole": 21
+ },
+ "nodes": 164,
+ "components": 1,
+ "componentSizes": [
+  164
+ ],
+ "spawnComponentSize": 164,
+ "allInSpawnComponent": true,
+ "chunkBorderJoinNodes": 62,
+ "routes": [
+  {
+   "to": [
+    -540,
+    -60
+   ],
+   "reached": [
+    -560,
+    -60
+   ],
+   "hops": 14,
+   "chunks": [
+    "-1,0",
+    "-2,0",
+    "-3,0",
+    "-4,0",
+    "-4,-1"
+   ]
+  },
+  {
+   "to": [
+    -480,
+    300
+   ],
+   "reached": [
+    -480,
+    280
+   ],
+   "hops": 16,
+   "chunks": [
+    "-1,0",
+    "-2,0",
+    "-3,0",
+    "-3,1"
+   ]
+  },
+  {
+   "to": [
+    100,
+    280
+   ],
+   "reached": [
+    105,
+    280
+   ],
+   "hops": 11,
+   "chunks": [
+    "-1,0",
+    "0,0",
+    "0,1"
+   ]
+  },
+  {
+   "to": [
+    -60,
+    300
+   ],
+   "reached": [
+    -60,
+    280
+   ],
+   "hops": 8,
+   "chunks": [
+    "-1,0",
+    "-1,1"
+   ]
+  },
+  {
+   "to": [
+    -310,
+    -95
+   ],
+   "reached": [
+    -310,
+    -95
+   ],
+   "hops": 9,
+   "chunks": [
+    "-1,0",
+    "-2,0",
+    "-2,-1"
+   ]
+  }
+ ]
+}

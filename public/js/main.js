@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { buildWorld, districtAt } from './world.js';
+import { ChunkStreamer } from './chunks.js';
 import { Player, getStoredChar, setStoredChar } from './player.js';
 import { spawnFleet, nearestVehicle, vehicleLabel } from './vehicle.js';
 import { spawnCops } from './ai.js';
@@ -55,6 +56,9 @@ class Game {
 
     this.world = buildWorld(this.scene, QR.preset);
     this.world?.dayNight?.bindRenderer?.(this.renderer);
+    // good-1+11: streamed districts around the core (ring radius / build budget per quality preset).
+    this.streamer = new ChunkStreamer(this.scene, this.world.layout, { preset: QR.name });
+    this.world.streamer = this.streamer;
     this.player = new Player(this.scene, this.world.markers.spawn, this.world);
     this.vehicles = spawnFleet(this.scene, this.world.markers, this.world);
     this.cops = spawnCops(this.scene, this.world);
@@ -66,7 +70,7 @@ class Game {
     if (BATCH_ON) {
       this.batchStats = { vehicles: this.vehicles.map((v) => batchVehicle(v, { forgetOutlines, registerOutline })) };
     }
-    this.toon = { on: TOON_ON, stats: outlineStats, Q: TOON_Q, U: TOON_U };
+    this.toon = { on: TOON_ON, stats: outlineStats, Q: TOON_Q, U: TOON_U, update: updateToon };
     this.blobs = new BlobShadows(this.scene); // good-1+5 contact shadows (mobile path)
     this._blobCasters = [];
     this.quality = new QualityController(this, QR);
@@ -93,6 +97,7 @@ class Game {
       onLost: () => this._stopLoop(),
       onRestore: () => this._onContextRestored(),
     });
+    this.streamer.warmup(this.renderer, this.player.camera);
     this._startLoop();
   }
 
@@ -376,6 +381,9 @@ class Game {
     }
 
     this.quality?.update(dt);
+    // good-1+11: stream chunks around the player (title screen: around the orbit camera) + follow ocean.
+    this.streamer?.update(dt, this.running ? this.player.position : this.player.camera.position);
+    this.world?.updateOcean?.(this.player.camera);
     if (this.blobs?.enabled) this._updateBlobs();
     this.debugOverlay?.update(dt);
     this.audio?.update(dt);
@@ -425,7 +433,7 @@ class Game {
     }
 
     const pos = this.player.position;
-    this.district = districtAt(pos.x);
+    this.district = districtAt(pos.x, pos.z);
     this.hud.setDistrict(this.district);
 
     // Ambient patrols keep patrolling (and witness crimes); pursuit is the WantedSystem's units.
@@ -444,7 +452,8 @@ class Game {
       [...this.cops, ...this.wantedSys.units.filter((u) => u.kind !== 'spikes')],
       blipPos,
       this.player.inVehicle,
-      this.world.roads
+      this.world.roads,
+      this.world.landRects
     );
 
     if (!this.player.inVehicle) {

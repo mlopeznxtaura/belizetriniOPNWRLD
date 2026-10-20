@@ -1,0 +1,162 @@
+{
+ "engine": "chromium",
+ "device": "desktop",
+ "results": {
+  "low": {
+   "queen": {
+    "calls": 195,
+    "tris": 69966,
+    "ms": 85.2,
+    "loaded": 8,
+    "farTris": 6028
+   },
+   "canal": {
+    "calls": 106,
+    "tris": 125184,
+    "ms": 73.2,
+    "loaded": 9,
+    "farTris": 3300
+   },
+   "swing": {
+    "calls": 98,
+    "tris": 95360,
+    "ms": 69.6,
+    "loaded": 10,
+    "farTris": 5962
+   },
+   "fort": {
+    "calls": 70,
+    "tris": 40586,
+    "ms": 48.7,
+    "loaded": 6,
+    "farTris": 9322
+   },
+   "lanes": {
+    "calls": 111,
+    "tris": 130186,
+    "ms": 71.1,
+    "loaded": 9,
+    "farTris": 2524
+   },
+   "market": {
+    "calls": 241,
+    "tris": 98798,
+    "ms": 81.8,
+    "loaded": 9,
+    "farTris": 6908
+   },
+   "harbour": {
+    "calls": 146,
+    "tris": 80576,
+    "ms": 66.4,
+    "loaded": 6,
+    "farTris": 9322
+   },
+   "errors": []
+  },
+  "medium": {
+   "queen": {
+    "calls": 217,
+    "tris": 132930,
+    "ms": 104.5,
+    "loaded": 8,
+    "farTris": 6028
+   },
+   "canal": {
+    "calls": 120,
+    "tris": 173120,
+    "ms": 91.2,
+    "loaded": 11,
+    "farTris": 2192
+   },
+   "swing": {
+    "calls": 125,
+    "tris": 186068,
+    "ms": 93.1,
+    "loaded": 13,
+    "farTris": 3160
+   },
+   "fort": {
+    "calls": 72,
+    "tris": 47454,
+    "ms": 54.6,
+    "loaded": 10,
+    "farTris": 6904
+   },
+   "lanes": {
+    "calls": 119,
+    "tris": 153782,
+    "ms": 81.5,
+    "loaded": 11,
+    "farTris": 2232
+   },
+   "market": {
+    "calls": 340,
+    "tris": 129812,
+    "ms": 96.6,
+    "loaded": 13,
+    "farTris": 3160
+   },
+   "harbour": {
+    "calls": 259,
+    "tris": 127696,
+    "ms": 85.4,
+    "loaded": 7,
+    "farTris": 9318
+   },
+   "errors": []
+  },
+  "high": {
+   "queen": {
+    "calls": 227,
+    "tris": 144574,
+    "ms": 237.7,
+    "loaded": 14,
+    "farTris": 2082
+   },
+   "canal": {
+    "calls": 122,
+    "tris": 182278,
+    "ms": 241.3,
+    "loaded": 18,
+    "farTris": 6
+   },
+   "swing": {
+    "calls": 134,
+    "tris": 194532,
+    "ms": 227.7,
+    "loaded": 15,
+    "farTris": 2018
+   },
+   "fort": {
+    "calls": 71,
+    "tris": 53410,
+    "ms": 122.1,
+    "loaded": 11,
+    "farTris": 5918
+   },
+   "lanes": {
+    "calls": 137,
+    "tris": 207056,
+    "ms": 240.1,
+    "loaded": 15,
+    "farTris": 1174
+   },
+   "market": {
+    "calls": 408,
+    "tris": 140442,
+    "ms": 227.8,
+    "loaded": 15,
+    "farTris": 2018
+   },
+   "harbour": {
+    "calls": 271,
+    "tris": 150038,
+    "ms": 216.5,
+    "loaded": 10,
+    "farTris": 6904
+   },
+   "errors": []
+  }
+ }
+}

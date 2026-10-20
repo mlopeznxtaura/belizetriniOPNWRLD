@@ -1,0 +1,10 @@
+mission 1 {"stages":["goto->1","pickup->2","escape->2"],"end":"active","complete":false,"cash":0,"stuck":2}
+mission 2 {"stages":["goto->1","pickup->complete"],"end":"complete","complete":true,"cash":550}
+mission 3 {"stages":["deliver->1","escape->complete"],"end":"complete","complete":true,"cash":1050}
+mission 4 {"stages":["goto->1","chase->2","escape->complete"],"end":"complete","complete":true,"cash":1750}
+mission 5 {"stages":["goto->1","takedown->2","escape->complete"],"end":"complete","complete":true,"cash":2650}
+mission 6 {"stages":["survive->1","goto->complete"],"end":"complete","complete":true,"cash":4150}
+fail1 {"case":"Creek Drop timer","failed":{"id":3,"name":"Creek Drop","stage":0,"stageType":"deliver","state":"failed","elapsed":121.4,"checkpoint":0,"completed":[1,2,3,4,5,6],"items":["package"],"failScreen":true,"reason":"Out of time"},"retried":{"id":3,"name":"Creek Drop","stage":0,"stageType":"deliver","state":"active","elapsed":0.3,"checkpoint":0,"completed":[1,2,3,4,5,6],"items":["package"],"failScreen":false},"completedAfterRetry":true}
+fail2 {"case":"Warehouse wasted on escape stage","atEscape":{"id":5,"name":"Warehouse Soft Hit","stage":2,"stageType":"escape","state":"active","elapsed":0.4,"checkpoint":2,"completed":[1,2,3,4,5,6],"items":[]},"failed":{"id":5,"name":"Warehouse Soft Hit","stage":2,"stageType":"escape","state":"failed","elapsed":0.4,"checkpoint":2,"completed":[1,2,3,4,5,6],"items":[],"failScreen":true,"reason":"Wasted","retryLabel":"Retry from checkpoint (stage 3)"},"retried":{"id":5,"name":"Warehouse Soft Hit","stage":2,"stageType":"escape","state":"active","elapsed":0.3,"checkpoint":2,"completed":[1,2,3,4,5,6],"items":[],"wanted":2},"end":{"id":5,"name":"Warehouse Soft Hit","stage":2,"stageType":"escape","state"
+persist {"before":[4,2,[1,2,3,4,5,6],4150,[145.1,11.1]],"after":[4,2,[1,2,3,4,5,6],4150,[145.1,11.1],2],"ok":true}
+errors []

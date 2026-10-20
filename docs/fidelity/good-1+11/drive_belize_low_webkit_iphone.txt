@@ -1,0 +1,96 @@
+Skipping host requirements validation logic because `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS` env variable is set.
+{
+ "preset": "low",
+ "engine": "webkit",
+ "device": "iphone",
+ "frames": 995,
+ "loads": 21,
+ "unloads": 21,
+ "aborted": 0,
+ "streamMs": {
+  "p50": 0,
+  "p95": 3,
+  "max": 7
+ },
+ "maxStepMs": 6,
+ "maxStepLabel": "buildings→buildings",
+ "buildMs": [
+  18,
+  25,
+  24,
+  6,
+  9,
+  18,
+  20,
+  2,
+  0,
+  2,
+  15,
+  4,
+  4,
+  6,
+  3,
+  1,
+  0,
+  20,
+  11,
+  17
+ ],
+ "frameMs": {
+  "p50": 56,
+  "p95": 99,
+  "max": 149
+ },
+ "framesOverStreamBudget": 28,
+ "budget": 2.5,
+ "memory": {
+  "empty": {
+   "geometries": 414,
+   "textures": 0,
+   "programs": 19
+  },
+  "start": {
+   "geometries": 438,
+   "textures": 0,
+   "programs": 19,
+   "chunkOwned": 24,
+   "owned": {
+    "chunkLit": 7,
+    "chunkMinor": 5,
+    "props": 6,
+    "chunkUnlit": 6
+   },
+   "detail": "-2,-1+ -2,0+ -1,0+ -1,1- 0,0+ 0,1- -1,-1+"
+  },
+  "endBackAtStart": {
+   "geometries": 444,
+   "textures": 0,
+   "programs": 20,
+   "chunkOwned": 27,
+   "orphans": 0,
+   "otherNew": 3,
+   "owned": {
+    "props": 7,
+    "chunkLit": 7,
+    "chunkUnlit": 6,
+    "chunkMinor": 7
+   },
+   "detail": "-2,-1+ -2,0+ -1,0+ -1,1- 0,0+ 0,1- -1,-1+"
+  },
+  "afterUnloadAll": {
+   "geometries": 417,
+   "textures": 0,
+   "programs": 20,
+   "chunkOwned": 0,
+   "orphans": 0,
+   "otherNew": 3
+  },
+  "startLoaded": 7,
+  "endLoaded": 7
+ },
+ "maxOrphansDuringDrive": 0,
+ "memoryBackToBaseline": true,
+ "note": "chunkOwned = streamed geometries resident on the GPU; orphans = chunk geometries resident without a loaded owner (leaks); otherNew = non-chunk game objects first drawn during the drive. Back at the start, chunkOwned can exceed the start snapshot by detail buffers of still-loaded chunks that were drawn up close during the drive (hidden, freed when their chunk unloads).",
+ "programsStable": false,
+ "errors": []
+}

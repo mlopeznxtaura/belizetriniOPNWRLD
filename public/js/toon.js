@@ -364,6 +364,30 @@ export function buildStaticOutlines(meshes, parent) {
   return out;
 }
 
+/**
+ * good-1+11: one already-merged world-space hull geometry (position, normal, aBoxMin, aBoxMax) as a
+ * batched static outline of `klass` under `parent` (streamed chunks). Release it with
+ * releaseBatchedOutline() when the chunk unloads.
+ */
+export function makeBatchedOutline(geometry, klass, parent) {
+  const line = new THREE.Mesh(geometry, outlineMaterial(klass, true));
+  line.name = 'chunkOutlines:' + klass;
+  line.userData.isOutline = true;
+  line.raycast = () => {};
+  line.renderOrder = 2;
+  line.matrixAutoUpdate = false;
+  line.visible = TOON_Q.outlines === 'all';
+  _batchedOutlines.push(line);
+  parent.add(line);
+  return line;
+}
+export function releaseBatchedOutline(line) {
+  const i = _batchedOutlines.indexOf(line);
+  if (i >= 0) _batchedOutlines.splice(i, 1);
+  line.parent?.remove(line);
+  line.geometry.dispose();
+}
+
 function isOutlinable(o) {
   if (!o.isMesh || o.userData.isOutline || o.userData.noOutline) return false;
   const mats = Array.isArray(o.material) ? o.material : [o.material];
@@ -607,7 +631,9 @@ export function createToonSky(scene) {
 // ─── Stylised water ──────────────────────────────────────────────────────────────
 const MAX_SHORE = 8;
 /** shoreRects: [{minX,minZ,maxX,maxZ}] — land/piers the foam wraps around. */
-export function createToonWaterMaterial(color, shoreRects = []) {
+const MAX_CALM = 4;
+/** good-1+11: `calmRects` = channels (creek, canal): inside them only a thin bank rim, no surf bands. */
+export function createToonWaterMaterial(color, shoreRects = [], calmRects = []) {
   const rects = [];
   for (let i = 0; i < MAX_SHORE; i++) {
     const r = shoreRects[i];
@@ -619,6 +645,8 @@ export function createToonWaterMaterial(color, shoreRects = []) {
     uFoam: { value: new THREE.Color(0xffffff) },
     uRects: { value: rects },
     uCount: { value: Math.min(MAX_SHORE, shoreRects.length) },
+    uCalm: { value: Array.from({ length: MAX_CALM }, (_, i) => { const r = calmRects[i]; return r ? new THREE.Vector4(r.minX, r.minZ, r.maxX, r.maxZ) : new THREE.Vector4(1e5, 1e5, 1e5, 1e5); }) },
+    uCalmCount: { value: Math.min(MAX_CALM, calmRects.length) },
   }]);
   uniforms.uTime = U.uTime;
   const mat = new THREE.ShaderMaterial({
@@ -641,6 +669,7 @@ export function createToonWaterMaterial(color, shoreRects = []) {
     fragmentShader: /* glsl */`
       uniform vec3 uColor; uniform vec3 uDeep; uniform vec3 uFoam;
       uniform vec4 uRects[${MAX_SHORE}]; uniform int uCount; uniform float uTime;
+      uniform vec4 uCalm[${MAX_CALM}]; uniform int uCalmCount;
       varying vec2 vXZ;
       #include <common>
       #include <fog_pars_fragment>
@@ -677,6 +706,10 @@ export function createToonWaterMaterial(color, shoreRects = []) {
         float fleck = step(0.93, vnoise(g * 3.1)) * step(0.55, vnoise(g * 0.7 + 3.0)) * smoothstep(10.0, 22.0, d);
         foam = max(foam, fleck * 0.8);
         #endif
+        // good-1+11 channels: calm water, only a thin wobbling rim along the banks.
+        float calm = 0.0;
+        for (int i = 0; i < ${MAX_CALM}; i++) { if (i >= uCalmCount) break; calm = max(calm, step(sdBox(vXZ, uCalm[i]), 0.0)); }
+        if (calm > 0.5) { col = uColor; foam = step(d, 0.5 + n * 0.7) * 0.85; }
         col = mix(col, uFoam, foam);
         gl_FragColor = vec4(col, 1.0);
         #include <colorspace_fragment>
@@ -741,7 +774,7 @@ export function setToonQuality(q = {}) {
     m.uniforms.uNear.value = c.near * TOON_Q.dist;
     m.uniforms.uFar.value = c.far * TOON_Q.dist;
   }
-  for (const l of _batchedOutlines) l.visible = TOON_Q.outlines === 'all';
+  for (const l of _batchedOutlines) l.visible = TOON_Q.outlines === 'all' && !l.userData.detailHidden;
   if (_sky) _sky.setCloudCount(TOON_Q.clouds);
   for (const m of _waterMats) {
     if (m.defines.FOAM_DETAIL !== TOON_Q.foam) { m.defines.FOAM_DETAIL = TOON_Q.foam; m.needsUpdate = true; }

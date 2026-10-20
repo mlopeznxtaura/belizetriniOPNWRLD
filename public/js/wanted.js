@@ -445,7 +445,7 @@ export class WantedSystem {
       if (!u.alive || !u.mesh || u.kind === 'spikes') continue;
       if (u.kind === 'heli') { if (u.lit) { seen = true; break; } continue; }
       const up = u.mesh.position, d = Math.hypot(up.x - pos.x, up.z - pos.z);
-      if (d < R && hasLOS(cols.filter((c) => !c.roadblock), up.x, up.z, pos.x, pos.z)) { seen = true; break; }
+      if (d < R && hasLOS(g.world.losColliders ? g.world.losColliders(up.x, up.z, pos.x, pos.z) : cols.filter((c) => !c.roadblock), up.x, up.z, pos.x, pos.z)) { seen = true; break; }
     }
     this.seen = seen;
     if (seen) { this.lkp.copy(pos); this.searchT = 0; }

@@ -1,0 +1,5 @@
+Skipping host requirements validation logic because `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS` env variable is set.
+low queen {"calls":200,"tris":71708,"ms":29,"loaded":8,"farTris":6028}
+low lanes {"calls":111,"tris":130186,"ms":35,"loaded":9,"farTris":2524}
+low swing {"calls":100,"tris":97222,"ms":29,"loaded":10,"farTris":5962}
+low harbour {"calls":152,"tris":80692,"ms":26,"loaded":6,"farTris":9322}

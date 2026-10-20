@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { MAP } from './world.js';
 
 let _id = 1;
 
@@ -827,8 +828,9 @@ export class Vehicle {
     this.body.rotation.z = this._bodyLean;
 
     // Keep within map even if resolve skipped
-    this.mesh.position.x = THREE.MathUtils.clamp(this.mesh.position.x, -138, 238);
-    this.mesh.position.z = THREE.MathUtils.clamp(this.mesh.position.z, -88, 108);
+    const B = MAP.bounds; // good-1+11: the streamed world's bounds
+    this.mesh.position.x = THREE.MathUtils.clamp(this.mesh.position.x, B.minX + 2, B.maxX - 2);
+    this.mesh.position.z = THREE.MathUtils.clamp(this.mesh.position.z, B.minZ + 2, B.maxZ - 2);
 
     // unused prevY silence
     void prevY;
@@ -909,6 +911,14 @@ export function spawnFleet(scene, markers, world) {
   for (const v of pos) {
     add({ type: v.type, color: v.c, position: new THREE.Vector3(v.x, 0, v.z), yaw: v.yaw });
   }
+
+  // good-1+11: a few parked rides in the streamed Belize City districts.
+  for (const v of [
+    { type: 'sedan', x: -300, z: 2.6, c: 0xf2a7b8, yaw: Math.PI / 2 },
+    { type: 'scooter', x: -57.5, z: 245, c: 0x6fd0c4, yaw: 0 },
+    { type: 'van', x: 18, z: 217.5, c: 0xf6d36b, yaw: Math.PI / 2 },
+    { type: 'sedan', x: -452.5, z: 90, c: 0x7fb6e8, yaw: 0 },
+  ]) add({ type: v.type, color: v.c, position: new THREE.Vector3(v.x, 0, v.z), yaw: v.yaw });
 
   // Plane — Belize waterfront open pad (dock approach / water edge)
   add({

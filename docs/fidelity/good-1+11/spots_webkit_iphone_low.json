@@ -1,0 +1,37 @@
+{
+ "engine": "webkit",
+ "device": "iphone",
+ "results": {
+  "low": {
+   "queen": {
+    "calls": 200,
+    "tris": 71708,
+    "ms": 29,
+    "loaded": 8,
+    "farTris": 6028
+   },
+   "lanes": {
+    "calls": 111,
+    "tris": 130186,
+    "ms": 35,
+    "loaded": 9,
+    "farTris": 2524
+   },
+   "swing": {
+    "calls": 100,
+    "tris": 97222,
+    "ms": 29,
+    "loaded": 10,
+    "farTris": 5962
+   },
+   "harbour": {
+    "calls": 152,
+    "tris": 80692,
+    "ms": 26,
+    "loaded": 6,
+    "farTris": 9322
+   },
+   "errors": []
+  }
+ }
+}

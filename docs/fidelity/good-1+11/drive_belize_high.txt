@@ -1,0 +1,94 @@
+{
+ "preset": "high",
+ "engine": "chromium",
+ "device": "desktop",
+ "frames": 383,
+ "loads": 17,
+ "unloads": 17,
+ "aborted": 0,
+ "streamMs": {
+  "p50": 0,
+  "p95": 1.5,
+  "max": 7.8
+ },
+ "maxStepMs": 6.3,
+ "maxStepLabel": "buildings→buildings",
+ "buildMs": [
+  0.6,
+  2,
+  6.3,
+  5,
+  0.3,
+  0.4,
+  6,
+  0.3,
+  0.7,
+  2.7,
+  0.3,
+  1,
+  18.5,
+  26,
+  8.7,
+  5.7,
+  0.3
+ ],
+ "frameMs": {
+  "p50": 171.8,
+  "p95": 250,
+  "max": 250
+ },
+ "framesOverStreamBudget": 5,
+ "budget": 4,
+ "memory": {
+  "empty": {
+   "geometries": 426,
+   "textures": 2,
+   "programs": 19
+  },
+  "start": {
+   "geometries": 478,
+   "textures": 2,
+   "programs": 19,
+   "chunkOwned": 52,
+   "owned": {
+    "chunkLit": 13,
+    "chunkMinor": 8,
+    "props": 7,
+    "chunkUnlit": 10,
+    "chunkOutlines": 14
+   },
+   "detail": "-3,-1- -3,0- -3,1- -2,-1+ -2,0+ -2,1+ -1,0+ -1,1+ 0,0+ 0,1+ -1,2- 0,2- -1,-1+"
+  },
+  "endBackAtStart": {
+   "geometries": 486,
+   "textures": 2,
+   "programs": 19,
+   "chunkOwned": 55,
+   "orphans": 0,
+   "otherNew": 5,
+   "owned": {
+    "chunkLit": 13,
+    "chunkMinor": 9,
+    "props": 7,
+    "chunkUnlit": 10,
+    "chunkOutlines": 16
+   },
+   "detail": "-3,-1- -3,0- -3,1- -2,-1+ -2,0+ -2,1+ -1,0+ -1,1+ 0,0+ 0,1+ -1,2- 0,2- -1,-1+"
+  },
+  "afterUnloadAll": {
+   "geometries": 431,
+   "textures": 2,
+   "programs": 19,
+   "chunkOwned": 0,
+   "orphans": 0,
+   "otherNew": 5
+  },
+  "startLoaded": 13,
+  "endLoaded": 13
+ },
+ "maxOrphansDuringDrive": 0,
+ "memoryBackToBaseline": true,
+ "note": "chunkOwned = streamed geometries resident on the GPU; orphans = chunk geometries resident without a loaded owner (leaks); otherNew = non-chunk game objects first drawn during the drive. Back at the start, chunkOwned can exceed the start snapshot by detail buffers of still-loaded chunks that were drawn up close during the drive (hidden, freed when their chunk unloads).",
+ "programsStable": true,
+ "errors": []
+}

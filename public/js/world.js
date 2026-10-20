@@ -4,6 +4,8 @@ import {
   TOON_ON, toonMaterial, addOutline, buildStaticOutlines, createToonSky, createToonWaterMaterial,
   applyToonSkyState, bindSky,
 } from './toon.js';
+import { generateLayout, CORE_RECTS } from './districts.js';
+import { ColliderGrid } from './chunks.js';
 
 /**
  * belizetriniOPNWRLD — Iteration A city builder
@@ -1131,15 +1133,6 @@ export function buildWorld(scene, quality = {}) {
   scene.add(root);
 
   const mats = makeMats();
-  if (TOON_ON) {
-    // Stylised water: flat two-tone + foam wrapping the land edges and the piers.
-    mats.water = createToonWaterMaterial(PALETTE.water, [
-      { minX: -160, minZ: -105, maxX: 60, maxZ: 115 }, // Belize ground
-      { minX: 45, minZ: -95, maxX: 245, maxZ: 105 }, // Port of Spain ground
-      { minX: -126, minZ: -40.75, maxX: -90, maxZ: -35.25 }, // pier 1
-      { minX: -129, minZ: -30.25, maxX: -107, maxZ: -25.75 }, // pier 2
-    ]);
-  }
   const colliders = [];
   const realLights = [];
 
@@ -1156,20 +1149,18 @@ export function buildWorld(scene, quality = {}) {
   groundT.receiveShadow = true;
   root.add(groundT);
 
-  // Water — south coast + creek pockets
-  const ws = quality.waterSeg ?? 1; // good-1+3: tessellation scales with the preset
-  const wSeg = TOON_ON ? [Math.max(8, Math.round(80 * ws)), Math.max(3, Math.round(18 * ws))] : [1, 1]; // vertex wave needs some tessellation
-  const waterSouth = new THREE.Mesh(new THREE.PlaneGeometry(400, 90, wSeg[0], wSeg[1]), mats.water);
-  waterSouth.rotation.x = -Math.PI / 2;
-  waterSouth.position.set(40, MAP.waterY, -95);
-  if (TOON_ON) waterSouth.renderOrder = 1; // after ground/city so hidden water pixels are depth-rejected
-  root.add(waterSouth);
-
-  const creek = new THREE.Mesh(new THREE.PlaneGeometry(55, 35, TOON_ON ? Math.max(3, Math.round(11 * ws)) : 1, TOON_ON ? Math.max(2, Math.round(7 * ws)) : 1), mats.water);
-  creek.rotation.x = -Math.PI / 2;
-  creek.position.set(-95, MAP.waterY, 5);
-  if (TOON_ON) creek.renderOrder = 1;
-  root.add(creek);
+  // good-1+11: the district layout (streamed chunks) + one camera-following ocean under everything.
+  const layout = generateLayout();
+  _layout = layout;
+  Object.assign(MAP.bounds, layout.bounds);
+  const landRects = mergeRects([...CORE_RECTS.map((r) => ({ ...r })), ...layout.land.map((r) => ({ minX: r.minX, maxX: r.maxX, minZ: r.minZ, maxZ: r.maxZ }))]);
+  if (TOON_ON) mats.water = createToonWaterMaterial(PALETTE.water, [...landRects, ...layout.reefs], layout.channels);
+  const ocean = new THREE.Mesh(oceanGeometry(quality.far ?? 450, quality.waterSeg ?? 1), mats.water);
+  ocean.name = 'ocean';
+  ocean.position.y = MAP.waterY;
+  ocean.userData.seg = ocean.geometry.userData.seg;
+  if (TOON_ON) ocean.renderOrder = 1; // after ground/city so hidden water pixels are depth-rejected
+  root.add(ocean);
 
   // good-1+1: sand beach rims where the land meets the sea (big readable shape, foam lands on it)
   if (TOON_ON) {
@@ -1246,6 +1237,38 @@ export function buildWorld(scene, quality = {}) {
   // Atmosphere — time-of-day (default 14:00 afternoon)
   const dayNight = createDayNight(scene, realLights, mats);
 
+  // good-1+11: district colliders + walkable surface (land, bridges, docks) for ground entities / boats.
+  const grid = new ColliderGrid(layout.colliders);
+  const walkRects = [...CORE_RECTS, ...layout.land, ...layout.bridges.map((b) => b.rect),
+    ...layout.docks.map((d) => ({ minX: d.x - d.w / 2, maxX: d.x + d.w / 2, minZ: d.z - d.d / 2, maxZ: d.z + d.d / 2 }))];
+  const walkGrid = new ColliderGrid(walkRects, 64);
+  const walkable = (x, z) => walkGrid.query(x, z, x, z).some((r) => x >= r.minX && x <= r.maxX && z >= r.minZ && z <= r.maxZ);
+  const boatOk = (x, z, r) => !walkable(x, z) && !walkable(x + r, z) && !walkable(x - r, z) && !walkable(x, z + r) && !walkable(x, z - r);
+  const nearestWalkable = (x, z, maxR = 30, boat = false, r = 0) => {
+    const ok = boat ? (a, b) => boatOk(a, b, r) : walkable;
+    if (ok(x, z)) return { x, z };
+    for (let rr = 1; rr <= maxR; rr += 1) for (let k = 0; k < 16; k++) {
+      const a = (k / 16) * Math.PI * 2, px = x + Math.cos(a) * rr, pz = z + Math.sin(a) * rr;
+      if (ok(px, pz)) return { x: px, z: pz };
+    }
+    return null;
+  };
+  const lastOk = new WeakMap();
+  const keepOnSurface = (pos, mode, radius) => {
+    const boat = mode === 'boat';
+    const ok = boat ? (a, b) => boatOk(a, b, radius) : walkable;
+    if (ok(pos.x, pos.z)) { const l = lastOk.get(pos); if (l) { l.x = pos.x; l.z = pos.z; } else lastOk.set(pos, { x: pos.x, z: pos.z }); return; }
+    const l = lastOk.get(pos);
+    if (l && Math.hypot(l.x - pos.x, l.z - pos.z) < 8) {
+      if (ok(l.x, pos.z)) pos.x = l.x;
+      else if (ok(pos.x, l.z)) pos.z = l.z;
+      else { pos.x = l.x; pos.z = l.z; }
+      return;
+    }
+    const n = nearestWalkable(pos.x, pos.z, 40, boat, radius);
+    if (n) { pos.x = n.x; pos.z = n.z; lastOk.set(pos, { x: n.x, z: n.z }); }
+  };
+
   const markers = {
     belikinDocks: new THREE.Vector3(-108, 0, -36),
     queenMarket: new THREE.Vector3(-60, 0, -12),
@@ -1280,25 +1303,90 @@ export function buildWorld(scene, quality = {}) {
     markers,
     blips,
     colliders,
-    roads: ROADS,
+    roads: ROADS.concat(layout.roads),
+    layout,
+    landRects,
+    ocean,
     palette: PALETTE,
     mats,
     dayNight,
     realLights,
-    resolveCollision(pos, radius = 0.45) {
+    /** good-1+11: district building colliders (spatial grid) — the core list stays `colliders`. */
+    colliderGrid: grid,
+    walkable,
+    nearestWalkable,
+    /** Line-of-sight blockers for p→q: core (no roadblocks) + district buildings around the segment. */
+    losColliders(px, pz, qx, qz) {
+      const near = grid.query(Math.min(px, qx), Math.min(pz, qz), Math.max(px, qx), Math.max(pz, qz));
+      const out = colliders.filter((c) => !c.roadblock);
+      for (const c of near) out.push(c);
+      return out;
+    },
+    resolveCollision(pos, radius = 0.45, mode = null) {
+      const airborne = pos.y > 0.3;
       resolveAABB(pos, radius, colliders);
+      const near = grid.query(pos.x - radius - 0.5, pos.z - radius - 0.5, pos.x + radius + 0.5, pos.z + radius + 0.5);
+      if (near.length) resolveAABB(pos, radius, near);
       const b = MAP.bounds;
       pos.x = THREE.MathUtils.clamp(pos.x, b.minX, b.maxX);
       pos.z = THREE.MathUtils.clamp(pos.z, b.minZ, b.maxZ);
+      if (!airborne) keepOnSurface(pos, mode, radius);
       pos.y = 0;
+    },
+    /** Camera-following ocean (snapped to its grid, so the world-space waves never swim). */
+    updateOcean(camera) {
+      const st = ocean.geometry.userData.step;
+      ocean.position.x = Math.round(camera.position.x / st) * st;
+      ocean.position.z = Math.round(camera.position.z / st) * st;
+    },
+    setDrawDistance(far, waterSeg) {
+      const g = oceanGeometry(far, waterSeg ?? quality.waterSeg ?? 1);
+      ocean.geometry.dispose();
+      ocean.geometry = g;
     },
   };
 }
 
-export function districtAt(x) {
-  return x < 40 ? 'belize' : 'trinidad';
+/** good-1+11 ocean tile: covers the far plane around the camera; vertex spacing scales with the preset. */
+function oceanGeometry(far, ws = 1) {
+  const size = Math.ceil((2 * far + 160) / 10) * 10;
+  const spacing = Math.max(12, 18 / Math.max(0.2, ws));
+  const seg = Math.max(8, Math.min(96, Math.round(size / spacing)));
+  const g = new THREE.PlaneGeometry(size, size, seg, seg);
+  g.rotateX(-Math.PI / 2);
+  g.userData.step = size / seg;
+  g.userData.seg = seg;
+  return g;
+}
+
+/** Merge axis-aligned rects that share a full edge (fewer shore rects for the water shader). */
+function mergeRects(list) {
+  let changed = true;
+  while (changed) {
+    changed = false;
+    outer: for (let i = 0; i < list.length; i++) for (let j = i + 1; j < list.length; j++) {
+      const a = list[i], b = list[j];
+      const sameZ = a.minZ === b.minZ && a.maxZ === b.maxZ && (a.maxX === b.minX || b.maxX === a.minX);
+      const sameX = a.minX === b.minX && a.maxX === b.maxX && (a.maxZ === b.minZ || b.maxZ === a.minZ);
+      if (sameZ || sameX) {
+        list[i] = { minX: Math.min(a.minX, b.minX), maxX: Math.max(a.maxX, b.maxX), minZ: Math.min(a.minZ, b.minZ), maxZ: Math.max(a.maxZ, b.maxZ) };
+        list.splice(j, 1); changed = true; break outer;
+      }
+    }
+  }
+  return list;
+}
+
+let _layout = null;
+/** District id at (x, z). Without z: the good-1+1 core split (Belize City / Port of Spain). */
+export function districtAt(x, z) {
+  if (z === undefined || CORE_RECTS.some((r) => x >= r.minX && x <= r.maxX && z >= r.minZ && z <= r.maxZ)) return x < 40 ? 'belize' : 'trinidad';
+  return _layout?.districtOf(x, z) || 'sea';
 }
 
 export function districtLabel(d) {
-  return d === 'trinidad' ? 'Port of Spain' : 'Belize City';
+  if (d === 'trinidad') return 'Port of Spain';
+  if (d === 'belize') return 'Belize City';
+  if (d === 'sea') return 'Open water';
+  return _layout?.districts.find((o) => o.id === d)?.label || 'Belize City';
 }

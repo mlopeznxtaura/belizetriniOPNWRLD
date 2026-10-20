@@ -1,0 +1,8 @@
+chromium iphone15_portrait boxes=13 overlaps=[] outside=[] errors=0
+chromium iphoneSE_portrait boxes=13 overlaps=[] outside=[] errors=0
+chromium iphone15_landscape boxes=13 overlaps=[] outside=[] errors=0
+chromium iphoneSE_landscape boxes=13 overlaps=[] outside=[] errors=0
+chromium iphone15_portrait_insets boxes=13 overlaps=[] outside=[] errors=0
+chromium iphone15_landscape_insets boxes=13 overlaps=[] outside=[] errors=0
+chromium desktop boxes=9 overlaps=[] outside=[] errors=0
+chromium TOTAL overlaps+outside = 0

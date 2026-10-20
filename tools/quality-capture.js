@@ -82,6 +82,8 @@ async function measure(page, S, hour) {
   await sleep(1800);
   return page.evaluate(() => {
     const g = window.__BELIZETRINI_OPNWRLD__;
+    // good-1+11: settle the streamed chunks around the spot (no-op on trees without streaming)
+    if (g.streamer?.enabled) { const q = g.player.mesh.position; g.streamer._schedule(q); g.streamer.loadAround(q, g.streamer.ring.load); g.streamer._schedule(q); }
     const r = g.renderer; const cam = g.player.camera;
     const gl = r.getContext(); const px = new Uint8Array(4);
     g.quality?.update?.(0);

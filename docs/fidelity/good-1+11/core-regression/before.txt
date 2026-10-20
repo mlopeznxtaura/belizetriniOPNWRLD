@@ -1,0 +1,8 @@
+before_queen_noon {"calls":166,"tris":71334,"ms":326.4,"buf":[1440,810],"aa":true,"sh":false,"pl":8}
+before_shore_noon {"calls":87,"tris":65228,"ms":136.7,"buf":[1200,675],"aa":true,"sh":false,"pl":8}
+before_bridge_noon {"calls":252,"tris":75340,"ms":171.8,"buf":[960,540],"aa":true,"sh":false,"pl":8}
+before_pos_noon {"calls":189,"tris":73340,"ms":140.6,"buf":[960,540],"aa":true,"sh":false,"pl":4}
+before_queen_noon {"calls":156,"tris":51102,"ms":48,"buf":[720,405],"aa":false,"sh":false,"pl":2}
+before_shore_noon {"calls":79,"tris":45446,"ms":33.7,"buf":[576,324],"aa":false,"sh":false,"pl":2}
+before_bridge_noon {"calls":244,"tris":55550,"ms":39.7,"buf":[576,324],"aa":false,"sh":false,"pl":2}
+before_pos_noon {"calls":179,"tris":53440,"ms":40,"buf":[576,324],"aa":false,"sh":false,"pl":2}

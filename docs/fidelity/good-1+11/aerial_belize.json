@@ -1,0 +1,47 @@
+{
+ "view": {
+  "cx": -160,
+  "cz": 110,
+  "s": 440
+ },
+ "calls": 486,
+ "tris": 268458,
+ "loaded": 19,
+ "districts": [
+  {
+   "id": "belizeWest",
+   "label": "Belize City · Canal Lanes",
+   "rect": {
+    "minX": -560,
+    "maxX": -160,
+    "minZ": -105,
+    "maxZ": 330
+   }
+  },
+  {
+   "id": "belizeNorth",
+   "label": "Belize City · Northside",
+   "rect": {
+    "minX": -160,
+    "maxX": 10,
+    "minZ": 115,
+    "maxZ": 330
+   }
+  },
+  {
+   "id": "fortGeorge",
+   "label": "Fort George",
+   "rect": {
+    "minX": 10,
+    "maxX": 120,
+    "minZ": 115,
+    "maxZ": 330
+   }
+  }
+ ],
+ "mem": {
+  "geometries": 474,
+  "textures": 2,
+  "programs": 32
+ }
+}

@@ -94,16 +94,13 @@ export class HUD {
     }, ms);
   }
 
-  drawMinimap(playerPos, yaw, cops, blipWorldPos, inVehicle, roads) {
+  drawMinimap(playerPos, yaw, cops, blipWorldPos, inVehicle, roads, landRects) {
     const ctx = this.mctx;
     const W = this.minimap.width;
     const H = this.minimap.height;
     const scale = 0.42;
-    ctx.fillStyle = '#080e1c';
+    ctx.fillStyle = landRects ? '#0a2838' : '#080e1c'; // good-1+11: water background, land drawn from the world
     ctx.fillRect(0, 0, W, H);
-
-    ctx.fillStyle = '#0a2838';
-    ctx.fillRect(0, H * 0.72, W, H * 0.28);
 
     const toMap = (wx, wz) => {
       const dx = (wx - playerPos.x) * scale;
@@ -114,6 +111,17 @@ export class HUD {
       const rz = dx * s + dz * c;
       return [W / 2 + rx, H / 2 + rz];
     };
+
+    if (landRects?.length) {
+      ctx.fillStyle = '#121a2a';
+      for (const r of landRects) {
+        const a = toMap(r.minX, r.minZ), b = toMap(r.maxX, r.minZ), c = toMap(r.maxX, r.maxZ), d = toMap(r.minX, r.maxZ);
+        ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(d[0], d[1]); ctx.closePath(); ctx.fill();
+      }
+    } else {
+      ctx.fillStyle = '#0a2838';
+      ctx.fillRect(0, H * 0.72, W, H * 0.28);
+    }
 
     if (roads?.length) {
       ctx.strokeStyle = '#2a2a40';

@@ -1,0 +1,8 @@
+after_queen_noon {"calls":183,"tris":109778,"ms":373.7,"buf":[1440,810],"aa":true,"sh":false,"pl":8}
+after_shore_noon {"calls":86,"tris":69300,"ms":119.5,"buf":[960,540],"aa":true,"sh":false,"pl":8}
+after_bridge_noon {"calls":230,"tris":83296,"ms":190,"buf":[960,540],"aa":true,"sh":false,"pl":8}
+after_pos_noon {"calls":189,"tris":71490,"ms":155.8,"buf":[960,540],"aa":true,"sh":false,"pl":4}
+after_queen_noon {"calls":170,"tris":79108,"ms":83.9,"buf":[960,540],"aa":false,"sh":false,"pl":2}
+after_shore_noon {"calls":78,"tris":45372,"ms":35.5,"buf":[576,324],"aa":false,"sh":false,"pl":2}
+after_bridge_noon {"calls":223,"tris":59452,"ms":45.5,"buf":[576,324],"aa":false,"sh":false,"pl":2}
+after_pos_noon {"calls":179,"tris":53430,"ms":45.4,"buf":[576,324],"aa":false,"sh":false,"pl":2}
