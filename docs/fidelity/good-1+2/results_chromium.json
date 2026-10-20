@@ -1,0 +1,384 @@
+{
+ "_browser": "130.0.6723.31",
+ "fallback": {
+  "case": "fallback",
+  "start": {
+   "frames": 18,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-default:fail",
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 413,
+   "tris": 68334,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "refused": 2,
+  "end": {
+   "frames": 27,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-default:fail",
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 415,
+   "tris": 68358,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [
+   "THREE.WebGLRenderer: Error creating WebGL context."
+  ],
+  "shaderWarnings": []
+ },
+ "nowebgl2": {
+  "case": "nowebgl2",
+  "errorShown": "belizetriniOPNWRLD\n\n3D graphics could not start on this device.\n\nThis browser only offers WebGL 1; the game needs WebGL 2.\n\nTried: webgl2-default, webgl2-relaxed, webgl2-minimal\n\nRetry",
+  "diag": {
+   "tried": [
+    {
+     "label": "webgl2-default",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    },
+    {
+     "label": "webgl2-relaxed",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    },
+    {
+     "label": "webgl2-minimal",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    }
+   ],
+   "webgl2": false,
+   "webgl1": true,
+   "reasons": [],
+   "ios": null,
+   "summary": "This browser only offers WebGL 1; the game needs WebGL 2."
+  },
+  "refused": 7,
+  "uncaught": [],
+  "consoleErrors": [
+   "THREE.WebGLRenderer: Error creating WebGL context.",
+   "[game] boot failed: Error: WebGL2 renderer could not be created: This browser only offers WebGL 1; the game needs WebGL 2.\n    at createRendererRobust (http://127.0.0.1:8781/js/gfx.js:112:13)\n    at new Game (http://127.0.0.1:8781/js/main.js:19:18)\n    at http://127.0.0.1:8781/js/main.js:397:10"
+  ],
+  "shaderWarnings": []
+ },
+ "ctxloss": {
+  "case": "ctxloss",
+  "start": {
+   "frames": 15,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 413,
+   "tris": 68334,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "lostA": {
+   "f": 17,
+   "lost": true,
+   "raf": 0
+  },
+  "lostB": {
+   "f": 17,
+   "toast": "Graphics paused — restoring…"
+  },
+  "restored": {
+   "frames": 4,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 1,
+    "restores": 1
+   },
+   "calls": 413,
+   "tris": 68334,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "restored2": {
+   "f": 9
+  },
+  "cycle2": {
+   "frames": 3,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 415,
+   "tris": 68358,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "moved": 1.73,
+  "end": {
+   "frames": 17,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 392,
+   "tris": 67834,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ },
+ "iphone": {
+  "case": "iphone",
+  "start": {
+   "frames": 21,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 322,
+   "tris": 71944,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 7,
+   "dbw": 585,
+   "dbh": 1266,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "mobileControls": true,
+  "stickSpeed": 1.79,
+  "end": {
+   "frames": 37,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 321,
+   "tris": 71932,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 7,
+   "dbw": 585,
+   "dbh": 1266,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ },
+ "shaderfail": {
+  "case": "shaderfail",
+  "start": {
+   "frames": 18,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 2,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 413,
+   "tris": 68334,
+   "programs": 15,
+   "bad": 1,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "end": {
+   "frames": 27,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 2,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 415,
+   "tris": 68358,
+   "programs": 15,
+   "bad": 1,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": [
+   "[gfx] shader failed to compile on this GPU, using fallback: ERROR: 0:158: 'this_is_not_glsl' : undeclared identifier\n\u0000"
+  ]
+ }
+}

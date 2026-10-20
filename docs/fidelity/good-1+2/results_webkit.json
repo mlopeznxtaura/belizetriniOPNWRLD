@@ -1,0 +1,315 @@
+{
+ "_browser": "27.2",
+ "fallback": {
+  "case": "fallback",
+  "start": {
+   "frames": 92,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-default:fail",
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 418,
+   "tris": 68394,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    147,
+    144,
+    133,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "refused": 2,
+  "end": {
+   "frames": 94,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-default:fail",
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 418,
+   "tris": 68394,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    147,
+    144,
+    132,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [
+   "THREE.WebGLRenderer: Error creating WebGL context."
+  ],
+  "shaderWarnings": []
+ },
+ "nowebgl2": {
+  "case": "nowebgl2",
+  "errorShown": "belizetriniOPNWRLD\n\n3D graphics could not start on this device.\n\nThis browser only offers WebGL 1; the game needs WebGL 2.\n\nTried: webgl2-default, webgl2-relaxed, webgl2-minimal\n\nRetry",
+  "diag": {
+   "tried": [
+    {
+     "label": "webgl2-default",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    },
+    {
+     "label": "webgl2-relaxed",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    },
+    {
+     "label": "webgl2-minimal",
+     "ok": false,
+     "error": "Error creating WebGL context."
+    }
+   ],
+   "webgl2": false,
+   "webgl1": true,
+   "reasons": [],
+   "ios": null,
+   "summary": "This browser only offers WebGL 1; the game needs WebGL 2."
+  },
+  "refused": 7,
+  "uncaught": [],
+  "consoleErrors": [
+   "THREE.WebGLRenderer: Error creating WebGL context."
+  ],
+  "shaderWarnings": []
+ },
+ "ctxloss": {
+  "case": "ctxloss",
+  "start": {
+   "frames": 47,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 417,
+   "tris": 68382,
+   "programs": 15,
+   "bad": 0,
+   "px": [
+    147,
+    145,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "lostA": {
+   "f": 48,
+   "lost": true,
+   "raf": 0
+  },
+  "lostB": {
+   "f": 48,
+   "toast": "Graphics paused — restoring…"
+  },
+  "restored": {
+   "frames": 24,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 1,
+    "restores": 1
+   },
+   "calls": 418,
+   "tris": 68394,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    147,
+    145,
+    134,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "restored2": {
+   "f": 32
+  },
+  "cycle2": {
+   "frames": 23,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 418,
+   "tris": 68394,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    148,
+    144,
+    132,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "moved": 2.59,
+  "end": {
+   "frames": 34,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 400,
+   "tris": 67998,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    148,
+    143,
+    131,
+    255
+   ],
+   "distinctSamples": 10,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ },
+ "iphone": {
+  "case": "iphone",
+  "start": {
+   "frames": 31,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 322,
+   "tris": 71944,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 8,
+   "dbw": 585,
+   "dbh": 1266,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "mobileControls": true,
+  "stickSpeed": 1.79,
+  "end": {
+   "frames": 42,
+   "lost": false,
+   "attempt": "webgl2-default",
+   "tried": [
+    "webgl2-default:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 322,
+   "tris": 71944,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    146,
+    145,
+    135,
+    255
+   ],
+   "distinctSamples": 7,
+   "dbw": 585,
+   "dbh": 1266,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ }
+}

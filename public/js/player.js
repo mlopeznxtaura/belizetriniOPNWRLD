@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { safePointerLock } from './gfx.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ProceduralRig, SEAT_POSES } from './char_rig.js';
 import { CHAR_RIG_DATA } from './char_rig_data.js';
@@ -491,7 +492,7 @@ export class Player {
       this.keys[e.code] = false;
     });
     dom.addEventListener('click', () => {
-      if (!this.pointerLocked) dom.requestPointerLock?.();
+      if (!this.pointerLocked) safePointerLock(dom);
     });
     document.addEventListener('pointerlockchange', () => {
       this.pointerLocked = document.pointerLockElement === dom;

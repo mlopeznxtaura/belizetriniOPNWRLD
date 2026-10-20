@@ -373,7 +373,8 @@ export function createToonSky(scene) {
         float h = vDir.y;
         // Smooth Wind Waker gradient (per vertex; 32x24 dome is plenty): pale horizon -> saturated zenith.
         float t = pow(smoothstep(0.0, 0.75, h), 0.65);
-        vCol = mix(mix(uHorizon, uTop, t), uBottom, smoothstep(0.0, -0.12, h));
+        // (edge0 < edge1 always: smoothstep with reversed edges is undefined in GLSL ES and differs per driver)
+        vCol = mix(mix(uHorizon, uTop, t), uBottom, 1.0 - smoothstep(-0.12, 0.0, h));
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }`,
     fragmentShader: /* glsl */`
@@ -383,22 +384,23 @@ export function createToonSky(scene) {
       void main() {
         vec3 col = vCol;
         // Sun: hard disk + two flat halo rings (cel steps, not a bloom smear). Cheap reject first.
-        float sd0 = dot(vDir, uSunDir);
-        if (uSunVis > 0.0 && sd0 > 0.98) {
-          float sd = dot(normalize(vDir), uSunDir);
-          float disk = smoothstep(0.99935, 0.99955, sd);
-          float ring1 = smoothstep(0.9965, 0.9968, sd) * (1.0 - disk);
-          float ring2 = smoothstep(0.986, 0.9864, sd) * (1.0 - smoothstep(0.9965, 0.9968, sd));
+        // Edges are chord distances |d - sunDir| (= sqrt(2(1-cos))) instead of cosines like 0.99955,
+        // so they stay resolvable at any float precision (iOS-safe; same rings as good-1+1).
+        if (uSunVis > 0.0 && dot(vDir, uSunDir) > 0.98) {
+          float sq = length(normalize(vDir) - uSunDir);
+          float disk = 1.0 - smoothstep(0.0300, 0.0361, sq);
+          float in1 = 1.0 - smoothstep(0.0800, 0.0837, sq);
+          float ring1 = in1 * (1.0 - disk);
+          float ring2 = (1.0 - smoothstep(0.1649, 0.1673, sq)) * (1.0 - in1);
           col = mix(col, mix(col, uSunColor, 0.45), ring2 * uSunVis * 0.6);
           col = mix(col, mix(col, uSunColor, 0.75), ring1 * uSunVis);
           col = mix(col, vec3(1.0, 0.99, 0.94), disk * uSunVis);
         }
-        float md0 = dot(vDir, uMoonDir);
-        if (uMoonVis > 0.0 && md0 > 0.99) {
+        if (uMoonVis > 0.0 && dot(vDir, uMoonDir) > 0.99) {
           vec3 d = normalize(vDir);
-          float m1 = smoothstep(0.99955, 0.9997, dot(d, uMoonDir));
-          float m2 = smoothstep(0.99955, 0.9997, dot(d, normalize(uMoonDir + vec3(0.012, 0.006, 0.0))));
-          float moonGlow = smoothstep(0.994, 0.9944, dot(d, uMoonDir));
+          float m1 = 1.0 - smoothstep(0.0245, 0.0300, length(d - uMoonDir));
+          float m2 = 1.0 - smoothstep(0.0245, 0.0300, length(d - normalize(uMoonDir + vec3(0.012, 0.006, 0.0))));
+          float moonGlow = 1.0 - smoothstep(0.1058, 0.1095, length(d - uMoonDir));
           col = mix(col, col + vec3(0.06, 0.08, 0.14), moonGlow * uMoonVis);
           col = mix(col, vec3(0.93, 0.95, 1.0), m1 * (1.0 - m2 * 0.85) * uMoonVis);
         }

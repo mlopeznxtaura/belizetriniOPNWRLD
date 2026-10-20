@@ -7,27 +7,25 @@ import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
 import { DriveClient } from './drive.js';
 import { TOON_ON, toonify, updateToon, outlineStats } from './toon.js';
+import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
 
 class Game {
   constructor() {
     this.canvas = document.getElementById('game-canvas');
     this.scene = new THREE.Scene();
 
-    try {
-      this.renderer = new THREE.WebGLRenderer({
-        canvas: this.canvas,
-        antialias: true,
-        powerPreference: 'high-performance',
-      });
-    } catch (err) {
-      const note = document.createElement('div');
-      note.style.cssText =
-        'position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#050510;color:#f72585;padding:2rem;text-align:center;font-family:sans-serif';
-      note.innerHTML =
-        '<div><h1>belizetriniOPNWRLD</h1><p>WebGL unavailable.</p><p style="color:#889">Try Chrome/Firefox with hardware acceleration.</p></div>';
-      document.body.appendChild(note);
-      throw err;
-    }
+    // good-1+2: robust renderer creation (WebGL2 with relaxed retries on fresh canvases, then a clear
+    // in-page reason). See public/js/gfx.js for why there is no WebGL1 path with three r170.
+    const made = createRendererRobust(this.canvas, { antialias: true });
+    this.renderer = made.renderer;
+    this.canvas = made.canvas;
+    this.gfx = { attempt: made.attempt, tried: made.tried, healed: 0, context: null };
+    this.renderer.debug.onShaderError = (gl, program, vs, fs) => {
+      // Log compactly (the default dump is huge); the material is swapped by healShaderFailures().
+      const log = (gl.getShaderInfoLog(fs) || gl.getShaderInfoLog(vs) || gl.getProgramInfoLog(program) || '').trim();
+      console.warn('[gfx] shader failed to compile on this GPU, using fallback:', log.slice(0, 300));
+      this._shaderFailed = true;
+    };
 
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -67,7 +65,11 @@ class Game {
 
     window.addEventListener('resize', () => this._onResize());
     this._onResize();
-    this._raf = requestAnimationFrame(() => this._loop());
+    this.gfx.context = watchContext(this.renderer, {
+      onLost: () => this._stopLoop(),
+      onRestore: () => this._onContextRestored(),
+    });
+    this._startLoop();
   }
 
   _bindUI() {
@@ -200,7 +202,7 @@ class Game {
     this.hud.setHealth(100);
     this.missions.start(1);
     this.drive.start();
-    this.canvas.requestPointerLock?.();
+    safePointerLock(this.canvas);
     this.hud.toast('belizetriniOPNWRLD — Caribbean day cycle');
   }
 
@@ -248,8 +250,38 @@ class Game {
     this.player.camera.updateProjectionMatrix();
   }
 
+  _startLoop() {
+    if (this._raf) return;
+    this.clock.getDelta(); // drop the time spent paused/lost
+    this._frames = 0;
+    this._raf = requestAnimationFrame(() => this._loop());
+  }
+
+  _stopLoop() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    this._raf = 0;
+  }
+
+  _onContextRestored() {
+    // three's own restore handler (registered first) rebuilt its GL state, programs, buffers and
+    // texture bookkeeping; re-apply everything that lives in GL state or must be re-uploaded.
+    const r = this.renderer;
+    this._onResize();
+    if (this.scene.background?.isColor) r.setClearColor(this.scene.background, 1);
+    this.scene.traverse((o) => {
+      const mats = o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : [];
+      for (const m of mats) {
+        m.needsUpdate = true;
+        for (const k of ['map', 'gradientMap', 'emissiveMap', 'normalMap', 'alphaMap']) if (m[k]) m[k].needsUpdate = true;
+      }
+    });
+    this.world?.dayNight?.update?.(0);
+    this._startLoop();
+  }
+
   _loop() {
     this._raf = requestAnimationFrame(() => this._loop());
+    if (this.gfx?.context?.lost) return;
     const dt = Math.min(this.clock.getDelta(), 0.05);
 
     // Day/night advances on title + in play (pause freezes gameplay but clock still ticks unless T)
@@ -277,6 +309,13 @@ class Game {
 
     updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
+    // After the first frames (and after a restore) every program has been compiled: swap any that
+    // failed on this GPU for a plain stand-in instead of leaving holes / a blank frame.
+    if (++this._frames === 2 || this._shaderFailed) {
+      this._shaderFailed = false;
+      const n = healShaderFailures(this.renderer, this.scene);
+      if (n) { this.gfx.healed += n; gfxToast(`Simplified ${n} effect${n > 1 ? 's' : ''} for this GPU`); }
+    }
   }
 
   _update(dt) {
@@ -353,5 +392,16 @@ class Game {
   }
 }
 
-const game = new Game();
+let game = null;
+try {
+  game = new Game();
+} catch (err) {
+  // Renderer failures already painted their own reason (gfx.js). Anything else during boot used to
+  // surface as a dead screen; say what broke instead.
+  if (!err?.gfxHandled) {
+    import('./gfx.js').then(({ showGfxError }) =>
+      showGfxError('The game failed to start.', String(err?.message || err).slice(0, 240)));
+  }
+  (err?.gfxHandled ? console.warn : console.error)('[game] boot failed:', err?.message || err);
+}
 window.__BELIZETRINI_OPNWRLD__ = game;
