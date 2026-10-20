@@ -270,12 +270,13 @@ export function addOutline(mesh, klass = 'prop', opts = {}) {
 export function buildStaticOutlines(meshes, parent) {
   if (!TOON_ON) return [];
   const groups = {};
-  for (const { mesh, klass } of meshes) {
+  for (const { mesh, klass, matrix, force } of meshes) {
     const c = OUTLINE_CLASSES[klass];
-    if (ownerRadius(mesh) < c.minR) { _stats.skippedTiny++; continue; }
+    // good-1+4: `matrix` = one instance of an InstancedMesh baked in (force: those always had a hull).
+    if (!force && ownerRadius(mesh) < c.minR) { _stats.skippedTiny++; continue; }
     mesh.updateWorldMatrix(true, false);
     const g = hullGeometry(mesh.geometry).clone();
-    g.applyMatrix4(mesh.matrixWorld);
+    g.applyMatrix4(matrix || mesh.matrixWorld);
     g.computeBoundingBox();
     const n = g.getAttribute('position').count;
     const bmin = new Float32Array(n * 3), bmax = new Float32Array(n * 3);
@@ -341,6 +342,17 @@ export function toonify(root, opts = {}) {
     for (const o of cand) addOutline(o, klass, opts);
   }
   return root;
+}
+
+/**
+ * Register an already-built hull mesh (good-1+4 vehicle batching): it is its own owner, so the
+ * distance / screen-size / camera-inside culling uses the merged hull's bounds.
+ */
+export function registerOutline(line, klass) {
+  const g = line.geometry;
+  if (!g.boundingSphere) g.computeBoundingSphere();
+  _outlines.push({ line, owner: line, klass, r: Math.max(g.boundingSphere.radius, 0.01), isStatic: false, wp: null });
+  _stats.outlines++;
 }
 
 /** Remove outline bookkeeping for a disposed subtree (character swaps). */

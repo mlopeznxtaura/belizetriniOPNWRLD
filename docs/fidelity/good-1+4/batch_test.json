@@ -1,0 +1,116 @@
+{
+ "?quality=high": {
+  "start": {
+   "charMeshes": 69,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 185,
+    "draws": 59,
+    "hulls": 18
+   },
+   "outlinesRegistered": 46,
+   "byClass": {
+    "vehicle": 36,
+    "char": 10
+   },
+   "calls": 161,
+   "inVehicle": false
+  },
+  "swapFemale": {
+   "charMeshes": 71,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 227,
+    "draws": 61,
+    "hulls": 18
+   },
+   "outlinesRegistered": 46,
+   "byClass": {
+    "vehicle": 36,
+    "char": 10
+   },
+   "calls": 167,
+   "inVehicle": false
+  },
+  "swapMale": {
+   "charMeshes": 69,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 185,
+    "draws": 59,
+    "hulls": 18
+   },
+   "outlinesRegistered": 46,
+   "byClass": {
+    "vehicle": 36,
+    "char": 10
+   },
+   "calls": 166,
+   "inVehicle": false
+  },
+  "driving": {
+   "charMeshes": 69,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 185,
+    "draws": 59,
+    "hulls": 18
+   },
+   "outlinesRegistered": 46,
+   "byClass": {
+    "vehicle": 36,
+    "char": 10
+   },
+   "calls": 175,
+   "inVehicle": true
+  },
+  "exited": {
+   "charMeshes": 69,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 185,
+    "draws": 59,
+    "hulls": 18
+   },
+   "outlinesRegistered": 46,
+   "byClass": {
+    "vehicle": 36,
+    "char": 10
+   },
+   "calls": 167,
+   "inVehicle": false
+  },
+  "errors": []
+ },
+ "?quality=high&toon=0": {
+  "start": {
+   "charMeshes": 59,
+   "charBatch": {
+    "pivots": 17,
+    "parts": 185,
+    "draws": 59,
+    "hulls": 0
+   },
+   "outlinesRegistered": 0,
+   "byClass": {},
+   "calls": 141,
+   "inVehicle": false
+  },
+  "errors": []
+ },
+ "?quality=high&batch=0": {
+  "start": {
+   "charMeshes": 203,
+   "charBatch": null,
+   "outlinesRegistered": 120,
+   "byClass": {
+    "prop": 6,
+    "vehicle": 96,
+    "char": 18
+   },
+   "calls": 413,
+   "inVehicle": false
+  },
+  "errors": []
+ }
+}

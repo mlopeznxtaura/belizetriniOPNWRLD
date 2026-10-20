@@ -1,0 +1,42 @@
+{
+ "queen": {
+  "px_gt8_pct": 0.22,
+  "px_gt8_outside_char_box_pct": 0.0041,
+  "bbox_of_diffs": [
+   108,
+   240,
+   889,
+   371
+  ]
+ },
+ "shore": {
+  "px_gt8_pct": 0.284,
+  "px_gt8_outside_char_box_pct": 0.0,
+  "bbox_of_diffs": [
+   450,
+   250,
+   505,
+   384
+  ]
+ },
+ "bridge": {
+  "px_gt8_pct": 0.234,
+  "px_gt8_outside_char_box_pct": 0.0551,
+  "bbox_of_diffs": [
+   1,
+   143,
+   785,
+   400
+  ]
+ },
+ "pos": {
+  "px_gt8_pct": 0.204,
+  "px_gt8_outside_char_box_pct": 0.0391,
+  "bbox_of_diffs": [
+   172,
+   155,
+   857,
+   385
+  ]
+ }
+}

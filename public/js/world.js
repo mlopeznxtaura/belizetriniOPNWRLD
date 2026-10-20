@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { batchStatic, BATCH_ON } from './batch.js';
 import {
   TOON_ON, toonMaterial, addOutline, buildStaticOutlines, createToonSky, createToonWaterMaterial,
   applyToonSkyState, bindSky,
@@ -1219,12 +1220,28 @@ export function buildWorld(scene, quality = {}) {
     root.traverse((o) => { if (o.isMesh) list.push(o); });
     for (const o of list) {
       if (flat.has(o.material) || o.geometry.type === 'PlaneGeometry' || !o.material.userData?.toon) continue;
-      if (o.isInstancedMesh) { addOutline(o, 'prop'); continue; }
+      if (o.isInstancedMesh) {
+        if (BATCH_ON) {
+          // good-1+4: bake every instance's hull into the static 'prop' outline batch (0 extra draws).
+          o.updateWorldMatrix(true, false);
+          const im = new THREE.Matrix4();
+          for (let i = 0; i < o.count; i++) {
+            o.getMatrixAt(i, im);
+            statics.push({ mesh: o, klass: 'prop', matrix: new THREE.Matrix4().multiplyMatrices(o.matrixWorld, im), force: true });
+          }
+        } else addOutline(o, 'prop');
+        continue;
+      }
       if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
       statics.push({ mesh: o, klass: o.geometry.boundingSphere.radius >= 2.5 ? 'building' : 'prop' });
     }
     buildStaticOutlines(statics, root); // one draw per class instead of one per mesh
   }
+
+  // good-1+4: merge the static kit meshes (windows, frames, trims, roofs, rails, roads...) into one
+  // mesh per material per 48 m cell. Same materials, same world-space geometry, ~10x fewer draws.
+  // Kill switch: ?batch=0.
+  if (BATCH_ON) root.userData.batchStats = batchStatic(root, { cell: quality.batchCell ?? 96 });
 
   // Atmosphere — time-of-day (default 14:00 afternoon)
   const dayNight = createDayNight(scene, realLights, mats);

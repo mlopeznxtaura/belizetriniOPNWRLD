@@ -169,7 +169,7 @@ export class QualityController {
         const m = Array.isArray(o.material) ? o.material[0] : o.material;
         if (!m || m.isShaderMaterial || m.isMeshBasicMaterial) return;
         o.receiveShadow = true;
-        if (o.geometry?.type !== 'PlaneGeometry') o.castShadow = true;
+        if (o.geometry?.type !== 'PlaneGeometry' && !o.userData?.noCast) o.castShadow = true;
       });
     }
     if (sun.shadow.mapSize.x !== size) { sun.shadow.mapSize.set(size, size); sun.shadow.map?.dispose(); sun.shadow.map = null; }

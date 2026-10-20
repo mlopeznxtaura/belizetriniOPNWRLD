@@ -6,7 +6,8 @@ import { spawnCops } from './ai.js';
 import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
 import { DriveClient } from './drive.js';
-import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U } from './toon.js';
+import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U, forgetOutlines, registerOutline } from './toon.js';
+import { BATCH_ON, batchVehicle } from './batch.js';
 import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
 import { resolveQuality, applyPreBuild, QualityController, PRESETS, PRESET_ORDER, saveQualityChoice } from './quality.js';
 
@@ -56,6 +57,10 @@ class Game {
     if (TOON_ON) {
       for (const v of this.vehicles) toonify(v.mesh, { klass: 'vehicle' });
       for (const c of this.cops) toonify(c.mesh, { klass: 'vehicle' });
+    }
+    // good-1+4: merge each vehicle's rigid parts per material (+ its outline hulls) — ?batch=0 disables.
+    if (BATCH_ON) {
+      this.batchStats = { vehicles: this.vehicles.map((v) => batchVehicle(v, { forgetOutlines, registerOutline })) };
     }
     this.toon = { on: TOON_ON, stats: outlineStats, Q: TOON_Q, U: TOON_U };
     this.quality = new QualityController(this, QR);

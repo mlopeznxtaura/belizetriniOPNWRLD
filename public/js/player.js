@@ -3,7 +3,8 @@ import { safePointerLock } from './gfx.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ProceduralRig, SEAT_POSES } from './char_rig.js';
 import { CHAR_RIG_DATA } from './char_rig_data.js';
-import { toonify, forgetOutlines, RAMP_SKIN } from './toon.js';
+import { toonify, forgetOutlines, registerOutline, RAMP_SKIN } from './toon.js';
+import { BATCH_ON, batchCharacter } from './batch.js';
 
 /** localStorage key for selected playable character */
 export const CHAR_KEY = 'belizetrini_char';
@@ -325,6 +326,11 @@ export class Player {
       // No clips: ProceduralRig animates it (or it stays static if the names did not map).
       if (!this.rig) console.info('[player] no clips and no rig — static mesh', used);
       this.model.visible = true;
+    }
+    // good-1+4: merge rigid parts per joint pivot + material (only when the procedural rig drives
+    // the pivots and no glTF clip could target individual part nodes). ?batch=0 disables.
+    if (BATCH_ON && this.rig && !Object.keys(this.actions).length) {
+      this.batchStats = batchCharacter(this.rig, { forgetOutlines, registerOutline });
     }
     if (this.rig && this.inVehicle && this._seatPoseCur) this.rig.snapSeated(this._seatPoseCur);
 

@@ -89,7 +89,8 @@ async function measure(page, S, hour) {
     r.info.autoReset = false; r.info.reset();
     r.render(g.scene, cam);
     r.info.autoReset = true;
-    const info = { calls: r.info.render.calls, triangles: r.info.render.triangles, programs: r.info.programs?.length ?? null,
+    let batched = 0, meshes = 0; g.scene.traverse((o) => { if (o.isMesh) { meshes++; if (o.userData?.batched) batched++; } });
+    const info = { meshes, batchMeshes: batched, batchStats: g.world.root.userData.batchStats || null, calls: r.info.render.calls, triangles: r.info.render.triangles, programs: r.info.programs?.length ?? null,
       geometries: r.info.memory.geometries, textures: r.info.memory.textures };
     const times = [];
     for (let i = 0; i < 15; i++) {
@@ -118,7 +119,7 @@ async function runPresets() {
   const times = opt('times', 'noon').split(',');
   const prefix = MODE === 'tree' ? TAG : 'preset';
   for (const pr of presets) {
-    const { page, errs } = await openGame(browser, `?quality=${pr}`);
+    const { page, errs } = await openGame(browser, `?quality=${pr}${opt('query', '')}`);
     for (const sk of spots) for (const tk of times) {
       const m = await measure(page, SPOTS[sk], TIMES[tk]);
       const name = MODE === 'tree' ? `${TAG}_${sk}_${tk}` : `${pr}_${sk}_${tk}`;
