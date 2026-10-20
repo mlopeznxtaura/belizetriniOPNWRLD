@@ -6,8 +6,9 @@ import { spawnCops } from './ai.js';
 import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
 import { DriveClient } from './drive.js';
-import { TOON_ON, toonify, updateToon, outlineStats } from './toon.js';
+import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U } from './toon.js';
 import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
+import { resolveQuality, applyPreBuild, QualityController, PRESETS, PRESET_ORDER, saveQualityChoice } from './quality.js';
 
 class Game {
   constructor() {
@@ -16,7 +17,10 @@ class Game {
 
     // good-1+2: robust renderer creation (WebGL2 with relaxed retries on fresh canvases, then a clear
     // in-page reason). See public/js/gfx.js for why there is no WebGL1 path with three r170.
-    const made = createRendererRobust(this.canvas, { antialias: true });
+    // good-1+3: device quality preset (URL > saved > auto-detect) decides AA before the context exists.
+    const QR = resolveQuality();
+    applyPreBuild(QR.preset);
+    const made = createRendererRobust(this.canvas, { antialias: QR.preset.antialias });
     this.renderer = made.renderer;
     this.canvas = made.canvas;
     this.gfx = { attempt: made.attempt, tried: made.tried, healed: 0, context: null };
@@ -27,7 +31,7 @@ class Game {
       this._shaderFailed = true;
     };
 
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, QR.preset.pixelRatioCap));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = false;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -44,7 +48,7 @@ class Game {
     this._fLatch = false;
     this._wantedDecay = 0;
 
-    this.world = buildWorld(this.scene);
+    this.world = buildWorld(this.scene, QR.preset);
     this.world?.dayNight?.bindRenderer?.(this.renderer);
     this.player = new Player(this.scene, this.world.markers.spawn, this.world);
     this.vehicles = spawnFleet(this.scene, this.world.markers, this.world);
@@ -53,7 +57,8 @@ class Game {
       for (const v of this.vehicles) toonify(v.mesh, { klass: 'vehicle' });
       for (const c of this.cops) toonify(c.mesh, { klass: 'vehicle' });
     }
-    this.toon = { on: TOON_ON, stats: outlineStats };
+    this.toon = { on: TOON_ON, stats: outlineStats, Q: TOON_Q, U: TOON_U };
+    this.quality = new QualityController(this, QR);
     this.hud = new HUD();
     this.missions = new MissionSystem(this);
     this.drive = new DriveClient(this);
@@ -64,6 +69,7 @@ class Game {
     this._bindMobile();
 
     window.addEventListener('resize', () => this._onResize());
+    this.quality.apply();
     this._onResize();
     this.gfx.context = watchContext(this.renderer, {
       onLost: () => this._stopLoop(),
@@ -74,6 +80,9 @@ class Game {
 
   _bindUI() {
     this._bindCharSelect();
+    this._bindQualityMenu();
+    document.getElementById('btn-pause')?.addEventListener('click', (e) => { e.preventDefault(); if (this.running) this.setPaused(true); });
+    document.getElementById('btn-resume')?.addEventListener('click', () => this.setPaused(false));
     document.getElementById('btn-start')?.addEventListener('click', () => this.beginPlay());
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyP' || e.code === 'Escape') {
@@ -162,6 +171,31 @@ class Game {
     });
   }
 
+
+  _bindQualityMenu() {
+    const wrap = document.getElementById('quality-select');
+    if (!wrap) return;
+    const auto = this.quality.auto.preset;
+    const btns = [['auto', `Auto (${PRESETS[auto].label})`], ...PRESET_ORDER.map((k) => [k, PRESETS[k].label])];
+    wrap.innerHTML = btns.map(([k, l]) => `<button type="button" class="q-btn" data-q="${k}">${l}</button>`).join('');
+    const sync = () => {
+      const saved = this._qualityChoice ?? (this.quality.source === 'saved' ? this.quality.name : (this.quality.source === 'url' ? this.quality.name : 'auto'));
+      wrap.querySelectorAll('.q-btn').forEach((b) => b.classList.toggle('selected', b.dataset.q === saved));
+    };
+    wrap.addEventListener('click', (e) => {
+      const b = e.target.closest('.q-btn');
+      if (!b) return;
+      const choice = b.dataset.q;
+      this._qualityChoice = choice;
+      saveQualityChoice(choice);
+      const name = choice === 'auto' ? auto : choice;
+      const reload = this.quality.apply(name);
+      this.quality.source = choice === 'auto' ? 'auto' : 'saved';
+      sync();
+      gfxToast(`Graphics: ${PRESETS[name].label}` + (reload.length ? ` · ${reload.join(' & ')} after reload` : ''), 2600);
+    });
+    sync();
+  }
 
   _bindCharSelect() {
     const cards = document.querySelectorAll('.char-card');
@@ -307,6 +341,7 @@ class Game {
       this.player.camera.lookAt(s.x, 2, s.z);
     }
 
+    this.quality?.update(dt);
     updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
     // After the first frames (and after a restore) every program has been compiled: swap any that

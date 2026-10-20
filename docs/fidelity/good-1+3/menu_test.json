@@ -1,0 +1,80 @@
+{
+ "desktopStart": {
+  "name": "low",
+  "source": "auto",
+  "pr": 1,
+  "far": 220,
+  "lightsOn": 2,
+  "clouds": 8,
+  "saved": null,
+  "selected": "auto"
+ },
+ "afterUltra": {
+  "name": "ultra",
+  "source": "saved",
+  "pr": 1,
+  "far": 600,
+  "lightsOn": 8,
+  "clouds": 40,
+  "saved": "ultra",
+  "selected": "ultra",
+  "toast": "Graphics: Ultra · anti-aliasing & character outlines after reload"
+ },
+ "afterMedium": {
+  "name": "medium",
+  "source": "saved",
+  "pr": 1,
+  "far": 320,
+  "lightsOn": 4,
+  "clouds": 16,
+  "saved": "medium",
+  "selected": "medium",
+  "toast": "Graphics: Medium · character outlines after reload"
+ },
+ "afterReloadSaved": {
+  "name": "medium",
+  "source": "saved",
+  "pr": 1,
+  "far": 320,
+  "lightsOn": 4,
+  "clouds": 16,
+  "saved": "medium",
+  "selected": "medium"
+ },
+ "afterAuto": {
+  "name": "low",
+  "source": "auto",
+  "pr": 1,
+  "far": 220,
+  "lightsOn": 2,
+  "clouds": 8,
+  "saved": null,
+  "selected": "auto",
+  "toast": "Graphics: Low · character outlines after reload"
+ },
+ "desktopErrors": [],
+ "iphoneStart": {
+  "name": "low",
+  "source": "auto",
+  "pr": 1,
+  "far": 220,
+  "lightsOn": 2,
+  "clouds": 8,
+  "saved": null,
+  "selected": "auto"
+ },
+ "iphonePaused": true,
+ "iphoneLow": {
+  "name": "low",
+  "source": "saved",
+  "pr": 1,
+  "far": 220,
+  "lightsOn": 2,
+  "clouds": 8,
+  "saved": "low",
+  "selected": "low",
+  "toast": "Graphics: Low"
+ },
+ "iphoneResumed": true,
+ "iphoneErrors": []
+}

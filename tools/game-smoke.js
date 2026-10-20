@@ -32,7 +32,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const missing = new Set();
   page.on('response', (r) => { if (r.status() >= 400) missing.add(r.status() + ' ' + r.url().replace(/^https?:\/\/[^/]+/, '')); });
   await page.setViewport({ width: 800, height: 500 });
-  await page.goto('http://127.0.0.1:8767/', { waitUntil: 'domcontentloaded' });
+  await page.goto('http://127.0.0.1:8767/' + (process.env.SMOKE_QUERY || ''), { waitUntil: 'domcontentloaded' });
   await sleep(1500);
   await page.click(`#char-${CH}`).catch(() => {});
   await page.click('#btn-start');

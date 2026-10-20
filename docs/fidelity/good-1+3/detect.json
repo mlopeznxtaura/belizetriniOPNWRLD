@@ -1,0 +1,58 @@
+[
+ {
+  "device": "iPhone 15 (393x852 @3, iOS 18)",
+  "active": "medium",
+  "auto": "medium",
+  "reason": "iPhone (393pt, iOS 18)",
+  "gpu": "Apple GPU"
+ },
+ {
+  "device": "iPhone 13/14 (390x844 @3, iOS 17)",
+  "active": "medium",
+  "auto": "medium",
+  "reason": "iPhone (390pt, iOS 17)",
+  "gpu": "Apple GPU"
+ },
+ {
+  "device": "iPhone SE (375x667 @2, iOS 17)",
+  "active": "low",
+  "auto": "low",
+  "reason": "iPhone small/old (375pt, iOS 17)",
+  "gpu": "Apple GPU"
+ },
+ {
+  "device": "iPad (820x1180 @2, iPadOS)",
+  "active": "medium",
+  "auto": "medium",
+  "reason": "iPad",
+  "gpu": "Apple GPU"
+ },
+ {
+  "device": "Android mid (412x915 @2.6, Adreno 610)",
+  "active": "low",
+  "auto": "low",
+  "reason": "Android/touch (mem 8 GB, 2 cores)",
+  "gpu": "Adreno (TM) 610"
+ },
+ {
+  "device": "Desktop NVIDIA",
+  "active": "high",
+  "auto": "high",
+  "reason": "discrete GPU",
+  "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0)"
+ },
+ {
+  "device": "Laptop Intel iGPU",
+  "active": "medium",
+  "auto": "medium",
+  "reason": "integrated GPU",
+  "gpu": "ANGLE (Intel, Intel(R) UHD Graphics 620 Direct3D11 vs_5_0 ps_5_0)"
+ },
+ {
+  "device": "Headless SwiftShader (real)",
+  "active": "low",
+  "auto": "low",
+  "reason": "software renderer",
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+ }
+]

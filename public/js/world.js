@@ -891,6 +891,7 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
   if (renderer) renderer.setClearColor(0x5cb8e8, 1);
 
   const street = realLights.map((l) => ({ light: l, base: l.intensity }));
+  let fogMul = 1;
 
   // Keyframes: dusk/night bg lifted to navy — never a pure-black upper slab.
   // Daytime fog softened; night fog moderate so neon stays readable.
@@ -1040,12 +1041,14 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
     sun.color.setHex(s.sunC);
     sun.intensity = s.sunI;
     sun.position.set(s.sunPos[0], s.sunPos[1], s.sunPos[2]);
+    (sun.userData.dir ||= new THREE.Vector3()).set(s.sunPos[0], s.sunPos[1], s.sunPos[2]).normalize(); // good-1+3 shadow follow
     moon.color.setHex(s.moonC);
     moon.intensity = s.moonI;
     if (scene.fog) {
       scene.fog.color.setHex(s.fogC);
       // Toon: softer, deeper aerial fog so the far city melts into the sky horizon band.
-      scene.fog.density = TOON_ON ? Math.min(0.0075, s.fogD * 2.3) : s.fogD;
+      // good-1+3: fogMul scales with the quality preset's draw distance (shorter far plane => denser fog).
+      scene.fog.density = (TOON_ON ? Math.min(0.0075, s.fogD * 2.3) : s.fogD) * fogMul;
     }
     if (scene.background && scene.background.isColor) {
       scene.background.setHex(s.bg);
@@ -1087,6 +1090,12 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
       }
     },
     pause(p) { paused = !!p; },
+    /** good-1+3 quality: fog density multiplier + sky scale so the dome/clouds stay inside the far plane. */
+    setDrawDistance(far, baseFar = 450) {
+      fogMul = baseFar / far;
+      if (toonSky) toonSky.group.scale.setScalar(Math.min(1, (far * 0.92) / 400));
+      apply();
+    },
     togglePause() { paused = !paused; return paused; },
     /** Advance clock; dt in real seconds */
     update(dt) {
@@ -1115,7 +1124,7 @@ export function createDayNight(scene, realLights = [], mats = null, renderer = n
  * Build the open world into `scene`.
  * Returns markers, blips, colliders for gameplay.
  */
-export function buildWorld(scene) {
+export function buildWorld(scene, quality = {}) {
   const root = new THREE.Group();
   root.name = 'world';
   scene.add(root);
@@ -1147,14 +1156,15 @@ export function buildWorld(scene) {
   root.add(groundT);
 
   // Water — south coast + creek pockets
-  const wSeg = TOON_ON ? [80, 18] : [1, 1]; // vertex wave needs some tessellation
+  const ws = quality.waterSeg ?? 1; // good-1+3: tessellation scales with the preset
+  const wSeg = TOON_ON ? [Math.max(8, Math.round(80 * ws)), Math.max(3, Math.round(18 * ws))] : [1, 1]; // vertex wave needs some tessellation
   const waterSouth = new THREE.Mesh(new THREE.PlaneGeometry(400, 90, wSeg[0], wSeg[1]), mats.water);
   waterSouth.rotation.x = -Math.PI / 2;
   waterSouth.position.set(40, MAP.waterY, -95);
   if (TOON_ON) waterSouth.renderOrder = 1; // after ground/city so hidden water pixels are depth-rejected
   root.add(waterSouth);
 
-  const creek = new THREE.Mesh(new THREE.PlaneGeometry(55, 35, TOON_ON ? 11 : 1, TOON_ON ? 7 : 1), mats.water);
+  const creek = new THREE.Mesh(new THREE.PlaneGeometry(55, 35, TOON_ON ? Math.max(3, Math.round(11 * ws)) : 1, TOON_ON ? Math.max(2, Math.round(7 * ws)) : 1), mats.water);
   creek.rotation.x = -Math.PI / 2;
   creek.position.set(-95, MAP.waterY, 5);
   if (TOON_ON) creek.renderOrder = 1;
@@ -1257,6 +1267,7 @@ export function buildWorld(scene) {
     palette: PALETTE,
     mats,
     dayNight,
+    realLights,
     resolveCollision(pos, radius = 0.45) {
       resolveAABB(pos, radius, colliders);
       const b = MAP.bounds;

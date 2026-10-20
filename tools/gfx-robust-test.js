@@ -11,7 +11,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const PUB = path.join(ROOT, 'public');
-const OUT = path.join(ROOT, 'docs/fidelity/good-1+2');
+const OUT = path.resolve(ROOT, process.env.GFX_OUT || 'docs/fidelity/good-1+2');
 const ENGINE = process.argv[2] || 'chromium';
 const CASES = (process.argv[3] || 'fallback,nowebgl2,ctxloss,iphone,shaderfail').split(',');
 const PORT = 8781 + (ENGINE === 'webkit' ? 1 : 0);
@@ -75,7 +75,7 @@ async function run() {
     });
     const r = { case: cs };
     try {
-      await page.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`http://127.0.0.1:${PORT}/${process.env.GFX_QUERY || ''}`, { waitUntil: 'domcontentloaded' });
       await sleep(2500);
       if (cs === 'nowebgl2') {
         r.errorShown = await page.evaluate(() => document.getElementById('gfx-error')?.innerText || null);

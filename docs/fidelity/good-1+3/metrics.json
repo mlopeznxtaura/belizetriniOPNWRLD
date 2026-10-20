@@ -1,0 +1,295 @@
+{
+ "preset": {
+  "low_queen_noon": {
+   "calls": 402,
+   "triangles": 48388,
+   "programs": 13,
+   "geometries": 700,
+   "textures": 2,
+   "frameMsMedian": 81.2,
+   "frameMsMin": 79.6,
+   "pointLights": 8,
+   "pointLightsOn": 2,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": false,
+   "shadows": false,
+   "far": 220,
+   "quality": {
+    "name": "low",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 2,
+    "label": "Low",
+    "pixelRatioCap": 1,
+    "antialias": false,
+    "shadows": false,
+    "outlines": "dynamic",
+    "outlineDist": 0.5,
+    "clouds": 8,
+    "foam": 0,
+    "waterSeg": 0.25,
+    "far": 220,
+    "maxPointLights": 2,
+    "charOutlineParts": 6,
+    "vehicleOutlineParts": 2
+   },
+   "png": "docs/fidelity/good-1+3/low_queen_noon.png"
+  },
+  "_errors": {
+   "low": [],
+   "medium": [],
+   "high": [],
+   "ultra": []
+  },
+  "medium_queen_noon": {
+   "calls": 420,
+   "triangles": 63708,
+   "programs": 15,
+   "geometries": 735,
+   "textures": 2,
+   "frameMsMedian": 144.8,
+   "frameMsMin": 142.9,
+   "pointLights": 8,
+   "pointLightsOn": 4,
+   "buffer": [
+    1200,
+    675
+   ],
+   "aa": false,
+   "shadows": false,
+   "far": 320,
+   "quality": {
+    "name": "medium",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 4,
+    "label": "Medium",
+    "pixelRatioCap": 1.25,
+    "antialias": false,
+    "shadows": false,
+    "outlines": "all",
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1,
+    "waterSeg": 0.5,
+    "far": 320,
+    "maxPointLights": 4,
+    "charOutlineParts": 10,
+    "vehicleOutlineParts": 3
+   },
+   "png": "docs/fidelity/good-1+3/medium_queen_noon.png"
+  },
+  "high_queen_noon": {
+   "calls": 434,
+   "triangles": 68546,
+   "programs": 15,
+   "geometries": 751,
+   "textures": 2,
+   "frameMsMedian": 326.1,
+   "frameMsMin": 316.7,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    1440,
+    810
+   ],
+   "aa": true,
+   "shadows": false,
+   "far": 450,
+   "quality": {
+    "name": "high",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "High",
+    "pixelRatioCap": 1.5,
+    "antialias": true,
+    "shadows": false,
+    "outlines": "all",
+    "outlineDist": 1,
+    "clouds": 26,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 450,
+    "maxPointLights": 8,
+    "charOutlineParts": 18,
+    "vehicleOutlineParts": 5
+   },
+   "png": "docs/fidelity/good-1+3/high_queen_noon.png"
+  },
+  "ultra_queen_noon": {
+   "calls": 869,
+   "triangles": 88378,
+   "programs": 19,
+   "geometries": 849,
+   "textures": 3,
+   "frameMsMedian": 810.2,
+   "frameMsMin": 806.7,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    1920,
+    1080
+   ],
+   "aa": true,
+   "shadows": true,
+   "far": 600,
+   "quality": {
+    "name": "ultra",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "Ultra",
+    "pixelRatioCap": 2,
+    "antialias": true,
+    "shadows": true,
+    "shadowMapSize": 2048,
+    "outlines": "all",
+    "outlineDist": 1.3,
+    "clouds": 40,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 600,
+    "maxPointLights": 8,
+    "charOutlineParts": 24,
+    "vehicleOutlineParts": 8
+   },
+   "png": "docs/fidelity/good-1+3/ultra_queen_noon.png"
+  }
+ },
+ "parity_high": {
+  "queen_noon": {
+   "calls": 434,
+   "triangles": 68546,
+   "programs": 15,
+   "geometries": 701,
+   "textures": 2,
+   "frameMsMedian": 175.6,
+   "frameMsMin": 173.5,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": false,
+   "far": 450,
+   "quality": {
+    "name": "high",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "High",
+    "pixelRatioCap": 1.5,
+    "antialias": true,
+    "shadows": false,
+    "outlines": "all",
+    "outlineDist": 1,
+    "clouds": 26,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 450,
+    "maxPointLights": 8,
+    "charOutlineParts": 18,
+    "vehicleOutlineParts": 5
+   },
+   "png": "docs/fidelity/good-1+3/parity_high_queen_noon.png"
+  },
+  "shore_noon": {
+   "calls": 229,
+   "triangles": 65224,
+   "programs": 15,
+   "geometries": 705,
+   "textures": 2,
+   "frameMsMedian": 109.9,
+   "frameMsMin": 108.2,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": false,
+   "far": 450,
+   "quality": {
+    "name": "high",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "High",
+    "pixelRatioCap": 1.5,
+    "antialias": true,
+    "shadows": false,
+    "outlines": "all",
+    "outlineDist": 1,
+    "clouds": 26,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 450,
+    "maxPointLights": 8,
+    "charOutlineParts": 18,
+    "vehicleOutlineParts": 5
+   },
+   "png": "docs/fidelity/good-1+3/parity_high_shore_noon.png"
+  },
+  "_errors": {
+   "high": []
+  }
+ },
+ "base12": {
+  "queen_noon": {
+   "calls": 434,
+   "triangles": 68546,
+   "programs": 15,
+   "geometries": 757,
+   "textures": 2,
+   "frameMsMedian": 174.4,
+   "frameMsMin": 173.3,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": false,
+   "far": 450,
+   "quality": null,
+   "png": "docs/fidelity/good-1+3/base12_queen_noon.png"
+  },
+  "shore_noon": {
+   "calls": 229,
+   "triangles": 65224,
+   "programs": 15,
+   "geometries": 760,
+   "textures": 2,
+   "frameMsMedian": 112.9,
+   "frameMsMin": 109.1,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": false,
+   "far": 450,
+   "quality": null,
+   "png": "docs/fidelity/good-1+3/base12_shore_noon.png"
+  },
+  "_errors": {
+   "high": []
+  }
+ }
+}

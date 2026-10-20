@@ -21,6 +21,12 @@ export const TOON_ON = (() => {
   try { return !/[?&]toon=0\b/.test(window.location.search); } catch (_) { return true; }
 })();
 
+// ─── Quality knobs (good-1+3; set from quality.js before the world is built, some live) ──────
+// outlines: 'all' | 'dynamic' (characters + vehicles only) | 'off'; dist scales near/far fade.
+export const TOON_Q = { outlines: 'all', dist: 1, clouds: 26, foam: 2 };
+const _batchedOutlines = [];
+let _waterMats = [];
+
 // ─── Shared uniforms (one object each, referenced by every material) ─────────────
 export const U = {
   uTime: { value: 0 },
@@ -139,8 +145,8 @@ function outlineMaterial(klass, batched = false) {
   const uniforms = THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {
     uPxK: { value: c.px * 0.0024 }, // world width per metre of distance ≈ px at ~500 px viewport height, fov 60
     uMaxW: { value: c.max },
-    uNear: { value: c.near },
-    uFar: { value: c.far },
+    uNear: { value: c.near * TOON_Q.dist },
+    uFar: { value: c.far * TOON_Q.dist },
   }]);
   uniforms.uColor = U.uOutlineColor;
   const mat = new THREE.ShaderMaterial({
@@ -292,6 +298,8 @@ export function buildStaticOutlines(meshes, parent) {
     line.raycast = () => {};
     line.renderOrder = 2;
     line.matrixAutoUpdate = false;
+    line.visible = TOON_Q.outlines === 'all';
+    _batchedOutlines.push(line);
     parent.add(line);
     _stats.outlines += list.length;
     _stats.batches = (_stats.batches || 0) + 1;
@@ -415,7 +423,9 @@ export function createToonSky(scene) {
   group.add(dome);
 
   // Clouds: N billboard cards in one draw. Shape = union of discs on a flat base, two-tone cel shading.
-  const N = 26;
+  // good-1+3: 26 base clouds (same layout as good-1+1) + 14 extra for ultra; instance slots are filled
+  // in a stride-7 order so any prefix count (low = 8) is spread around the whole horizon.
+  const N_BASE = 26, N = 40;
   const cloudU = {
     uLit: { value: new THREE.Color(0xffffff) },
     uShade: { value: new THREE.Color(0xc9dcf0) },
@@ -476,18 +486,21 @@ export function createToonSky(scene) {
   let rnd = 1337;
   const rand = () => ((rnd = (rnd * 16807) % 2147483647) / 2147483647);
   for (let i = 0; i < N; i++) {
-    const a = (i / N) * Math.PI * 2 + rand() * 0.25;
-    const rad = 300 + rand() * 60;
-    const y = 45 + rand() * 95;
+    const extra = i >= N_BASE;
+    const a = extra ? ((i - N_BASE + 0.5) / (N - N_BASE)) * Math.PI * 2 + rand() * 0.25 : (i / N_BASE) * Math.PI * 2 + rand() * 0.25;
+    const rad = extra ? 330 + rand() * 40 : 300 + rand() * 60;
+    const y = extra ? 30 + rand() * 60 : 45 + rand() * 95;
     const w = 70 + rand() * 70;
     dummy.position.set(Math.cos(a) * rad, y, Math.sin(a) * rad);
     dummy.scale.set(w, w * 0.5, 1);
     dummy.updateMatrix();
-    clouds.setMatrixAt(i, dummy.matrix);
-    seeds[i] = rand();
+    const slot = extra ? i : (i * 7) % N_BASE;
+    clouds.setMatrixAt(slot, dummy.matrix);
+    seeds[slot] = rand();
   }
   cGeo.setAttribute('aSeed', new THREE.InstancedBufferAttribute(seeds, 1));
   clouds.instanceMatrix.needsUpdate = true;
+  clouds.count = Math.min(N, TOON_Q.clouds);
   clouds.frustumCulled = false;
   clouds.renderOrder = 999; // before the dome, after the city
   clouds.name = 'toonClouds';
@@ -520,6 +533,7 @@ export function createToonSky(scene) {
       cloudU.uOpacity.value = 0.55 + 0.45 * day;
     },
     follow(camera) { group.position.copy(camera.position); },
+    setCloudCount(n) { clouds.count = THREE.MathUtils.clamp(Math.round(n), 0, N); },
   };
 }
 
@@ -543,6 +557,7 @@ export function createToonWaterMaterial(color, shoreRects = []) {
   const mat = new THREE.ShaderMaterial({
     uniforms,
     fog: true,
+    defines: { FOAM_DETAIL: TOON_Q.foam }, // 0 = contact rim only, 1 = + travelling bands, 2 = + open-water flecks
     vertexShader: /* glsl */`
       uniform float uTime;
       varying vec2 vXZ;
@@ -582,13 +597,19 @@ export function createToonWaterMaterial(color, shoreRects = []) {
         vec3 col = mix(uColor, uDeep, step(14.0 + n2 * 10.0, d));
         // Shore contact foam: a solid wobbling white rim.
         float rim = step(d, 1.4 + n * 1.6);
+        float foam = rim;
+        #if FOAM_DETAIL >= 1
         // Travelling foam bands parallel to the shore, broken up by noise, fading out to sea.
         float wave = fract(d * 0.17 - uTime * 0.25 + n * 0.6);
         float bands = step(0.8, wave) * (1.0 - smoothstep(5.0, 17.0, d)) * step(0.3, n2 + n * 0.4);
+        foam = max(foam, bands);
+        #endif
+        #if FOAM_DETAIL >= 2
         // Sparse open-water foam flecks (cell pattern).
         vec2 g = vXZ * 0.09 + vec2(uTime * 0.02, -uTime * 0.015);
         float fleck = step(0.93, vnoise(g * 3.1)) * step(0.55, vnoise(g * 0.7 + 3.0)) * smoothstep(10.0, 22.0, d);
-        float foam = max(rim, max(bands, fleck * 0.8));
+        foam = max(foam, fleck * 0.8);
+        #endif
         col = mix(col, uFoam, foam);
         gl_FragColor = vec4(col, 1.0);
         #include <colorspace_fragment>
@@ -596,6 +617,7 @@ export function createToonWaterMaterial(color, shoreRects = []) {
       }`,
   });
   mat.userData.toonWater = true;
+  _waterMats.push(mat);
   return mat;
 }
 
@@ -610,12 +632,14 @@ export function bindSky(sky) { _sky = sky; }
 /** Distance/screen-size culling of outline draws + time uniform + sky follow. */
 export function updateToon(camera, dt) {
   if (!TOON_ON) return;
-  U.uTime.value += dt;
+  if (!TOON_Q.freezeTime) U.uTime.value += dt; // freezeTime: capture tools pin the water/cloud animation
   if (_sky) _sky.follow(camera);
   const cp = camera.position;
   let vis = 0;
+  const mode = TOON_Q.outlines;
   for (const e of _outlines) {
-    if (e.r === Infinity) { vis++; continue; }
+    if (mode === 'off' || (mode === 'dynamic' && (e.isStatic || e.r === Infinity))) { e.line.visible = false; continue; }
+    if (e.r === Infinity) { e.line.visible = true; vis++; continue; }
     const c = OUTLINE_CLASSES[e.klass];
     if (e.isStatic) {
       if (!e.wp) { e.wp = new THREE.Vector3(); e.owner.getWorldPosition(e.wp); }
@@ -624,7 +648,7 @@ export function updateToon(camera, dt) {
       _v.setFromMatrixPosition(e.owner.matrixWorld);
     }
     const d = Math.max(0.001, _v.distanceTo(cp) - e.r);
-    let on = d < c.far && (e.r / (d + e.r)) > c.minScreen;
+    let on = d < c.far * TOON_Q.dist && (e.r / (d + e.r)) > c.minScreen;
     if (on && _v.distanceTo(cp) < e.r + 0.5) {
       // Camera inside / grazing the owner (e.g. car camera clipping a van): hide its hull.
       const g = e.owner.geometry;
@@ -637,6 +661,24 @@ export function updateToon(camera, dt) {
     if (on) vis++;
   }
   _stats.visible = vis;
+}
+
+/**
+ * Apply quality knobs live (good-1+3): outline mode + fade distance, cloud count, water foam detail.
+ * Outline part budgets (OUTLINE_CLASSES.*.maxPer) are read when an object is toonified.
+ */
+export function setToonQuality(q = {}) {
+  Object.assign(TOON_Q, q);
+  for (const [mkey, m] of Object.entries(_outlineMats)) {
+    const c = OUTLINE_CLASSES[mkey.split(':')[0]];
+    m.uniforms.uNear.value = c.near * TOON_Q.dist;
+    m.uniforms.uFar.value = c.far * TOON_Q.dist;
+  }
+  for (const l of _batchedOutlines) l.visible = TOON_Q.outlines === 'all';
+  if (_sky) _sky.setCloudCount(TOON_Q.clouds);
+  for (const m of _waterMats) {
+    if (m.defines.FOAM_DETAIL !== TOON_Q.foam) { m.defines.FOAM_DETAIL = TOON_Q.foam; m.needsUpdate = true; }
+  }
 }
 
 /** Called from the day/night apply(): ramp shadow level, rim and outline colours follow the sky. */

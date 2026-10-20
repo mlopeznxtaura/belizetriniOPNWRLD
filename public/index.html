@@ -64,11 +64,17 @@
     <div id="stick-zone"><div id="stick"></div></div>
     <button type="button" id="btn-action">F</button>
     <button type="button" id="btn-brake">Brake</button>
+    <button type="button" id="btn-pause" aria-label="Pause and settings">II</button>
   </div>
 
   <div id="pause-overlay" class="hidden">
     <h2>PAUSED</h2>
     <p>Press P or Esc to resume</p>
+    <div class="q-wrap">
+      <p class="q-label">Graphics quality</p>
+      <div id="quality-select" class="quality-select" role="group" aria-label="Graphics quality"></div>
+    </div>
+    <button type="button" id="btn-resume">Resume</button>
   </div>
 
   <canvas id="game-canvas"></canvas>
