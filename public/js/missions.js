@@ -65,6 +65,8 @@ export class MissionSystem {
     this.guardNpc = null;
   }
 
+  npcs() { return [this.rivalNpc, this.guardNpc]; }
+
   get current() {
     return MISSIONS.find((m) => m.id === this.currentId) || null;
   }

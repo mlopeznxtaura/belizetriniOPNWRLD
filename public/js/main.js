@@ -9,6 +9,7 @@ import { DriveClient } from './drive.js';
 import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U, forgetOutlines, registerOutline } from './toon.js';
 import { BATCH_ON, batchVehicle } from './batch.js';
 import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
+import { BlobShadows, BLOB_SIZE } from './blobshadow.js';
 import { resolveQuality, applyPreBuild, QualityController, PRESETS, PRESET_ORDER, saveQualityChoice } from './quality.js';
 
 class Game {
@@ -20,7 +21,7 @@ class Game {
     // in-page reason). See public/js/gfx.js for why there is no WebGL1 path with three r170.
     // good-1+3: device quality preset (URL > saved > auto-detect) decides AA before the context exists.
     const QR = resolveQuality();
-    applyPreBuild(QR.preset);
+    applyPreBuild(QR.preset, QR.shade);
     const made = createRendererRobust(this.canvas, { antialias: QR.preset.antialias });
     this.renderer = made.renderer;
     this.canvas = made.canvas;
@@ -63,7 +64,10 @@ class Game {
       this.batchStats = { vehicles: this.vehicles.map((v) => batchVehicle(v, { forgetOutlines, registerOutline })) };
     }
     this.toon = { on: TOON_ON, stats: outlineStats, Q: TOON_Q, U: TOON_U };
+    this.blobs = new BlobShadows(this.scene); // good-1+5 contact shadows (mobile path)
+    this._blobCasters = [];
     this.quality = new QualityController(this, QR);
+    if (QR.shade?.lambert) this.quality.stripShadowFlags();
     this.hud = new HUD();
     this.missions = new MissionSystem(this);
     this.drive = new DriveClient(this);
@@ -347,6 +351,7 @@ class Game {
     }
 
     this.quality?.update(dt);
+    if (this.blobs?.enabled) this._updateBlobs();
     updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
     // After the first frames (and after a restore) every program has been compiled: swap any that
@@ -356,6 +361,30 @@ class Game {
       const n = healShaderFailures(this.renderer, this.scene);
       if (n) { this.gfx.healed += n; gfxToast(`Simplified ${n} effect${n > 1 ? 's' : ''} for this GPU`); }
     }
+  }
+
+  /** good-1+5: one blob per character / vehicle (pooled caster records, no per-frame allocation). */
+  _updateBlobs() {
+    const out = this._blobCasters;
+    let n = 0;
+    const put = (x, y, z, yaw, sz, fade = 1) => {
+      const c = out[n] || (out[n] = {});
+      c.x = x; c.y = y; c.z = z; c.yaw = yaw; c.w = sz[0]; c.l = sz[1]; c.fade = fade; n++;
+    };
+    const p = this.player;
+    if (!p.inVehicle && p.mesh) put(p.mesh.position.x, p.mesh.position.y, p.mesh.position.z, 0, BLOB_SIZE.person);
+    for (const v of this.vehicles) {
+      if (!v.mesh?.visible) continue;
+      put(v.mesh.position.x, v.mesh.position.y, v.mesh.position.z, v.yaw ?? v.mesh.rotation.y, BLOB_SIZE[v.type] || BLOB_SIZE.sedan);
+    }
+    for (const c of this.cops) {
+      if (!c.alive || !c.mesh.visible) continue;
+      put(c.mesh.position.x, c.mesh.position.y, c.mesh.position.z, c.yaw, c.onFoot ? BLOB_SIZE.person : (c.isHeli ? BLOB_SIZE.heli : BLOB_SIZE.cop));
+    }
+    for (const npc of this.missions?.npcs?.() || []) {
+      if (npc?.mesh?.visible && npc.mesh.parent) put(npc.mesh.position.x, npc.mesh.position.y, npc.mesh.position.z, 0, BLOB_SIZE.person, npc.alive ? 1 : 0.6);
+    }
+    this.blobs.update(out, n);
   }
 
   _update(dt) {

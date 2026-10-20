@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OUTLINE_CLASSES, setToonQuality } from './toon.js';
+import { OUTLINE_CLASSES, setToonQuality, setShadingPath, SHADE } from './toon.js';
 
 /**
  * belizetriniOPNWRLD — device quality presets (good-1+3).
@@ -14,18 +14,22 @@ export const PRESETS = {
   low: {
     label: 'Low', pixelRatioCap: 1, antialias: false, shadows: false, outlines: 'dynamic', outlineDist: 0.5,
     clouds: 8, foam: 0, waterSeg: 0.25, far: 220, maxPointLights: 2, charOutlineParts: 6, vehicleOutlineParts: 2,
+    lambert: true, blobShadows: true,
   },
   medium: {
     label: 'Medium', pixelRatioCap: 1.25, antialias: false, shadows: false, outlines: 'all', outlineDist: 0.75,
     clouds: 16, foam: 1, waterSeg: 0.5, far: 320, maxPointLights: 4, charOutlineParts: 10, vehicleOutlineParts: 3,
+    lambert: true, blobShadows: true,
   },
   high: {
     label: 'High', pixelRatioCap: 1.5, antialias: true, shadows: false, outlines: 'all', outlineDist: 1,
     clouds: 26, foam: 2, waterSeg: 1, far: 450, maxPointLights: 8, charOutlineParts: 18, vehicleOutlineParts: 5,
+    lambert: false, blobShadows: false,
   },
   ultra: {
     label: 'Ultra', pixelRatioCap: 2, antialias: true, shadows: true, shadowMapSize: 2048, outlines: 'all', outlineDist: 1.3,
     clouds: 40, foam: 2, waterSeg: 1, far: 600, maxPointLights: 8, charOutlineParts: 24, vehicleOutlineParts: 8,
+    lambert: false, blobShadows: false,
   },
 };
 export const PRESET_ORDER = ['low', 'medium', 'high', 'ultra'];
@@ -97,7 +101,26 @@ export function resolveQuality() {
   if (saved && PRESETS[saved]) { name = saved; source = 'saved'; }
   const m = /[?&]quality=(low|medium|high|ultra)\b/.exec(window.location.search);
   if (m) { name = m[1]; source = 'url'; }
-  return { name, source, auto, saved: saved || 'auto', preset: PRESETS[name] };
+  return { name, source, auto, saved: saved || 'auto', preset: PRESETS[name], shade: resolveShading(PRESETS[name], auto) };
+}
+
+/**
+ * good-1+5 shading path, fixed for the life of the page (materials are built with it):
+ *   ?shade=toon|lambert   override
+ *   touch / iOS device    lambert (cheap mobile path, never live shadow maps)
+ *   otherwise             the preset's `lambert` knob (low/medium yes, high/ultra no)
+ * Blob/contact shadows: ?blobs=0|1 override, else on whenever the Lambert path is on or the preset asks.
+ */
+export function resolveShading(preset, auto) {
+  const qs = window.location.search;
+  const u = /[?&]shade=(toon|lambert)\b/.exec(qs);
+  const mobile = !!(auto?.info?.touch || auto?.info?.iOS);
+  let lambert, reason;
+  if (u) { lambert = u[1] === 'lambert'; reason = 'url'; }
+  else if (mobile) { lambert = true; reason = 'touch/iOS device'; }
+  else { lambert = !!preset.lambert; reason = 'preset'; }
+  const b = /[?&]blobs=([01])\b/.exec(qs);
+  return { lambert, reason, mobile, blobs: b ? b[1] === '1' : null };
 }
 
 export function saveQualityChoice(choice) {
@@ -108,7 +131,8 @@ export function saveQualityChoice(choice) {
 }
 
 /** Settings that must be known before anything is toonified / built. */
-export function applyPreBuild(q) {
+export function applyPreBuild(q, shade) {
+  if (shade) setShadingPath(shade.lambert);
   OUTLINE_CLASSES.char.maxPer = q.charOutlineParts;
   OUTLINE_CLASSES.vehicle.maxPer = q.vehicleOutlineParts;
   setToonQuality({ outlines: q.outlines, dist: q.outlineDist, clouds: q.clouds, foam: q.foam });
@@ -129,6 +153,7 @@ export class QualityController {
     this._v = new THREE.Vector3();
     this._shadowSetup = false;
     this._builtWith = { antialias: resolved.preset.antialias, charOutlineParts: resolved.preset.charOutlineParts };
+    this.shade = resolved.shade || { lambert: SHADE.lambert, reason: 'n/a', mobile: false, blobs: null };
   }
 
   /** Apply everything that can change live. Returns a list of settings that need a reload. */
@@ -142,13 +167,26 @@ export class QualityController {
     cam.far = q.far; cam.updateProjectionMatrix();
     g.world.dayNight.setDrawDistance?.(q.far);
     setToonQuality({ outlines: q.outlines, dist: q.outlineDist, clouds: q.clouds, foam: q.foam });
-    this._setShadows(q.shadows, q.shadowMapSize || 1024);
+    // good-1+5: the Lambert (mobile) path never runs a live shadow map; blob decals stand in.
+    this._setShadows(this.liveShadows, q.shadowMapSize || 1024);
+    g.blobs?.setEnabled(this.blobsOn);
     this._lightT = 0; this.updateLights(true);
     document.documentElement.dataset.quality = this.name;
     const reload = [];
+    if (!!q.lambert !== this.shade.lambert && !this.shade.mobile && this.shade.reason !== 'url') reload.push('shading');
     if (q.antialias !== this._builtWith.antialias) reload.push('anti-aliasing');
     if (q.charOutlineParts !== this._builtWith.charOutlineParts) reload.push('character outlines');
     return reload;
+  }
+
+  get liveShadows() { return !!this.q.shadows && !this.shade.lambert; }
+  get blobsOn() { return this.shade.blobs ?? (this.shade.lambert || !!this.q.blobShadows); }
+
+  /** good-1+5: on the mobile path nothing casts or receives (no shadow programs, no shadow pass). */
+  stripShadowFlags() {
+    let n = 0;
+    this.game.scene.traverse((o) => { if (o.isMesh && (o.castShadow || o.receiveShadow)) { o.castShadow = false; o.receiveShadow = false; n++; } });
+    return n;
   }
 
   _setShadows(on, size) {
@@ -187,7 +225,7 @@ export class QualityController {
   /** Per frame: shadow camera follows the player; nearest-N point lights (count stays constant => no recompiles). */
   update(dt) {
     const g = this.game, q = this.q;
-    if (q.shadows) {
+    if (this.liveShadows) {
       const sun = g.world.dayNight.lights.sun;
       const p = g.player.position;
       // dayNight.apply() records the sun direction; re-centre the light (and its shadow camera) on the player.
@@ -200,7 +238,10 @@ export class QualityController {
     if (this._lightT <= 0) {
       this.updateLights();
       // Characters/vehicles load or swap after the preset was applied: keep them casting.
-      if (q.shadows) for (const root of [g.player.mesh, ...(g.vehicles || []).map((v) => v.mesh)]) {
+      if (this.shade.lambert) for (const root of [g.player.mesh, ...(g.vehicles || []).map((v) => v.mesh)]) {
+        root?.traverse?.((o) => { if (o.isMesh && (o.castShadow || o.receiveShadow)) { o.castShadow = false; o.receiveShadow = false; } });
+      }
+      if (this.liveShadows) for (const root of [g.player.mesh, ...(g.vehicles || []).map((v) => v.mesh)]) {
         root?.traverse?.((o) => { if (o.isMesh && !o.userData?.isOutline && !o.castShadow) { o.castShadow = true; o.receiveShadow = true; } });
       }
     }
@@ -219,6 +260,7 @@ export class QualityController {
   stats() {
     const lights = this.game.world.realLights || [];
     return { name: this.name, source: this.source, auto: this.auto.preset, autoReason: this.auto.reason,
-      pointLightsOn: lights.filter((l) => l.visible).length, ...this.q };
+      pointLightsOn: lights.filter((l) => l.visible).length, ...this.q,
+      shading: this.shade.lambert ? 'lambert' : 'toon', shadingReason: this.shade.reason, liveShadows: this.liveShadows, blobs: this.blobsOn };
   }
 }

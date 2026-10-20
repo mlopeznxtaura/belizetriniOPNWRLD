@@ -1,0 +1,210 @@
+{
+ "_browser": "130.0.6723.31",
+ "iphone": {
+  "case": "iphone",
+  "start": {
+   "frames": 44,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 111,
+   "tris": 53118,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    147,
+    145,
+    135,
+    255
+   ],
+   "distinctSamples": 8,
+   "dbw": 390,
+   "dbh": 844,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "mobileControls": true,
+  "stickSpeed": 8.97,
+  "end": {
+   "frames": 83,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 101,
+   "tris": 52374,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    68,
+    75,
+    89,
+    255
+   ],
+   "distinctSamples": 5,
+   "dbw": 390,
+   "dbh": 844,
+   "dpr": 3,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHT",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ },
+ "ctxloss": {
+  "case": "ctxloss",
+  "start": {
+   "frames": 38,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 0,
+    "restores": 0
+   },
+   "calls": 153,
+   "tris": 50850,
+   "programs": 14,
+   "bad": 0,
+   "px": [
+    146,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "lostA": {
+   "f": 40,
+   "lost": true,
+   "raf": 0
+  },
+  "lostB": {
+   "f": 40,
+   "toast": "Graphics paused — restoring…"
+  },
+  "restored": {
+   "frames": 6,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 1,
+    "restores": 1
+   },
+   "calls": 153,
+   "tris": 50850,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    147,
+    146,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "restored2": {
+   "f": 12
+  },
+  "cycle2": {
+   "frames": 7,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 154,
+   "tris": 50862,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    147,
+    145,
+    135,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "moved": 2.55,
+  "end": {
+   "frames": 23,
+   "lost": false,
+   "attempt": "webgl2-relaxed",
+   "tried": [
+    "webgl2-relaxed:ok"
+   ],
+   "healed": 0,
+   "ctx": {
+    "losses": 2,
+    "restores": 2
+   },
+   "calls": 152,
+   "tris": 50828,
+   "programs": 13,
+   "bad": 0,
+   "px": [
+    147,
+    145,
+    134,
+    255
+   ],
+   "distinctSamples": 11,
+   "dbw": 800,
+   "dbh": 500,
+   "dpr": 1,
+   "glVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessC",
+   "precisionFragHigh": 23
+  },
+  "uncaught": [],
+  "consoleErrors": [],
+  "shaderWarnings": []
+ }
+}

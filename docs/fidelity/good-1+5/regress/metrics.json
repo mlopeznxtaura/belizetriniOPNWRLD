@@ -1,0 +1,222 @@
+{
+ "after": {
+  "queen_noon": {
+   "meshes": 418,
+   "batchMeshes": 214,
+   "batchStats": {
+    "considered": 1123,
+    "groups": 111,
+    "merged": 80,
+    "removed": 1092,
+    "cell": 96
+   },
+   "calls": 335,
+   "triangles": 120314,
+   "programs": 18,
+   "geometries": 238,
+   "textures": 3,
+   "frameMsMedian": 275.6,
+   "frameMsMin": 274.6,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": true,
+   "far": 600,
+   "quality": {
+    "name": "ultra",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "Ultra",
+    "pixelRatioCap": 2,
+    "antialias": true,
+    "shadows": true,
+    "shadowMapSize": 2048,
+    "outlines": "all",
+    "outlineDist": 1.3,
+    "clouds": 40,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 600,
+    "maxPointLights": 8,
+    "charOutlineParts": 24,
+    "vehicleOutlineParts": 8,
+    "lambert": false,
+    "blobShadows": false,
+    "shading": "toon",
+    "shadingReason": "preset",
+    "liveShadows": true,
+    "blobs": false
+   },
+   "png": "docs/fidelity/good-1+5/regress/after_queen_noon.png"
+  },
+  "shore_noon": {
+   "meshes": 418,
+   "batchMeshes": 214,
+   "batchStats": {
+    "considered": 1123,
+    "groups": 111,
+    "merged": 80,
+    "removed": 1092,
+    "cell": 96
+   },
+   "calls": 203,
+   "triangles": 110456,
+   "programs": 18,
+   "geometries": 238,
+   "textures": 3,
+   "frameMsMedian": 149.7,
+   "frameMsMin": 148.7,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": true,
+   "far": 600,
+   "quality": {
+    "name": "ultra",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "Ultra",
+    "pixelRatioCap": 2,
+    "antialias": true,
+    "shadows": true,
+    "shadowMapSize": 2048,
+    "outlines": "all",
+    "outlineDist": 1.3,
+    "clouds": 40,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 600,
+    "maxPointLights": 8,
+    "charOutlineParts": 24,
+    "vehicleOutlineParts": 8,
+    "lambert": false,
+    "blobShadows": false,
+    "shading": "toon",
+    "shadingReason": "preset",
+    "liveShadows": true,
+    "blobs": false
+   },
+   "png": "docs/fidelity/good-1+5/regress/after_shore_noon.png"
+  },
+  "_errors": {
+   "high": [],
+   "ultra": []
+  }
+ },
+ "base14": {
+  "queen_noon": {
+   "meshes": 417,
+   "batchMeshes": 214,
+   "batchStats": {
+    "considered": 1123,
+    "groups": 111,
+    "merged": 80,
+    "removed": 1092,
+    "cell": 96
+   },
+   "calls": 335,
+   "triangles": 120314,
+   "programs": 18,
+   "geometries": 238,
+   "textures": 3,
+   "frameMsMedian": 275.9,
+   "frameMsMin": 273.4,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": true,
+   "far": 600,
+   "quality": {
+    "name": "ultra",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "Ultra",
+    "pixelRatioCap": 2,
+    "antialias": true,
+    "shadows": true,
+    "shadowMapSize": 2048,
+    "outlines": "all",
+    "outlineDist": 1.3,
+    "clouds": 40,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 600,
+    "maxPointLights": 8,
+    "charOutlineParts": 24,
+    "vehicleOutlineParts": 8
+   },
+   "png": "docs/fidelity/good-1+5/regress/base14_queen_noon.png"
+  },
+  "shore_noon": {
+   "meshes": 417,
+   "batchMeshes": 214,
+   "batchStats": {
+    "considered": 1123,
+    "groups": 111,
+    "merged": 80,
+    "removed": 1092,
+    "cell": 96
+   },
+   "calls": 203,
+   "triangles": 110456,
+   "programs": 18,
+   "geometries": 238,
+   "textures": 3,
+   "frameMsMedian": 149.4,
+   "frameMsMin": 148.6,
+   "pointLights": 8,
+   "pointLightsOn": 8,
+   "buffer": [
+    960,
+    540
+   ],
+   "aa": true,
+   "shadows": true,
+   "far": 600,
+   "quality": {
+    "name": "ultra",
+    "source": "url",
+    "auto": "low",
+    "autoReason": "software renderer",
+    "pointLightsOn": 8,
+    "label": "Ultra",
+    "pixelRatioCap": 2,
+    "antialias": true,
+    "shadows": true,
+    "shadowMapSize": 2048,
+    "outlines": "all",
+    "outlineDist": 1.3,
+    "clouds": 40,
+    "foam": 2,
+    "waterSeg": 1,
+    "far": 600,
+    "maxPointLights": 8,
+    "charOutlineParts": 24,
+    "vehicleOutlineParts": 8
+   },
+   "png": "docs/fidelity/good-1+5/regress/base14_shore_noon.png"
+  },
+  "_errors": {
+   "high": [],
+   "ultra": []
+  }
+ }
+}

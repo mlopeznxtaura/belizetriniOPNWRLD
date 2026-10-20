@@ -61,6 +61,40 @@ export const RAMP_WORLD = makeRamp(['s', 's', 'm', 'l', 'l']);
 // Characters: softer 3-band — a wider mid band so faces and skin never go hard black-and-white.
 export const RAMP_SKIN = makeRamp(['s', 'm', 'm', 'm', 'l', 'l']);
 
+// ─── good-1+5: cheap Lambert shading path (mobile) ────────────────────────────────
+// Same banding as the gradient ramps above, done with two compares on the Lambert N·L instead of a
+// MeshToonMaterial + gradient texture fetch per light. Thresholds reproduce the NearestFilter ramp
+// lookup exactly (coord = N·L*0.5+0.5 over N texels), and the levels follow the sky like setRamp().
+// Precision stays highp: three r170 makes `material.precision` sticky for every program compiled after
+// it (WebGLPrograms keeps it in a closure variable), and fp16 overflows |vViewPosition|² beyond ~250 m.
+export const SHADE = { lambert: false, precision: null };
+/** Decide the shading path. Must run before any material is created (quality.applyPreBuild). */
+export function setShadingPath(lambert, precision) {
+  SHADE.lambert = !!lambert && TOON_ON;
+  if (precision) SHADE.precision = precision;
+}
+// x,y = N·L thresholds (shadow below x, mid below y), z,w = shadow / mid levels.
+export const BAND = {
+  world: { value: new THREE.Vector4(-0.2, 0.2, 1, 1) }, // 5 texels: s s m l l
+  skin: { value: new THREE.Vector4(-2 / 3, 1 / 3, 1, 1) }, // 6 texels: s m m m l l
+};
+const LAMBERT_BANDED = THREE.ShaderChunk.lights_lambert_pars_fragment.replace(
+  'float dotNL = saturate( dot( geometryNormal, directLight.direction ) );\n\tvec3 irradiance = dotNL * directLight.color;',
+  'float dotNL = dot( geometryNormal, directLight.direction );\n\tvec3 irradiance = ( dotNL < uBand.x ? uBand.z : ( dotNL < uBand.y ? uBand.w : 1.0 ) ) * directLight.color;'
+);
+if (LAMBERT_BANDED === THREE.ShaderChunk.lights_lambert_pars_fragment) console.warn('[toon] lambert band patch did not apply');
+function installLambertBands(mat, key, rim) {
+  const band = key === 'skin' ? BAND.skin : BAND.world;
+  const prev = mat.onBeforeCompile;
+  mat.onBeforeCompile = (shader, r) => {
+    shader.uniforms.uBand = band;
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <lights_lambert_pars_fragment>', 'uniform vec4 uBand;\n' + LAMBERT_BANDED);
+    if (rim && prev) prev(shader, r);
+  };
+  mat.customProgramCacheKey = () => 'lambband-' + key + (rim ? '-rim' : '');
+}
+
 // ─── Toon materials ────────────────────────────────────────────────────────────
 function installRim(mat, key) {
   mat.onBeforeCompile = (shader) => {
@@ -86,6 +120,7 @@ function installRim(mat, key) {
 
 /** New toon material (flat albedo + banded ramp + rim). */
 export function toonMaterial(color, opts = {}) {
+  if (SHADE.lambert) return lambertToonMaterial(color, opts);
   const mat = new THREE.MeshToonMaterial({
     color,
     gradientMap: opts.ramp || RAMP_WORLD,
@@ -103,12 +138,32 @@ export function toonMaterial(color, opts = {}) {
   return mat;
 }
 
+/** good-1+5 mobile path: MeshLambertMaterial with the ramp bands applied to N·L (see BAND). */
+function lambertToonMaterial(color, opts = {}) {
+  const mat = new THREE.MeshLambertMaterial({
+    color,
+    transparent: !!opts.transparent,
+    opacity: opts.opacity ?? 1,
+    map: opts.map || null,
+    side: opts.side ?? THREE.FrontSide,
+    vertexColors: !!opts.vertexColors,
+  });
+  if (opts.emissive != null) mat.emissive.set(opts.emissive);
+  if (SHADE.precision) mat.precision = SHADE.precision;
+  const key = opts.ramp === RAMP_SKIN ? 'skin' : 'world';
+  if (opts.rim) installRim(mat, key);
+  installLambertBands(mat, key, !!opts.rim);
+  mat.userData.toon = true;
+  mat.userData.lambert = true;
+  return mat;
+}
+
 const _convCache = new Map();
 /** Convert a lit material (Standard/Physical/Phong/Lambert) to toon. Cached per source material. */
 export function convertMaterial(src, opts = {}) {
   if (!src || src.userData?.toon) return src;
   if (!(src.isMeshStandardMaterial || src.isMeshPhongMaterial || src.isMeshLambertMaterial)) return src;
-  const key = src.uuid + (opts.ramp === RAMP_SKIN ? ':s' : ':w');
+  const key = src.uuid + (opts.ramp === RAMP_SKIN ? ':s' : ':w') + (SHADE.lambert ? ':l' : '');
   if (_convCache.has(key)) return _convCache.get(key);
   const color = src.color ? src.color.clone() : new THREE.Color(0xffffff);
   if (opts.recolor) opts.recolor(color, src);
@@ -699,6 +754,10 @@ export function applyToonSkyState(s) {
   const day = THREE.MathUtils.smoothstep(s.sunI, 0.05, 1.3);
   setRamp(RAMP_WORLD, 0.42 + 0.1 * (1 - day), 0.72);
   setRamp(RAMP_SKIN, 0.55 + 0.08 * (1 - day), 0.8);
+  // good-1+5 Lambert path: same levels, quantised the way the 8-bit ramp texels are.
+  const q8 = (v) => Math.round(THREE.MathUtils.clamp(v, 0, 1) * 255) / 255;
+  BAND.world.value.z = q8(0.42 + 0.1 * (1 - day)); BAND.world.value.w = q8(0.72);
+  BAND.skin.value.z = q8(0.55 + 0.08 * (1 - day)); BAND.skin.value.w = q8(0.8);
   const rim = U.uRimColor.value.setHex(s.hemiSky);
   rim.lerp(new THREE.Color(0xffffff), 0.35);
   U.uRimStrength.value = 0.12 + 0.16 * day;

@@ -1,0 +1,86 @@
+{
+ "start": {
+  "rig": true,
+  "speed": 0,
+  "heading": 0,
+  "pos": [
+   -72,
+   3.45
+  ],
+  "inVehicle": false,
+  "runW": 0
+ },
+ "walk": {
+  "rig": true,
+  "speed": 2.51,
+  "heading": 2.98,
+  "pos": [
+   -71.74,
+   3.1
+  ],
+  "inVehicle": false,
+  "runW": 0
+ },
+ "sprint": {
+  "rig": true,
+  "speed": 8.87,
+  "heading": 3.07,
+  "pos": [
+   -71.43,
+   -1.07
+  ],
+  "inVehicle": false,
+  "runW": 0.9
+ },
+ "turning": {
+  "rig": true,
+  "speed": 9,
+  "heading": -2.38,
+  "pos": [
+   -72.16,
+   -5.25
+  ],
+  "inVehicle": false,
+  "runW": 0.99
+ },
+ "stopped": {
+  "rig": true,
+  "speed": 0,
+  "heading": -2.38,
+  "pos": [
+   -72.84,
+   -5.45
+  ],
+  "inVehicle": false,
+  "runW": 0.22
+ },
+ "vehicleType": "sedan",
+ "afterEnter": {
+  "rig": true,
+  "speed": 0,
+  "heading": -2.38,
+  "pos": [
+   0.38,
+   0.18
+  ],
+  "inVehicle": true,
+  "runW": 0
+ },
+ "driving": 5.1,
+ "afterExit": {
+  "rig": true,
+  "speed": 0,
+  "heading": 3.14,
+  "pos": [
+   -63.33,
+   2.99
+  ],
+  "inVehicle": false,
+  "runW": 0
+ },
+ "errors": [],
+ "missing": [
+  "404 /api/state-sync",
+  "404 /api/drive/poll"
+ ]
+}
