@@ -40,6 +40,7 @@ export class DriveClient {
           },
           district: g.district,
           inVehicle: g.player.inVehicle,
+          perf: g.governor ? g.governor.state() : undefined,
         }),
       });
     } catch (_) {

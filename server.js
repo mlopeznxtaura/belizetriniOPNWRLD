@@ -223,6 +223,8 @@ app.post('/api/state-sync', (req, res) => {
   }
   if (typeof b.district === 'string') gameState.district = b.district;
   if (typeof b.inVehicle === 'boolean') gameState.inVehicle = b.inVehicle;
+  // good-1+6: adaptive-fps governor state (fps, level, tier, pixel ratio...)
+  if (b.perf && typeof b.perf === 'object') gameState.perf = b.perf;
   gameState.lastUpdate = new Date().toISOString();
   if (gameState.running && !gameState.startedAt) {
     gameState.startedAt = gameState.lastUpdate;

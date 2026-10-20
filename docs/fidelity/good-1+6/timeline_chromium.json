@@ -1,0 +1,9938 @@
+{
+ "summary": {
+  "engine": "chromium",
+  "query": "?quality=medium&fps=10&debug=1",
+  "phases": {
+   "A": 10,
+   "B": 35,
+   "C": 30,
+   "D": 85
+  },
+  "fillMs": 120,
+  "heavyMs": 220,
+  "errors": [],
+  "ladder": [
+   "pixelRatio:1",
+   "pixelRatio:0.75",
+   "outlines",
+   "clouds",
+   "foam",
+   "tier:low"
+  ],
+  "endOfA": {
+   "t": 9.75,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.16,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  "endOfB": {
+   "t": 44.77,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  "endOfC": {
+   "t": 74.6,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.83,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  "endOfD": {
+   "t": 163.5,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.71,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  "stepsDownInB": 1,
+  "stepsUpInB": 0,
+  "reversalsUnder8s": 0,
+  "maxLevelInC": 6,
+  "firstDownAfterLoad": 14.27,
+  "recoveredToLevel0At": 112.25,
+  "events": 12
+ },
+ "timeline": [
+  {
+   "t": 14.27,
+   "action": "down:pixelRatio",
+   "level": 1,
+   "avgMs": 126.89,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 1.25,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 1,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 48.88,
+   "action": "down:pixelRatio",
+   "level": 2,
+   "avgMs": 151.65,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 1,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 50.5,
+   "action": "down:outlines",
+   "level": 3,
+   "avgMs": 200.6,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 52.09,
+   "action": "down:clouds",
+   "level": 4,
+   "avgMs": 228.36,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 1
+   }
+  },
+  {
+   "t": 53.67,
+   "action": "down:foam",
+   "level": 5,
+   "avgMs": 226.96,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 0
+   }
+  },
+  {
+   "t": 55.34,
+   "action": "down:tier",
+   "level": 6,
+   "avgMs": 227.96,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 0
+   },
+   "to": {
+    "tier": "low",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.3,
+    "clouds": 4,
+    "foam": 0
+   }
+  },
+  {
+   "t": 88.06,
+   "action": "up:tier",
+   "level": 5,
+   "avgMs": 43.45,
+   "from": {
+    "tier": "low",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.3,
+    "clouds": 4,
+    "foam": 0
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 0
+   }
+  },
+  {
+   "t": 93.08,
+   "action": "up:foam",
+   "level": 4,
+   "avgMs": 52.07,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 0
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 1
+   }
+  },
+  {
+   "t": 98.15,
+   "action": "up:clouds",
+   "level": 3,
+   "avgMs": 49.39,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 8,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 103.17,
+   "action": "up:outlines",
+   "level": 2,
+   "avgMs": 45.71,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.45,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 108.19,
+   "action": "up:pixelRatio",
+   "level": 1,
+   "avgMs": 45.78,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 0.75,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 1,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   }
+  },
+  {
+   "t": 113.23,
+   "action": "up:pixelRatio",
+   "level": 0,
+   "avgMs": 50.12,
+   "from": {
+    "tier": "medium",
+    "pixelRatio": 1,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   },
+   "to": {
+    "tier": "medium",
+    "pixelRatio": 1.25,
+    "outlineDist": 0.75,
+    "clouds": 16,
+    "foam": 1
+   }
+  }
+ ],
+ "samples": [
+  {
+   "t": 0.25,
+   "load": "none",
+   "fps": 5.3,
+   "avgMs": 189.3,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 0.5,
+   "load": "none",
+   "fps": 5.3,
+   "avgMs": 189.3,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 0.75,
+   "load": "none",
+   "fps": 5.3,
+   "avgMs": 189.3,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 1,
+   "load": "none",
+   "fps": 5.3,
+   "avgMs": 189.3,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 1.25,
+   "load": "none",
+   "fps": 5.3,
+   "avgMs": 189.3,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 1.5,
+   "load": "none",
+   "fps": 5,
+   "avgMs": 201.44,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 1.75,
+   "load": "none",
+   "fps": 4.8,
+   "avgMs": 209.53,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 2,
+   "load": "none",
+   "fps": 5.8,
+   "avgMs": 173.14,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 2.25,
+   "load": "none",
+   "fps": 7.1,
+   "avgMs": 141.21,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 2.5,
+   "load": "none",
+   "fps": 7.8,
+   "avgMs": 128.61,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 2.75,
+   "load": "none",
+   "fps": 8.6,
+   "avgMs": 116.7,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 3,
+   "load": "none",
+   "fps": 10.9,
+   "avgMs": 91.63,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 3.25,
+   "load": "none",
+   "fps": 13.6,
+   "avgMs": 73.66,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 3.5,
+   "load": "none",
+   "fps": 14.9,
+   "avgMs": 67.15,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 3.75,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 63.94,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 4,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 63.02,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 4.25,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.87,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 4.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.76,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 4.75,
+   "load": "none",
+   "fps": 14.9,
+   "avgMs": 67.06,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 5,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.16,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 5.25,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.49,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 5.5,
+   "load": "none",
+   "fps": 14.9,
+   "avgMs": 67.28,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 5.75,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 6,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.7,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 6.25,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.85,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 6.5,
+   "load": "none",
+   "fps": 16.6,
+   "avgMs": 60.41,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 6.75,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.15,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 7,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.81,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 7.25,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.99,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 7.5,
+   "load": "none",
+   "fps": 16.5,
+   "avgMs": 60.45,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 7.75,
+   "load": "none",
+   "fps": 15.2,
+   "avgMs": 65.97,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 8,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.77,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 8.25,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.7,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 8.5,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.78,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 8.75,
+   "load": "none",
+   "fps": 14.8,
+   "avgMs": 67.67,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 9,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.14,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 9.25,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.71,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 9.5,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.2,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 9.75,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.16,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 10,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.57,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 10.31,
+   "load": "fill",
+   "fps": 14.9,
+   "avgMs": 67.31,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 10.71,
+   "load": "fill",
+   "fps": 12.9,
+   "avgMs": 77.62,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 10.97,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84.06,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 11.22,
+   "load": "fill",
+   "fps": 10.8,
+   "avgMs": 92.92,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 11.47,
+   "load": "fill",
+   "fps": 10.1,
+   "avgMs": 99.2,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 11.72,
+   "load": "fill",
+   "fps": 9.5,
+   "avgMs": 105.53,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 11.97,
+   "load": "fill",
+   "fps": 8.9,
+   "avgMs": 111.99,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 12.22,
+   "load": "fill",
+   "fps": 8.5,
+   "avgMs": 117.88,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 12.47,
+   "load": "fill",
+   "fps": 8.2,
+   "avgMs": 122.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 12.72,
+   "load": "fill",
+   "fps": 7.8,
+   "avgMs": 128.46,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 12.86,
+   "load": "fill",
+   "fps": 7.9,
+   "avgMs": 127.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 13.26,
+   "load": "fill",
+   "fps": 7.9,
+   "avgMs": 126.89,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 13.61,
+   "load": "fill",
+   "fps": 8.2,
+   "avgMs": 121.8,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 13.78,
+   "load": "fill",
+   "fps": 8.5,
+   "avgMs": 117.55,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 14.11,
+   "load": "fill",
+   "fps": 9.2,
+   "avgMs": 109.15,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 14.36,
+   "load": "fill",
+   "fps": 9.7,
+   "avgMs": 102.7,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 14.64,
+   "load": "fill",
+   "fps": 10.2,
+   "avgMs": 97.99,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 14.82,
+   "load": "fill",
+   "fps": 10.7,
+   "avgMs": 93.52,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 15,
+   "load": "fill",
+   "fps": 11.1,
+   "avgMs": 90.28,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 15.41,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 85.85,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 15.66,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.53,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 15.91,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.74,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 16.15,
+   "load": "fill",
+   "fps": 12,
+   "avgMs": 83.47,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 16.39,
+   "load": "fill",
+   "fps": 12.1,
+   "avgMs": 82.97,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 16.56,
+   "load": "fill",
+   "fps": 12.2,
+   "avgMs": 81.81,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 16.75,
+   "load": "fill",
+   "fps": 12.1,
+   "avgMs": 82.49,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 17.14,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.38,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 17.39,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 17.63,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.2,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 17.88,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.43,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 18.15,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.79,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 18.4,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.23,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 18.65,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.61,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 18.9,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84.08,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 19.06,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.74,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 19.34,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 19.52,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.02,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 19.89,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 87.14,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 20.16,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.88,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 20.35,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.45,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 20.63,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.71,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 20.88,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 91.03,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 21.05,
+   "load": "fill",
+   "fps": 11.1,
+   "avgMs": 89.81,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 21.4,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.63,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 21.66,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.19,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 21.85,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.36,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 22.09,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.95,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 22.37,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.72,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 22.61,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.42,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 22.88,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.76,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 23.07,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.98,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 23.33,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.47,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 23.5,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.17,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 23.75,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.92,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 24.11,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.4,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 24.39,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.67,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 24.65,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.39,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 24.75,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 87.28,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 25.09,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.17,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 25.33,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.94,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 25.65,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.26,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 25.81,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.94,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 26.09,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 85.08,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 26.35,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.6,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 26.59,
+   "load": "fill",
+   "fps": 12,
+   "avgMs": 83.44,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 26.86,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.74,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 27.11,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.83,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 27.36,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.28,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 27.6,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.96,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 27.77,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.82,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 28.13,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 85.1,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 28.38,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.96,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 28.62,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 28.79,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84.27,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 29.13,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.48,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 29.38,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 85.01,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 29.64,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.7,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 29.81,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 83.9,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 30.13,
+   "load": "fill",
+   "fps": 12,
+   "avgMs": 83.68,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 30.41,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.41,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 30.57,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84.16,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 30.91,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.14,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 31.1,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 85.85,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 31.35,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.23,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 31.6,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.35,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 31.84,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.38,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 32.01,
+   "load": "fill",
+   "fps": 11.9,
+   "avgMs": 84.28,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 32.28,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.25,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 32.63,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 85.88,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 32.87,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.64,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 33.14,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.44,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 33.3,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.31,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 33.56,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.66,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 33.83,
+   "load": "fill",
+   "fps": 11.7,
+   "avgMs": 85.37,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 34,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 85.97,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 34.27,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 86.12,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 34.56,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 88,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 34.84,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.17,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 35.01,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.17,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 35.38,
+   "load": "fill",
+   "fps": 10.9,
+   "avgMs": 91.49,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 35.65,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 91.14,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 35.84,
+   "load": "fill",
+   "fps": 10.9,
+   "avgMs": 92.13,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 36.1,
+   "load": "fill",
+   "fps": 10.9,
+   "avgMs": 91.54,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 36.37,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.89,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 36.63,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.25,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 36.9,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.1,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 37.14,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.92,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 37.39,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 87.28,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 37.64,
+   "load": "fill",
+   "fps": 11.6,
+   "avgMs": 85.89,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 37.9,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.54,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 38.15,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.62,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 38.33,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.69,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 38.5,
+   "load": "fill",
+   "fps": 11.8,
+   "avgMs": 84.75,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 38.8,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.9,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 39,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.8,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 39.35,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.68,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 39.61,
+   "load": "fill",
+   "fps": 11.1,
+   "avgMs": 90.44,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 39.78,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.57,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 40.06,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 91.12,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 40.39,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.6,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 40.64,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.85,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 40.82,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 87.01,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 41.1,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.45,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 41.27,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.73,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 41.54,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.17,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 41.9,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.64,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 42.15,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.61,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 42.32,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.16,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 42.51,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.38,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 42.78,
+   "load": "fill",
+   "fps": 11.3,
+   "avgMs": 88.29,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 43.14,
+   "load": "fill",
+   "fps": 11.4,
+   "avgMs": 87.95,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 43.39,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 87.27,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 43.64,
+   "load": "fill",
+   "fps": 11.5,
+   "avgMs": 86.96,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 43.86,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.48,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 44.02,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.19,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 44.4,
+   "load": "fill",
+   "fps": 11.2,
+   "avgMs": 89.5,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 44.58,
+   "load": "fill",
+   "fps": 11.1,
+   "avgMs": 89.97,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 44.77,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 45.13,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.72,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 45.29,
+   "load": "fill",
+   "fps": 11,
+   "avgMs": 90.97,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 45.5,
+   "load": "fill",
+   "fps": 10.8,
+   "avgMs": 92.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 45.75,
+   "load": "fill",
+   "fps": 10.9,
+   "avgMs": 91.68,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 46.36,
+   "load": "heavy",
+   "fps": 9.6,
+   "avgMs": 104.53,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 46.81,
+   "load": "heavy",
+   "fps": 8.5,
+   "avgMs": 117.63,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 47.04,
+   "load": "heavy",
+   "fps": 8,
+   "avgMs": 124.91,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 47.5,
+   "load": "heavy",
+   "fps": 7.2,
+   "avgMs": 138.2,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 47.97,
+   "load": "heavy",
+   "fps": 6.6,
+   "avgMs": 151.65,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 48.42,
+   "load": "heavy",
+   "fps": 6,
+   "avgMs": 166.85,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 48.88,
+   "load": "heavy",
+   "fps": 5.5,
+   "avgMs": 180.25,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 49.34,
+   "load": "heavy",
+   "fps": 5.1,
+   "avgMs": 194.87,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 49.79,
+   "load": "heavy",
+   "fps": 4.8,
+   "avgMs": 207.91,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 50.25,
+   "load": "heavy",
+   "fps": 4.5,
+   "avgMs": 220.9,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 50.7,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.33,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 51.16,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.36,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 51.38,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.37,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 51.83,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.28,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 52.28,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.06,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 52.81,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 226.96,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 53.04,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.1,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 53.5,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.14,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 54.18,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.24,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 54.77,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.26,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 55,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.26,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 55.25,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.26,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 55.85,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.05,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 56.3,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.12,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 56.75,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.14,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 57.2,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.21,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 57.43,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.28,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 57.88,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 230.28,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 58.34,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.43,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 58.81,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.88,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 59.26,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 229.93,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 59.95,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.95,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 60.41,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.34,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 60.87,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.4,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 61.09,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.4,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 61.65,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.65,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 62.1,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.64,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 62.55,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.5,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 63,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.22,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 63.68,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.74,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 64.13,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.55,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 64.59,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 227.95,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 65.04,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 227.26,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 65.26,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 227.11,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 65.94,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 227.44,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 66.4,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 226.06,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 66.84,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 226.05,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 67.29,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.93,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 67.74,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.59,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 68.42,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.49,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 68.87,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.36,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 69.09,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.36,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 69.54,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.29,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 69.99,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 224.9,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 70.44,
+   "load": "heavy",
+   "fps": 4.5,
+   "avgMs": 224.53,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 70.89,
+   "load": "heavy",
+   "fps": 4.5,
+   "avgMs": 224.49,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 71.34,
+   "load": "heavy",
+   "fps": 4.5,
+   "avgMs": 224.61,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 71.79,
+   "load": "heavy",
+   "fps": 4.5,
+   "avgMs": 224.71,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 72.25,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 224.92,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 72.92,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.2,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 73.38,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.43,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 73.62,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 225.98,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 73.87,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 227.19,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 74.34,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 228.49,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 74.6,
+   "load": "heavy",
+   "fps": 4.4,
+   "avgMs": 229.83,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 75.08,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 231.19,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 75.56,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 232.49,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 76.02,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 232.77,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 76.26,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 233.51,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 76.5,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 233.86,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 76.76,
+   "load": "heavy",
+   "fps": 4.3,
+   "avgMs": 234.98,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 77.04,
+   "load": "heavy",
+   "fps": 4.2,
+   "avgMs": 236.16,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 77.31,
+   "load": "heavy",
+   "fps": 4.2,
+   "avgMs": 237.22,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 77.58,
+   "load": "heavy",
+   "fps": 4.2,
+   "avgMs": 238.42,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 77.9,
+   "load": "heavy",
+   "fps": 4.2,
+   "avgMs": 239.65,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 78.15,
+   "load": "none",
+   "fps": 4.2,
+   "avgMs": 240.78,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 78.26,
+   "load": "none",
+   "fps": 4.8,
+   "avgMs": 209.09,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 78.5,
+   "load": "none",
+   "fps": 6.3,
+   "avgMs": 159.76,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 78.75,
+   "load": "none",
+   "fps": 8.8,
+   "avgMs": 113.24,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 79,
+   "load": "none",
+   "fps": 23.9,
+   "avgMs": 41.87,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 79.25,
+   "load": "none",
+   "fps": 23.2,
+   "avgMs": 43.05,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 79.5,
+   "load": "none",
+   "fps": 23.8,
+   "avgMs": 41.96,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 79.75,
+   "load": "none",
+   "fps": 23.7,
+   "avgMs": 42.14,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 80,
+   "load": "none",
+   "fps": 23.7,
+   "avgMs": 42.21,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 80.25,
+   "load": "none",
+   "fps": 23.6,
+   "avgMs": 42.4,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 80.5,
+   "load": "none",
+   "fps": 23.4,
+   "avgMs": 42.7,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 80.75,
+   "load": "none",
+   "fps": 23.3,
+   "avgMs": 42.92,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 81,
+   "load": "none",
+   "fps": 23.2,
+   "avgMs": 43.16,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 81.25,
+   "load": "none",
+   "fps": 23.1,
+   "avgMs": 43.2,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 81.5,
+   "load": "none",
+   "fps": 23.5,
+   "avgMs": 42.54,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 81.79,
+   "load": "none",
+   "fps": 21.6,
+   "avgMs": 46.2,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 82,
+   "load": "none",
+   "fps": 19.9,
+   "avgMs": 50.31,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 82.25,
+   "load": "none",
+   "fps": 21.2,
+   "avgMs": 47.17,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 82.5,
+   "load": "none",
+   "fps": 20,
+   "avgMs": 50.09,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 82.75,
+   "load": "none",
+   "fps": 19.4,
+   "avgMs": 51.6,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 83,
+   "load": "none",
+   "fps": 22.9,
+   "avgMs": 43.59,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 83.25,
+   "load": "none",
+   "fps": 23.1,
+   "avgMs": 43.33,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 83.5,
+   "load": "none",
+   "fps": 23.9,
+   "avgMs": 41.86,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 83.75,
+   "load": "none",
+   "fps": 23.7,
+   "avgMs": 42.21,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 84,
+   "load": "none",
+   "fps": 22.7,
+   "avgMs": 44.12,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 84.25,
+   "load": "none",
+   "fps": 22.4,
+   "avgMs": 44.67,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 84.5,
+   "load": "none",
+   "fps": 21.6,
+   "avgMs": 46.37,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 84.75,
+   "load": "none",
+   "fps": 23.1,
+   "avgMs": 43.31,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 85,
+   "load": "none",
+   "fps": 24,
+   "avgMs": 41.71,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 85.25,
+   "load": "none",
+   "fps": 23.2,
+   "avgMs": 43.14,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 85.5,
+   "load": "none",
+   "fps": 23.6,
+   "avgMs": 42.32,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 85.75,
+   "load": "none",
+   "fps": 22.7,
+   "avgMs": 43.99,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 86,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.66,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 86.25,
+   "load": "none",
+   "fps": 22.6,
+   "avgMs": 44.17,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 86.5,
+   "load": "none",
+   "fps": 22.9,
+   "avgMs": 43.7,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 86.75,
+   "load": "none",
+   "fps": 23,
+   "avgMs": 43.54,
+   "level": 6,
+   "tier": "low",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.3,
+   "clouds": 4,
+   "foam": 0
+  },
+  {
+   "t": 87,
+   "load": "none",
+   "fps": 23.4,
+   "avgMs": 42.72,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 87.25,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.86,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 87.5,
+   "load": "none",
+   "fps": 22.1,
+   "avgMs": 45.27,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 87.75,
+   "load": "none",
+   "fps": 22.5,
+   "avgMs": 44.41,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 88,
+   "load": "none",
+   "fps": 22,
+   "avgMs": 45.55,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 88.25,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.87,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 88.5,
+   "load": "none",
+   "fps": 22.6,
+   "avgMs": 44.28,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 88.75,
+   "load": "none",
+   "fps": 21.3,
+   "avgMs": 47,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 89,
+   "load": "none",
+   "fps": 22.7,
+   "avgMs": 43.96,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 89.25,
+   "load": "none",
+   "fps": 22.2,
+   "avgMs": 45.1,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 89.5,
+   "load": "none",
+   "fps": 22.1,
+   "avgMs": 45.24,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 89.75,
+   "load": "none",
+   "fps": 22.9,
+   "avgMs": 43.59,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 90,
+   "load": "none",
+   "fps": 22.1,
+   "avgMs": 45.23,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 90.25,
+   "load": "none",
+   "fps": 22.1,
+   "avgMs": 45.26,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 90.5,
+   "load": "none",
+   "fps": 22,
+   "avgMs": 45.41,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 90.75,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.69,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 91,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.68,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 91.25,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.77,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 91.5,
+   "load": "none",
+   "fps": 19.3,
+   "avgMs": 51.82,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 91.75,
+   "load": "none",
+   "fps": 19.3,
+   "avgMs": 51.83,
+   "level": 5,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 0
+  },
+  {
+   "t": 92,
+   "load": "none",
+   "fps": 18.7,
+   "avgMs": 53.47,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 92.25,
+   "load": "none",
+   "fps": 18.2,
+   "avgMs": 54.93,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 92.5,
+   "load": "none",
+   "fps": 21.1,
+   "avgMs": 47.35,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 92.75,
+   "load": "none",
+   "fps": 21.6,
+   "avgMs": 46.2,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 93,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.89,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 93.25,
+   "load": "none",
+   "fps": 22,
+   "avgMs": 45.42,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 93.5,
+   "load": "none",
+   "fps": 20.8,
+   "avgMs": 47.97,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 93.75,
+   "load": "none",
+   "fps": 21,
+   "avgMs": 47.65,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 94,
+   "load": "none",
+   "fps": 21.3,
+   "avgMs": 47,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 94.25,
+   "load": "none",
+   "fps": 21.4,
+   "avgMs": 46.7,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 94.5,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.59,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 94.75,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.92,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 95,
+   "load": "none",
+   "fps": 21.4,
+   "avgMs": 46.69,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 95.25,
+   "load": "none",
+   "fps": 21.4,
+   "avgMs": 46.62,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 95.5,
+   "load": "none",
+   "fps": 21.5,
+   "avgMs": 46.53,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 95.75,
+   "load": "none",
+   "fps": 21.6,
+   "avgMs": 46.36,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 96,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.91,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 96.25,
+   "load": "none",
+   "fps": 22.6,
+   "avgMs": 44.27,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 96.5,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.86,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 96.75,
+   "load": "none",
+   "fps": 21.6,
+   "avgMs": 46.36,
+   "level": 4,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 8,
+   "foam": 1
+  },
+  {
+   "t": 97,
+   "load": "none",
+   "fps": 20.2,
+   "avgMs": 49.39,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 97.25,
+   "load": "none",
+   "fps": 20.2,
+   "avgMs": 49.5,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 97.5,
+   "load": "none",
+   "fps": 19.7,
+   "avgMs": 50.82,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 97.75,
+   "load": "none",
+   "fps": 19.5,
+   "avgMs": 51.19,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 98,
+   "load": "none",
+   "fps": 19.5,
+   "avgMs": 51.25,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 98.25,
+   "load": "none",
+   "fps": 20.7,
+   "avgMs": 48.2,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 98.5,
+   "load": "none",
+   "fps": 21.7,
+   "avgMs": 46.1,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 98.75,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.75,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 99,
+   "load": "none",
+   "fps": 22.6,
+   "avgMs": 44.23,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 99.25,
+   "load": "none",
+   "fps": 21.1,
+   "avgMs": 47.42,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 99.5,
+   "load": "none",
+   "fps": 22.4,
+   "avgMs": 44.56,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 99.75,
+   "load": "none",
+   "fps": 22.4,
+   "avgMs": 44.67,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 100,
+   "load": "none",
+   "fps": 22.5,
+   "avgMs": 44.42,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 100.25,
+   "load": "none",
+   "fps": 22.5,
+   "avgMs": 44.39,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 100.5,
+   "load": "none",
+   "fps": 22.5,
+   "avgMs": 44.49,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 100.75,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.9,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 101,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.84,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 101.25,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.68,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 101.5,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.72,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 101.75,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.87,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 102,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.79,
+   "level": 3,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.45,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 102.25,
+   "load": "none",
+   "fps": 21,
+   "avgMs": 47.56,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 102.5,
+   "load": "none",
+   "fps": 21.7,
+   "avgMs": 46.01,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 102.75,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.76,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 103,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.93,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 103.25,
+   "load": "none",
+   "fps": 22.5,
+   "avgMs": 44.35,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 103.5,
+   "load": "none",
+   "fps": 21.2,
+   "avgMs": 47.25,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 103.75,
+   "load": "none",
+   "fps": 21.7,
+   "avgMs": 46,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 104,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.8,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 104.25,
+   "load": "none",
+   "fps": 21.7,
+   "avgMs": 46.05,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 104.51,
+   "load": "none",
+   "fps": 22.3,
+   "avgMs": 44.79,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 104.75,
+   "load": "none",
+   "fps": 21.4,
+   "avgMs": 46.77,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 105,
+   "load": "none",
+   "fps": 21.3,
+   "avgMs": 46.99,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 105.25,
+   "load": "none",
+   "fps": 20.6,
+   "avgMs": 48.59,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 105.5,
+   "load": "none",
+   "fps": 21.5,
+   "avgMs": 46.56,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 105.75,
+   "load": "none",
+   "fps": 21.7,
+   "avgMs": 46.06,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 106,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.65,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 106.25,
+   "load": "none",
+   "fps": 22.7,
+   "avgMs": 44.1,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 106.5,
+   "load": "none",
+   "fps": 21.9,
+   "avgMs": 45.62,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 106.75,
+   "load": "none",
+   "fps": 22,
+   "avgMs": 45.47,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 107,
+   "load": "none",
+   "fps": 21.8,
+   "avgMs": 45.94,
+   "level": 2,
+   "tier": "medium",
+   "pr": 0.75,
+   "buf": [
+    360,
+    202
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 107.25,
+   "load": "none",
+   "fps": 21.4,
+   "avgMs": 46.73,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 107.5,
+   "load": "none",
+   "fps": 20.8,
+   "avgMs": 48.14,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 107.75,
+   "load": "none",
+   "fps": 20,
+   "avgMs": 50,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 108,
+   "load": "none",
+   "fps": 19.9,
+   "avgMs": 50.18,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 108.25,
+   "load": "none",
+   "fps": 19,
+   "avgMs": 52.57,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 108.5,
+   "load": "none",
+   "fps": 19.6,
+   "avgMs": 51.1,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 108.75,
+   "load": "none",
+   "fps": 19.3,
+   "avgMs": 51.75,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 109,
+   "load": "none",
+   "fps": 19.2,
+   "avgMs": 51.98,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 109.25,
+   "load": "none",
+   "fps": 18.6,
+   "avgMs": 53.63,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 109.5,
+   "load": "none",
+   "fps": 18.8,
+   "avgMs": 53.16,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 109.75,
+   "load": "none",
+   "fps": 19,
+   "avgMs": 52.51,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 110,
+   "load": "none",
+   "fps": 19,
+   "avgMs": 52.63,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 110.25,
+   "load": "none",
+   "fps": 18.5,
+   "avgMs": 54.08,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 110.5,
+   "load": "none",
+   "fps": 19,
+   "avgMs": 52.56,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 110.75,
+   "load": "none",
+   "fps": 19.1,
+   "avgMs": 52.3,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 111,
+   "load": "none",
+   "fps": 18.9,
+   "avgMs": 52.92,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 111.25,
+   "load": "none",
+   "fps": 18.5,
+   "avgMs": 54.1,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 111.5,
+   "load": "none",
+   "fps": 19.1,
+   "avgMs": 52.38,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 111.75,
+   "load": "none",
+   "fps": 18.3,
+   "avgMs": 54.69,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 112,
+   "load": "none",
+   "fps": 18.7,
+   "avgMs": 53.54,
+   "level": 1,
+   "tier": "medium",
+   "pr": 1,
+   "buf": [
+    480,
+    270
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 112.25,
+   "load": "none",
+   "fps": 19.7,
+   "avgMs": 50.71,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 112.5,
+   "load": "none",
+   "fps": 18.4,
+   "avgMs": 54.44,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 112.75,
+   "load": "none",
+   "fps": 18.5,
+   "avgMs": 53.99,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 113,
+   "load": "none",
+   "fps": 17.6,
+   "avgMs": 56.86,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 113.25,
+   "load": "none",
+   "fps": 16.6,
+   "avgMs": 60.07,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 113.5,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.9,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 113.75,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.1,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 114,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.11,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 114.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.42,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 114.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.53,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 114.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.29,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 115,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.37,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 115.25,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.48,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 115.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.87,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 115.75,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.83,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 116,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.4,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 116.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.77,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 116.5,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.11,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 116.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.06,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 117,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.19,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 117.25,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.12,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 117.5,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.07,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 117.75,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.04,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 118,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.72,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 118.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.41,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 118.5,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.01,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 118.75,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.51,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 119,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.76,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 119.25,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.02,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 119.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.67,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 119.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.38,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 120.01,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.32,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 120.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.31,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 120.5,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.9,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 120.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.78,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 121,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 63.93,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 121.25,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 61.95,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 121.5,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.33,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 121.76,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.17,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 122,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.24,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 122.25,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.24,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 122.5,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.99,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 122.75,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.28,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 123,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.33,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 123.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.61,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 123.5,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.1,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 123.75,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.33,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 124,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.92,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 124.25,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.95,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 124.5,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.17,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 124.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.87,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 125,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 125.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.82,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 125.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.7,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 125.75,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.46,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 126,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.04,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 126.25,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 126.5,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.72,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 126.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.38,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 127,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.31,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 127.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.69,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 127.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.26,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 127.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.65,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 128,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.49,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 128.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.52,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 128.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.22,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 128.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.65,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 129,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 129.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.26,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 129.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.29,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 129.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.5,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 130,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.14,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 130.25,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.13,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 130.5,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.02,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 130.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.25,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 131,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.59,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 131.25,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.22,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 131.5,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.19,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 131.75,
+   "load": "none",
+   "fps": 16.6,
+   "avgMs": 60.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 132,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.75,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 132.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.68,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 132.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.6,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 132.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.84,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 133,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.12,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 133.25,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.2,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 133.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.42,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 133.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.8,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 134,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.59,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 134.25,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.12,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 134.5,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.32,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 134.75,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.97,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 135,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.67,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 135.25,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.54,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 135.5,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.54,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 135.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 61.92,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 136,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 59.79,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 136.25,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 59.89,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 136.5,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.58,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 136.75,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.42,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 137,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 60.05,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 137.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.73,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 137.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.48,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 137.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.56,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 138,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.05,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 138.25,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.74,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 138.5,
+   "load": "none",
+   "fps": 16.5,
+   "avgMs": 60.77,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 138.75,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 139,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 63.06,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 139.25,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.74,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 139.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.39,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 139.75,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.86,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 140,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.23,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 140.25,
+   "load": "none",
+   "fps": 16.6,
+   "avgMs": 60.15,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 140.5,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 59.71,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 140.75,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.5,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 141,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.52,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 141.25,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 141.5,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.88,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 141.75,
+   "load": "none",
+   "fps": 15.8,
+   "avgMs": 63.25,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 142,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.97,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 142.25,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.51,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 142.5,
+   "load": "none",
+   "fps": 14.3,
+   "avgMs": 70.11,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 142.75,
+   "load": "none",
+   "fps": 13.4,
+   "avgMs": 74.53,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 143,
+   "load": "none",
+   "fps": 13,
+   "avgMs": 76.83,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 143.27,
+   "load": "none",
+   "fps": 11.8,
+   "avgMs": 84.94,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 143.5,
+   "load": "none",
+   "fps": 11.5,
+   "avgMs": 87.24,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 143.75,
+   "load": "none",
+   "fps": 10.5,
+   "avgMs": 94.9,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 144,
+   "load": "none",
+   "fps": 9.7,
+   "avgMs": 102.67,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 144.25,
+   "load": "none",
+   "fps": 9.5,
+   "avgMs": 105.22,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 144.5,
+   "load": "none",
+   "fps": 9.1,
+   "avgMs": 109.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 144.75,
+   "load": "none",
+   "fps": 9.1,
+   "avgMs": 110.18,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 145,
+   "load": "none",
+   "fps": 9.1,
+   "avgMs": 109.41,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 145.25,
+   "load": "none",
+   "fps": 9.2,
+   "avgMs": 108.66,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 145.5,
+   "load": "none",
+   "fps": 9.2,
+   "avgMs": 108.45,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 145.75,
+   "load": "none",
+   "fps": 9.6,
+   "avgMs": 104.4,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 146,
+   "load": "none",
+   "fps": 8.8,
+   "avgMs": 113.43,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 146.25,
+   "load": "none",
+   "fps": 9.3,
+   "avgMs": 107.43,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 146.5,
+   "load": "none",
+   "fps": 8.9,
+   "avgMs": 112.37,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 146.75,
+   "load": "none",
+   "fps": 8.7,
+   "avgMs": 114.36,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 147,
+   "load": "none",
+   "fps": 9,
+   "avgMs": 110.92,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 147.25,
+   "load": "none",
+   "fps": 9.4,
+   "avgMs": 106.22,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 147.5,
+   "load": "none",
+   "fps": 10.4,
+   "avgMs": 95.98,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 147.75,
+   "load": "none",
+   "fps": 11.8,
+   "avgMs": 84.57,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 148,
+   "load": "none",
+   "fps": 13.6,
+   "avgMs": 73.8,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 148.26,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.08,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 148.5,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.41,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 148.75,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 59.96,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 149,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.82,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 149.25,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.61,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 149.5,
+   "load": "none",
+   "fps": 15.5,
+   "avgMs": 64.46,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 149.75,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 64.76,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 150,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.35,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 150.25,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.62,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 150.5,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 61.97,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 150.75,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.82,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 151,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.9,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 151.25,
+   "load": "none",
+   "fps": 15.2,
+   "avgMs": 65.58,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 151.5,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.75,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 151.75,
+   "load": "none",
+   "fps": 15.3,
+   "avgMs": 65.21,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 152,
+   "load": "none",
+   "fps": 15,
+   "avgMs": 66.82,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 152.25,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.58,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 152.5,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.35,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 152.75,
+   "load": "none",
+   "fps": 15.4,
+   "avgMs": 65.01,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 153,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.21,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 153.25,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.99,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 153.5,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.1,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 153.75,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.84,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 154,
+   "load": "none",
+   "fps": 16,
+   "avgMs": 62.67,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 154.25,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.79,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 154.5,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.7,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 154.75,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.78,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 155,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.05,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 155.25,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.44,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 155.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.54,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 155.75,
+   "load": "none",
+   "fps": 15.6,
+   "avgMs": 64.17,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 156,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.33,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 156.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 156.5,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.94,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 156.75,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.54,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 157,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.77,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 157.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.47,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 157.5,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.08,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 157.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.34,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 158,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.28,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 158.25,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.5,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 158.5,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.55,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 158.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.05,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 159,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.09,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 159.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.61,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 159.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.28,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 159.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.26,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 160,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 60.88,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 160.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.57,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 160.5,
+   "load": "none",
+   "fps": 15.7,
+   "avgMs": 63.65,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 160.75,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.52,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 161,
+   "load": "none",
+   "fps": 16.4,
+   "avgMs": 61.02,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 161.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.75,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 161.5,
+   "load": "none",
+   "fps": 17,
+   "avgMs": 58.97,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 161.75,
+   "load": "none",
+   "fps": 16.8,
+   "avgMs": 59.39,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 162,
+   "load": "none",
+   "fps": 16.9,
+   "avgMs": 59.11,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 162.25,
+   "load": "none",
+   "fps": 16.2,
+   "avgMs": 61.66,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 162.5,
+   "load": "none",
+   "fps": 16.3,
+   "avgMs": 61.44,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 162.75,
+   "load": "none",
+   "fps": 16.1,
+   "avgMs": 62.07,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 163,
+   "load": "none",
+   "fps": 16.5,
+   "avgMs": 60.47,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 163.25,
+   "load": "none",
+   "fps": 16.7,
+   "avgMs": 59.9,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  },
+  {
+   "t": 163.5,
+   "load": "none",
+   "fps": 15.9,
+   "avgMs": 62.71,
+   "level": 0,
+   "tier": "medium",
+   "pr": 1.25,
+   "buf": [
+    600,
+    337
+   ],
+   "outl": 0.75,
+   "clouds": 16,
+   "foam": 1
+  }
+ ]
+}

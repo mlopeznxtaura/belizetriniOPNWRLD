@@ -10,6 +10,7 @@ import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U, forget
 import { BATCH_ON, batchVehicle } from './batch.js';
 import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
 import { BlobShadows, BLOB_SIZE } from './blobshadow.js';
+import { FpsGovernor, mountDebugOverlay } from './governor.js';
 import { resolveQuality, applyPreBuild, QualityController, PRESETS, PRESET_ORDER, saveQualityChoice } from './quality.js';
 
 class Game {
@@ -80,6 +81,10 @@ class Game {
     window.addEventListener('resize', () => this._onResize());
     this.quality.apply();
     this._onResize();
+    // good-1+6: adaptive frame-rate governor (+ ?debug=1 overlay)
+    this.governor = new FpsGovernor(this, this.quality);
+    this.debugOverlay = mountDebugOverlay(this);
+    this._lastFrameT = 0;
     this.gfx.context = watchContext(this.renderer, {
       onLost: () => this._stopLoop(),
       onRestore: () => this._onContextRestored(),
@@ -199,6 +204,7 @@ class Game {
       saveQualityChoice(choice);
       const name = choice === 'auto' ? auto : choice;
       const reload = this.quality.apply(name);
+      this.governor?.rebase(name);
       this.quality.source = choice === 'auto' ? 'auto' : 'saved';
       sync();
       gfxToast(`Graphics: ${PRESETS[name].label}` + (reload.length ? ` · ${reload.join(' & ')} after reload` : ''), 2600);
@@ -325,7 +331,9 @@ class Game {
   _loop() {
     this._raf = requestAnimationFrame(() => this._loop());
     if (this.gfx?.context?.lost) return;
-    const dt = Math.min(this.clock.getDelta(), 0.05);
+    const rawDt = this.clock.getDelta();
+    const dt = Math.min(rawDt, 0.05);
+    this.governor?.update(rawDt);
 
     // Day/night advances on title + in play (pause freezes gameplay but clock still ticks unless T)
     if (this.world?.dayNight) {
@@ -352,6 +360,7 @@ class Game {
 
     this.quality?.update(dt);
     if (this.blobs?.enabled) this._updateBlobs();
+    this.debugOverlay?.update(dt);
     updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
     // After the first frames (and after a restore) every program has been compiled: swap any that

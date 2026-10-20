@@ -187,6 +187,7 @@ async function handleApi(request, url) {
       if (body[k] !== undefined) gameState[k] = body[k];
     }
     if (body.playerPos) gameState.playerPos = body.playerPos;
+    if (body.perf && typeof body.perf === 'object') gameState.perf = body.perf; // good-1+6 governor
     gameState.lastUpdate = new Date().toISOString();
     return json({ ok: true });
   }
