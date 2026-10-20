@@ -114,8 +114,7 @@ export class MissionSystem {
     }
     if (id === 6) {
       const stars = MISSIONS[5].setWanted || 3;
-      g.wanted = Math.max(g.wanted, stars);
-      g.hud?.setWanted(g.wanted);
+      if (g.wanted < stars) g.wanted = stars;
     }
   }
 
@@ -199,7 +198,7 @@ export class MissionSystem {
     }
     if (m.id === 4 && this.rivalNpc?.alive && dist < 5.5) {
       this.rivalNpc.softHit();
-      g.addWanted(2);
+      g.addWanted(2, 'softHit');
       g.hud?.toast('Courier intercepted!');
       setTimeout(() => {
         if (this.currentId === 4) this._complete();
@@ -208,7 +207,7 @@ export class MissionSystem {
     }
     if (m.id === 5 && this.guardNpc?.alive && dist < 5.5) {
       this.guardNpc.softHit();
-      g.addWanted(2);
+      g.addWanted(2, 'softHit');
       g.hud?.toast('Guard down — move!');
       setTimeout(() => {
         if (this.currentId === 5) this._complete();
@@ -217,7 +216,6 @@ export class MissionSystem {
     }
     if (m.id === 6 && dist < 8) {
       g.wanted = 0;
-      g.hud?.setWanted(0);
       g.hud?.toast('Safehouse — story complete');
       this._complete();
       return true;

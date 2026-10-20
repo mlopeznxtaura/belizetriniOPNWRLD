@@ -31,12 +31,15 @@ export class HUD {
     this.cashEl.textContent = '$' + Math.floor(n).toLocaleString();
   }
 
-  setWanted(stars) {
+  /** good-1+7: `flashing` = cops lost sight and are searching (stars blink until escape). */
+  setWanted(stars, flashing = false) {
     const s = Math.max(0, Math.min(5, Math.floor(stars)));
     this.wantedEl.innerHTML = '';
+    this.wantedEl.dataset.stars = String(s);
+    this.wantedEl.classList.toggle('searching', !!flashing && s > 0);
     for (let i = 0; i < 5; i++) {
       const span = document.createElement('span');
-      span.className = 'star' + (i < s ? ' on' : '');
+      span.className = 'star' + (i < s ? ' on' : '') + (i < s && flashing ? ' flash' : '');
       span.textContent = '★';
       this.wantedEl.appendChild(span);
     }

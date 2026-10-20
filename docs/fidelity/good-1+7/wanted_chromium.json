@@ -1,0 +1,518 @@
+{
+ "engine": "chromium",
+ "query": "?quality=low",
+ "perStar": [
+  {
+   "set": 1,
+   "stars": 1,
+   "gameWanted": 1,
+   "byKind": {
+    "foot": 1
+   },
+   "units": 1,
+   "hudStars": 1,
+   "seen": true
+  },
+  {
+   "set": 2,
+   "stars": 2,
+   "gameWanted": 2,
+   "byKind": {
+    "foot": 1,
+    "car": 2
+   },
+   "units": 3,
+   "hudStars": 2,
+   "seen": true
+  },
+  {
+   "set": 3,
+   "stars": 3,
+   "gameWanted": 3,
+   "byKind": {
+    "foot": 2,
+    "car": 3,
+    "roadblock": 1
+   },
+   "units": 6,
+   "hudStars": 3,
+   "seen": true
+  },
+  {
+   "set": 4,
+   "stars": 4,
+   "gameWanted": 4,
+   "byKind": {
+    "foot": 2,
+    "car": 4,
+    "roadblock": 1,
+    "heli": 1
+   },
+   "units": 8,
+   "hudStars": 4,
+   "seen": true
+  },
+  {
+   "set": 5,
+   "stars": 5,
+   "gameWanted": 5,
+   "byKind": {
+    "foot": 2,
+    "car": 6,
+    "roadblock": 2,
+    "heli": 1,
+    "spikes": 2
+   },
+   "units": 13,
+   "hudStars": 5,
+   "seen": true
+  }
+ ],
+ "perf5": {
+  "renderMs": 84.4,
+  "rafFps": 8.9,
+  "calls": 151,
+  "units": 13,
+  "stars": 5
+ },
+ "afterClear": {
+  "stars": 0,
+  "heat": 0,
+  "seen": false,
+  "searchT": 0,
+  "escapeAt": 0,
+  "units": 0,
+  "byKind": {},
+  "flashing": false,
+  "hud": 0
+ },
+ "perf0": {
+  "renderMs": 50.2,
+  "rafFps": 16.2,
+  "calls": 103,
+  "units": 0,
+  "stars": 0
+ },
+ "crimes": {
+  "carTheftWitnessed": {
+   "inVehicle": true,
+   "heat": 1,
+   "stars": 1
+  },
+  "carTheftUnwitnessed": {
+   "inVehicle": true,
+   "heat": 0.5,
+   "stars": 0
+  },
+  "ramCop": {
+   "heat": 1.2,
+   "stars": 1,
+   "log": [
+    {
+     "t": 24.34,
+     "kind": "set",
+     "stars": 0
+    },
+    {
+     "t": 24.35,
+     "kind": "crime:ramCop",
+     "stars": 1
+    }
+   ]
+  },
+  "softHitMission5": {
+   "before": 0,
+   "heat": 2,
+   "stars": 2
+  }
+ },
+ "decayInRadius": {
+  "label": "in search radius (expect 11 s + 8 s game time)",
+  "marks": [
+   {
+    "stars": 1,
+    "gameSec": 11.08,
+    "wallSec": 15.1,
+    "hud": 1
+   },
+   {
+    "stars": 0,
+    "gameSec": 19.05,
+    "wallSec": 25.9,
+    "hud": 0
+   }
+  ],
+  "flashSeen": true,
+  "trace": [
+   [
+    0,
+    2,
+    0,
+    true,
+    true
+   ],
+   [
+    0.69,
+    2,
+    0.69,
+    false,
+    true
+   ],
+   [
+    1.36,
+    2,
+    1.36,
+    false,
+    true
+   ],
+   [
+    2.13,
+    2,
+    2.13,
+    false,
+    true
+   ],
+   [
+    2.93,
+    2,
+    2.93,
+    false,
+    true
+   ],
+   [
+    3.68,
+    2,
+    3.68,
+    false,
+    true
+   ],
+   [
+    4.46,
+    2,
+    4.46,
+    false,
+    true
+   ],
+   [
+    5.25,
+    2,
+    5.25,
+    false,
+    true
+   ],
+   [
+    6.02,
+    2,
+    6.02,
+    false,
+    true
+   ],
+   [
+    6.82,
+    2,
+    6.82,
+    false,
+    true
+   ],
+   [
+    7.56,
+    2,
+    7.56,
+    false,
+    true
+   ],
+   [
+    8.26,
+    2,
+    8.26,
+    false,
+    true
+   ],
+   [
+    9,
+    2,
+    9,
+    false,
+    true
+   ],
+   [
+    9.7,
+    2,
+    9.7,
+    false,
+    true
+   ],
+   [
+    10.45,
+    2,
+    10.45,
+    false,
+    true
+   ],
+   [
+    11.28,
+    1,
+    0.25,
+    false,
+    true
+   ],
+   [
+    12,
+    1,
+    0.97,
+    false,
+    true
+   ],
+   [
+    12.75,
+    1,
+    1.72,
+    false,
+    true
+   ],
+   [
+    13.6,
+    1,
+    2.57,
+    false,
+    true
+   ],
+   [
+    14.28,
+    1,
+    3.25,
+    false,
+    true
+   ],
+   [
+    15.07,
+    1,
+    4.04,
+    false,
+    true
+   ],
+   [
+    15.81,
+    1,
+    4.78,
+    false,
+    true
+   ],
+   [
+    16.53,
+    1,
+    5.5,
+    false,
+    true
+   ],
+   [
+    17.37,
+    1,
+    6.34,
+    false,
+    true
+   ],
+   [
+    18.06,
+    1,
+    7.03,
+    false,
+    true
+   ],
+   [
+    18.9,
+    1,
+    7.87,
+    false,
+    true
+   ]
+  ],
+  "log": [
+   {
+    "t": 24.35,
+    "kind": "set",
+    "stars": 0
+   },
+   {
+    "t": 24.35,
+    "kind": "set",
+    "stars": 2
+   },
+   {
+    "t": 35.38,
+    "kind": "decay",
+    "stars": 1
+   },
+   {
+    "t": 43.41,
+    "kind": "decay",
+    "stars": 0
+   }
+  ]
+ },
+ "decayOutside": {
+  "label": "outside search radius (x2: expect 5.5 s + 4 s game time)",
+  "marks": [
+   {
+    "stars": 1,
+    "gameSec": 5.67,
+    "wallSec": 9,
+    "hud": 1
+   },
+   {
+    "stars": 0,
+    "gameSec": 9.64,
+    "wallSec": 14.9,
+    "hud": 0
+   }
+  ],
+  "flashSeen": true,
+  "trace": [
+   [
+    0,
+    2,
+    0,
+    true,
+    true
+   ],
+   [
+    0.54,
+    2,
+    1.08,
+    false,
+    true
+   ],
+   [
+    1.21,
+    2,
+    2.43,
+    false,
+    true
+   ],
+   [
+    1.91,
+    2,
+    3.82,
+    false,
+    true
+   ],
+   [
+    2.51,
+    2,
+    5.02,
+    false,
+    true
+   ],
+   [
+    3.21,
+    2,
+    6.43,
+    false,
+    true
+   ],
+   [
+    3.81,
+    2,
+    7.63,
+    false,
+    true
+   ],
+   [
+    4.47,
+    2,
+    8.94,
+    false,
+    true
+   ],
+   [
+    5.13,
+    2,
+    10.27,
+    false,
+    true
+   ],
+   [
+    5.87,
+    1,
+    0.67,
+    false,
+    true
+   ],
+   [
+    6.45,
+    1,
+    1.84,
+    false,
+    true
+   ],
+   [
+    7.15,
+    1,
+    3.23,
+    false,
+    true
+   ],
+   [
+    7.84,
+    1,
+    4.61,
+    false,
+    true
+   ],
+   [
+    8.59,
+    1,
+    6.11,
+    false,
+    true
+   ],
+   [
+    9.29,
+    1,
+    7.51,
+    false,
+    true
+   ]
+  ],
+  "log": [
+   {
+    "t": 43.41,
+    "kind": "set",
+    "stars": 0
+   },
+   {
+    "t": 43.41,
+    "kind": "set",
+    "stars": 2
+   },
+   {
+    "t": 48.94,
+    "kind": "decay",
+    "stars": 1
+   },
+   {
+    "t": 52.94,
+    "kind": "decay",
+    "stars": 0
+   }
+  ]
+ },
+ "seenNoDecay": {
+  "stars": 1,
+  "seen": true,
+  "searchT": 0,
+  "flashing": false
+ },
+ "spawnedTotals": {
+  "spawned": {
+   "foot": 3,
+   "car": 6,
+   "roadblock": 2,
+   "heli": 1,
+   "spikes": 2
+  },
+  "crimes": 4,
+  "escapes": 4
+ },
+ "errors": []
+}

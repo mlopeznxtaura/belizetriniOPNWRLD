@@ -3,6 +3,7 @@ import { buildWorld, districtAt } from './world.js';
 import { Player, getStoredChar, setStoredChar } from './player.js';
 import { spawnFleet, nearestVehicle, vehicleLabel } from './vehicle.js';
 import { spawnCops } from './ai.js';
+import { WantedSystem } from './wanted.js';
 import { MissionSystem } from './missions.js';
 import { HUD } from './hud.js';
 import { DriveClient } from './drive.js';
@@ -71,6 +72,7 @@ class Game {
     if (QR.shade?.lambert) this.quality.stripShadowFlags();
     this.hud = new HUD();
     this.missions = new MissionSystem(this);
+    this.wantedSys = new WantedSystem(this); // good-1+7: 1-5 star heat, escalation, escape
     this.drive = new DriveClient(this);
 
     this.player.bindInput(this.canvas);
@@ -261,9 +263,13 @@ class Game {
     if (p) document.exitPointerLock?.();
   }
 
-  addWanted(n) {
-    this.wanted = Math.min(5, this.wanted + n);
-    this.hud.setWanted(this.wanted);
+  /** good-1+7: `wanted` is the star count of the WantedSystem (0-5); setting it sets an exact level. */
+  get wanted() { return this.wantedSys ? this.wantedSys.stars : (this._wanted || 0); }
+  set wanted(v) { if (this.wantedSys) this.wantedSys.setStars(v); else this._wanted = v; }
+
+  addWanted(n, why = 'mission') {
+    if (this.wantedSys) this.wantedSys.addHeat(n, why);
+    else { this._wanted = Math.min(5, (this._wanted || 0) + n); this.hud.setWanted(this._wanted); }
   }
 
   _onInteract() {
@@ -279,8 +285,10 @@ class Game {
     if (near) {
       this.player.enterVehicle(near);
       this.hud.toast(vehicleLabel(near.type));
-      if (this._nearCops(18) && this._crimeCooldown <= 0) {
-        this.addWanted(1);
+      // good-1+7: car theft is a crime; full heat when a cop is within 35 m, half otherwise.
+      // (Mission 1's scooter is the mission's own vehicle and its heat comes from the mission.)
+      if (!(this.missions.currentId === 1 && near.type === 'scooter') && this._crimeCooldown <= 0) {
+        this.wantedSys.crime('carTheft');
         this._crimeCooldown = 5;
       }
     }
@@ -386,8 +394,8 @@ class Game {
       if (!v.mesh?.visible) continue;
       put(v.mesh.position.x, v.mesh.position.y, v.mesh.position.z, v.yaw ?? v.mesh.rotation.y, BLOB_SIZE[v.type] || BLOB_SIZE.sedan);
     }
-    for (const c of this.cops) {
-      if (!c.alive || !c.mesh.visible) continue;
+    for (const c of [...this.cops, ...(this.wantedSys?.units || [])]) {
+      if (!c.alive || !c.mesh?.visible || c.kind === 'spikes' || c.kind === 'roadblock') continue;
       put(c.mesh.position.x, c.mesh.position.y, c.mesh.position.z, c.yaw, c.onFoot ? BLOB_SIZE.person : (c.isHeli ? BLOB_SIZE.heli : BLOB_SIZE.cop));
     }
     for (const npc of this.missions?.npcs?.() || []) {
@@ -410,24 +418,13 @@ class Game {
     this.district = districtAt(pos.x);
     this.hud.setDistrict(this.district);
 
-    for (const cop of this.cops) {
-      const hit = cop.update(dt, pos, this.wanted);
-      if (hit?.hit) {
-        this.player.takeDamage(hit.damage);
-        this.hud.setHealth(this.player.health);
-        if (this.player.health <= 0) this._respawn();
-      }
-    }
-
-    if (this.wanted > 0 && !this._nearCops(45)) {
-      this._wantedDecay += dt;
-      if (this._wantedDecay > 25) {
-        this.wanted = Math.max(0, this.wanted - 1);
-        this.hud.setWanted(this.wanted);
-        this._wantedDecay = 0;
-      }
-    } else {
-      this._wantedDecay = 0;
+    // Ambient patrols keep patrolling (and witness crimes); pursuit is the WantedSystem's units.
+    for (const cop of this.cops) cop.update(dt, pos, 0);
+    const dmg = this.wantedSys.update(dt);
+    if (dmg > 0) {
+      this.player.takeDamage(dmg);
+      this.hud.setHealth(this.player.health);
+      if (this.player.health <= 0) this._respawn();
     }
 
     const m = this.missions.current;
@@ -435,7 +432,7 @@ class Game {
     this.hud.drawMinimap(
       pos,
       this.player.inVehicle ? this.player.vehicle.yaw : this.player.yaw,
-      this.cops,
+      [...this.cops, ...this.wantedSys.units.filter((u) => u.kind !== 'spikes')],
       blipPos,
       this.player.inVehicle,
       this.world.roads
@@ -466,7 +463,6 @@ class Game {
     this.player.health = 100;
     this.hud.setHealth(100);
     this.wanted = Math.max(0, this.wanted - 1);
-    this.hud.setWanted(this.wanted);
   }
 }
 

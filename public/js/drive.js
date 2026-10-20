@@ -40,6 +40,7 @@ export class DriveClient {
           },
           district: g.district,
           inVehicle: g.player.inVehicle,
+          wantedState: g.wantedSys ? g.wantedSys.state() : undefined,
           perf: g.governor ? g.governor.state() : undefined,
         }),
       });
@@ -76,13 +77,11 @@ export class DriveClient {
         g.hud.toast(`Agent: +$${Number(a.amount) || 500}`);
         break;
       case 'clear_wanted':
-        g.wanted = 0;
-        g.hud.setWanted(0);
+        g.wantedSys.setStars(0);
         g.hud.toast('Agent: heat cleared');
         break;
       case 'set_wanted':
-        g.wanted = Math.max(0, Math.min(5, Number(a.stars) || Number(a.amount) || 0));
-        g.hud.setWanted(g.wanted);
+        g.wantedSys.setStars(Math.max(0, Math.min(5, Number(a.stars) || Number(a.amount) || 0)));
         break;
       case 'heal':
         g.player.heal(100);

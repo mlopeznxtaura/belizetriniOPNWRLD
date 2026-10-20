@@ -117,6 +117,9 @@ html, body {
 }
 #wanted .star { color: #334455; }
 #wanted .star.on { color: #ffd60a; text-shadow: 0 0 8px #ffd60a; }
+/* good-1+7: cops searching (out of sight) -> lit stars blink until the level drops */
+#wanted .star.on.flash { animation: star-flash 0.6s steps(2, jump-none) infinite; }
+@keyframes star-flash { 0% { color: #ffd60a; } 100% { color: #5a4a12; text-shadow: none; } }
 #health-wrap {
   width: 140px; height: 10px;
   background: rgba(0,0,0,0.5);

@@ -16,6 +16,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.goto(`http://127.0.0.1:${PORT}/?quality=low&debug=1`, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__BELIZETRINI_OPNWRLD__?.governor, { timeout: 90000 });
   await page.evaluate(() => window.__BELIZETRINI_OPNWRLD__.beginPlay());
+  await page.evaluate(() => window.__BELIZETRINI_OPNWRLD__.drive.apply({ action: 'set_wanted', stars: 3 }));
   await sleep(14000);
   const st = await (await fetch(`http://127.0.0.1:${PORT}/api/status`)).json();
   fs.writeFileSync(OUT, JSON.stringify(st, null, 1));

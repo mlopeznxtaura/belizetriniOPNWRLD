@@ -188,6 +188,7 @@ async function handleApi(request, url) {
     }
     if (body.playerPos) gameState.playerPos = body.playerPos;
     if (body.perf && typeof body.perf === 'object') gameState.perf = body.perf; // good-1+6 governor
+    if (body.wantedState && typeof body.wantedState === 'object') gameState.wantedState = body.wantedState; // good-1+7
     gameState.lastUpdate = new Date().toISOString();
     return json({ ok: true });
   }

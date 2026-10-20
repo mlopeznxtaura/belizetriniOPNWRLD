@@ -1,0 +1,53 @@
+{
+ "ok": true,
+ "running": true,
+ "paused": false,
+ "missionId": 1,
+ "missionName": "Scooter Snatch",
+ "cash": 0,
+ "wanted": 3,
+ "health": 71.64520000000196,
+ "playerPos": {
+  "x": -72,
+  "y": 0,
+  "z": 3.45
+ },
+ "district": "belize",
+ "inVehicle": false,
+ "vehicleId": null,
+ "startedAt": "2026-10-20T04:08:14.033Z",
+ "lastUpdate": "2026-10-20T04:08:27.579Z",
+ "pendingDrive": [],
+ "perf": {
+  "enabled": true,
+  "targetFps": 60,
+  "avgMs": 45.94,
+  "fps": 21.8,
+  "level": 5,
+  "maxLevel": 5,
+  "base": "low",
+  "tier": "low",
+  "pixelRatio": 0.6,
+  "outlineDist": 0.3,
+  "clouds": 4,
+  "foam": 0,
+  "lastAction": "down:foam",
+  "upDelay": 5,
+  "steps": 5
+ },
+ "wantedState": {
+  "stars": 3,
+  "heat": 3.25,
+  "seen": true,
+  "searchT": 0,
+  "escapeAt": 14,
+  "units": 6,
+  "byKind": {
+   "foot": 2,
+   "car": 3,
+   "roadblock": 1
+  },
+  "flashing": false
+ },
+ "pendingDriveCount": 0
+}
