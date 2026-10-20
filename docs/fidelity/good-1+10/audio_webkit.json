@@ -1,0 +1,216 @@
+{
+ "engine": "webkit",
+ "steps": {
+  "noContextBeforeGesture": {
+   "ok": true,
+   "enabled": true,
+   "state": "none",
+   "unlocked": false,
+   "muted": false,
+   "nodesCreated": 0,
+   "events": {
+    "footstep": 0,
+    "sting": 0,
+    "chirp": 0,
+    "cricket": 0,
+    "unlock": 0,
+    "resume": 0,
+    "interrupted": 0
+   },
+   "engineGain": 0,
+   "sirenGain": 0,
+   "sampleRate": 0
+  },
+  "unlockInsideGesture": {
+   "ok": true,
+   "create": {
+    "op": "create",
+    "cls": "AudioContext",
+    "state": "suspended",
+    "ev": "pointerup",
+    "trusted": true,
+    "t": 1906
+   },
+   "gestureResumes": 4,
+   "firstResume": {
+    "op": "resume",
+    "stateBefore": "suspended",
+    "ev": "pointerup",
+    "trusted": true,
+    "t": 1962
+   },
+   "strayResumes": 0,
+   "transitions": [
+    "running"
+   ]
+  },
+  "runningAfterTap": {
+   "ok": true,
+   "enabled": true,
+   "state": "running",
+   "unlocked": true,
+   "muted": false,
+   "nodesCreated": 26,
+   "events": {
+    "footstep": 0,
+    "sting": 0,
+    "chirp": 0,
+    "cricket": 0,
+    "unlock": 1,
+    "resume": 0,
+    "interrupted": 0
+   },
+   "engineGain": 0,
+   "sirenGain": 0,
+   "sampleRate": 44100
+  },
+  "suspendOnHiddenResumeOnVisible": {
+   "ok": true,
+   "hidden": "suspended",
+   "visible": "running",
+   "resumes": 1
+  },
+  "resumeOnPageshow": {
+   "ok": true,
+   "state": "running"
+  },
+  "autoResumeAfterInterruption": {
+   "ok": true,
+   "state": "running",
+   "resumes": 3
+  },
+  "footstepNodesPerEvent": {
+   "ok": true,
+   "steps": 3,
+   "nodesAdded": 9,
+   "rms": 0.0031
+  },
+  "enginePitchBySpeed": {
+   "ok": true,
+   "idle": {
+    "f": 78,
+    "gain": 0.088,
+    "rms": 0.08
+   },
+   "mid": {
+    "f": 118,
+    "gain": 0.116,
+    "rms": 0.1029
+   },
+   "fast": {
+    "f": 127.2,
+    "gain": 0.119,
+    "rms": 0.1066
+   },
+   "heli": {
+    "f": 60.1,
+    "thumpHz": 16.1
+   }
+  },
+  "sirenWithWanted": {
+   "ok": true,
+   "at3stars": 0.079,
+   "cleared": 0
+  },
+  "missionCompleteSting": {
+   "ok": true,
+   "stings": 1,
+   "nodesAdded": 12,
+   "rms": 0.0349
+  },
+  "ambienceDayNight": {
+   "ok": true,
+   "chirps": 3,
+   "crickets": 2
+  },
+  "muteToggle": {
+   "ok": true,
+   "m1": {
+    "muted": true,
+    "master": 0,
+    "label": "Sound: Off",
+    "saved": "1"
+   },
+   "m2": {
+    "muted": false,
+    "label": "Sound: On",
+    "saved": "0"
+   }
+  },
+  "hintOnce": {
+   "ok": true,
+   "firstLoad": true,
+   "secondLoad": false,
+   "mutedRestored": false,
+   "stateAfterReloadTap": "running"
+  }
+ },
+ "acLog": [
+  {
+   "op": "create",
+   "cls": "AudioContext",
+   "state": "suspended",
+   "ev": "pointerup",
+   "trusted": true,
+   "t": 1906
+  },
+  {
+   "op": "resume",
+   "stateBefore": "suspended",
+   "ev": "pointerup",
+   "trusted": true,
+   "t": 1962
+  },
+  {
+   "op": "resume",
+   "stateBefore": "suspended",
+   "ev": "touchend",
+   "trusted": true,
+   "t": 1966
+  },
+  {
+   "op": "resume",
+   "stateBefore": "suspended",
+   "ev": "click",
+   "trusted": true,
+   "t": 1970
+  },
+  {
+   "op": "resume",
+   "stateBefore": "suspended",
+   "ev": "click",
+   "trusted": true,
+   "t": 1970
+  },
+  {
+   "op": "state",
+   "state": "running",
+   "ev": "statechange",
+   "trusted": true,
+   "t": 2083
+  }
+ ],
+ "noAudioSink": false,
+ "final": {
+  "enabled": true,
+  "state": "running",
+  "unlocked": true,
+  "muted": false,
+  "nodesCreated": 26,
+  "events": {
+   "footstep": 0,
+   "sting": 0,
+   "chirp": 0,
+   "cricket": 0,
+   "unlock": 1,
+   "resume": 0,
+   "interrupted": 0
+  },
+  "engineGain": 0,
+  "sirenGain": 0,
+  "sampleRate": 44100
+ },
+ "errors": [],
+ "allOk": true,
+ "gesturePathOk": true
+}

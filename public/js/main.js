@@ -11,6 +11,7 @@ import { TOON_ON, toonify, updateToon, outlineStats, TOON_Q, U as TOON_U, forget
 import { BATCH_ON, batchVehicle } from './batch.js';
 import { createRendererRobust, watchContext, healShaderFailures, gfxToast, safePointerLock } from './gfx.js';
 import { BlobShadows, BLOB_SIZE } from './blobshadow.js';
+import { GameAudio } from './audio.js';
 import { FpsGovernor, mountDebugOverlay } from './governor.js';
 import { resolveQuality, applyPreBuild, QualityController, PRESETS, PRESET_ORDER, saveQualityChoice } from './quality.js';
 
@@ -75,6 +76,7 @@ class Game {
     this.wantedSys = new WantedSystem(this); // good-1+7: 1-5 star heat, escalation, escape
     this.drive = new DriveClient(this);
 
+    this.audio = new GameAudio(this); // good-1+10: procedural WebAudio, unlocked on the first gesture
     this.player.bindInput(this.canvas);
     this.player.whenReady().then(() => console.info("[game] character ready"));
     this._bindUI();
@@ -99,7 +101,12 @@ class Game {
     this._bindQualityMenu();
     document.getElementById('btn-pause')?.addEventListener('click', (e) => { e.preventDefault(); if (this.running) this.setPaused(true); });
     document.getElementById('btn-resume')?.addEventListener('click', () => this.setPaused(false));
-    document.getElementById('btn-start')?.addEventListener('click', () => this.beginPlay());
+    // good-1+10: unlock audio synchronously inside the START gesture (iOS), then start.
+    document.getElementById('btn-start')?.addEventListener('click', () => { this.audio?.unlock(); this.beginPlay(); });
+    const muteBtn = document.getElementById('btn-mute');
+    const syncMute = () => { if (muteBtn) { muteBtn.textContent = this.audio?.muted ? 'Sound: Off' : 'Sound: On'; muteBtn.setAttribute('aria-pressed', this.audio?.muted ? 'true' : 'false'); } };
+    muteBtn?.addEventListener('click', () => { this.audio?.unlock(); this.audio?.setMuted(!this.audio.muted); syncMute(); });
+    syncMute();
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyP' || e.code === 'Escape') {
         if (!this.running) return;
@@ -371,6 +378,7 @@ class Game {
     this.quality?.update(dt);
     if (this.blobs?.enabled) this._updateBlobs();
     this.debugOverlay?.update(dt);
+    this.audio?.update(dt);
     updateToon(this.player.camera, dt);
     this.renderer.render(this.scene, this.player.camera);
     // After the first frames (and after a restore) every program has been compiled: swap any that

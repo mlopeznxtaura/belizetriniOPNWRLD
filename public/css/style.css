@@ -255,6 +255,8 @@ html, body {
   background: rgba(10,12,24,0.85); color: #e8f6ff; font-weight: 700; font-size: 0.85rem; cursor: pointer;
 }
 .q-btn.selected { border-color: #00f5d4; background: #00f5d4; color: #061018; }
+#btn-mute { min-width: 9rem; }
+.mute-hint { margin-top: 0.4rem; font-size: 0.7rem; color: #8899aa; }
 #btn-resume { margin-top: 1.2rem; border-color: rgba(247,37,133,0.6); }
 #pause-overlay h2 {
   font-size: 2.5rem;

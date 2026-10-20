@@ -1,0 +1,181 @@
+{
+ "engine": "chromium",
+ "steps": {
+  "noContextBeforeGesture": {
+   "ok": true,
+   "enabled": true,
+   "state": "none",
+   "unlocked": false,
+   "muted": false,
+   "nodesCreated": 0,
+   "events": {
+    "footstep": 0,
+    "sting": 0,
+    "chirp": 0,
+    "cricket": 0,
+    "unlock": 0,
+    "resume": 0,
+    "interrupted": 0
+   },
+   "engineGain": 0,
+   "sirenGain": 0,
+   "sampleRate": 0
+  },
+  "unlockInsideGesture": {
+   "ok": true,
+   "create": {
+    "op": "create",
+    "cls": "AudioContext",
+    "state": "running",
+    "ev": "pointerup",
+    "trusted": true,
+    "t": 5471
+   },
+   "gestureResumes": 0,
+   "strayResumes": 0,
+   "transitions": [
+    "running"
+   ]
+  },
+  "runningAfterTap": {
+   "ok": true,
+   "enabled": true,
+   "state": "running",
+   "unlocked": true,
+   "muted": false,
+   "nodesCreated": 24,
+   "events": {
+    "footstep": 0,
+    "sting": 0,
+    "chirp": 0,
+    "cricket": 0,
+    "unlock": 1,
+    "resume": 0,
+    "interrupted": 0
+   },
+   "engineGain": 0,
+   "sirenGain": 0,
+   "sampleRate": 44100
+  },
+  "suspendOnHiddenResumeOnVisible": {
+   "ok": true,
+   "hidden": "suspended",
+   "visible": "running",
+   "resumes": 1
+  },
+  "resumeOnPageshow": {
+   "ok": true,
+   "state": "running"
+  },
+  "autoResumeAfterInterruption": {
+   "ok": true,
+   "state": "running",
+   "resumes": 3
+  },
+  "footstepNodesPerEvent": {
+   "ok": true,
+   "steps": 4,
+   "nodesAdded": 12,
+   "rms": 0.0032
+  },
+  "enginePitchBySpeed": {
+   "ok": true,
+   "idle": {
+    "f": 78,
+    "gain": 0.088,
+    "rms": 0.0811
+   },
+   "mid": {
+    "f": 119,
+    "gain": 0.117,
+    "rms": 0.1032
+   },
+   "fast": {
+    "f": 127.2,
+    "gain": 0.119,
+    "rms": 0.1069
+   },
+   "heli": {
+    "f": 60.1,
+    "thumpHz": 16.1
+   }
+  },
+  "sirenWithWanted": {
+   "ok": true,
+   "at3stars": 0.081,
+   "cleared": 0
+  },
+  "missionCompleteSting": {
+   "ok": true,
+   "stings": 1,
+   "nodesAdded": 8,
+   "rms": 0.0323
+  },
+  "ambienceDayNight": {
+   "ok": true,
+   "chirps": 3,
+   "crickets": 3
+  },
+  "muteToggle": {
+   "ok": true,
+   "m1": {
+    "muted": true,
+    "master": 0,
+    "label": "Sound: Off",
+    "saved": "1"
+   },
+   "m2": {
+    "muted": false,
+    "label": "Sound: On",
+    "saved": "0"
+   }
+  },
+  "hintOnce": {
+   "ok": true,
+   "firstLoad": true,
+   "secondLoad": false,
+   "mutedRestored": false,
+   "stateAfterReloadTap": "running"
+  }
+ },
+ "acLog": [
+  {
+   "op": "create",
+   "cls": "AudioContext",
+   "state": "running",
+   "ev": "pointerup",
+   "trusted": true,
+   "t": 5471
+  },
+  {
+   "op": "state",
+   "state": "running",
+   "ev": "statechange",
+   "trusted": true,
+   "t": 5556
+  }
+ ],
+ "noAudioSink": false,
+ "final": {
+  "enabled": true,
+  "state": "running",
+  "unlocked": true,
+  "muted": false,
+  "nodesCreated": 24,
+  "events": {
+   "footstep": 0,
+   "sting": 0,
+   "chirp": 0,
+   "cricket": 0,
+   "unlock": 1,
+   "resume": 0,
+   "interrupted": 0
+  },
+  "engineGain": 0,
+  "sirenGain": 0,
+  "sampleRate": 44100
+ },
+ "errors": [],
+ "allOk": true,
+ "gesturePathOk": true
+}

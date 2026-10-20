@@ -42,6 +42,7 @@ export class DriveClient {
           district: g.district,
           inVehicle: g.player.inVehicle,
           wantedState: g.wantedSys ? g.wantedSys.state() : undefined,
+          audio: g.audio ? { state: g.audio.state().state, muted: g.audio.muted } : undefined,
           perf: g.governor ? g.governor.state() : undefined,
         }),
       });

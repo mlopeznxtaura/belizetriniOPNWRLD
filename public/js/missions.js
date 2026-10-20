@@ -208,6 +208,7 @@ export class MissionSystem {
     this._event('fail', { id: this.currentId, stage: this.stageIndex, reason });
     this._updateBlips();
     this._showFail(reason);
+    this.game.audio?.sting('fail');
   }
 
   /** Called by the game when the player is wasted. */
@@ -229,6 +230,7 @@ export class MissionSystem {
     this._save(next ? { id: next.id, stage: 0 } : null);
     this._updateBlips();
     this._showComplete(m, first ? m.reward : 0, t);
+    g.audio?.sting('complete');
     this._completeT = 3.5;
   }
 
